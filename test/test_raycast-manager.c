@@ -1,0 +1,4 @@
+/* 
+	test predicatable raycast examples
+	test output to datamodel
+ */
