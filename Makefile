@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/03 17:50:15 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/04 11:42:02 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,17 @@ OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
 RES_DIR			:= res/
 NAME			:= cube3D
-HDRS 			:= 
+HDRS 			:=
 SRCS 			:= main.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= map.cub
 
-MLX_DIR			:= src/mlx/
-MLX_INC			:= src/mlx/
-MLX				:= src/mlx/libmlx_Linux.a
+MLX_DIR			:= src/minilibx-linux/
+MLX_INC			:= src/minilibx-linux/
+MLX_LIB			:= src/minilibx-linux/libmlx_Linux.a
 
-CC_FLAGS		:= -Wall -Werror -Wextra -g -c -lm
+CC_FLAGS		:= -Wall -Werror -Wextra -g -c
+LIB_FLAGS		:= -lm -lX11 -lXext
 
 CLEAN_TARGETS	= $(wildcard $(addprefix $(OBJ_DIR), $(OBJS)))
 FCLEAN_TARGETS	= $(wildcard $(addprefix $(BIN_DIR), $(NAME)))
@@ -43,21 +44,19 @@ vpath %.c $(SRC_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 
-#TODO hacer que una mlx.a sea prerrequisito de forma que se llame siempre a su makefile????
-
 all: $(NAME)
 
-$(NAME): $(OBJS) $(MLX)
+$(NAME): $(OBJS) $(MLX_LIB)
 	@mkdir -p $(BIN_DIR)
-	@gcc $(addprefix $(OBJ_DIR),$(OBJS)) $(LIBFT) $(MLX) -o $(BIN_DIR)$(NAME) $(MLX_FLAGS)
+	@gcc $(addprefix $(OBJ_DIR),$(OBJS)) $(MLX_LIB) -o $(BIN_DIR)$(NAME) $(LIB_FLAGS)
 	@echo "$(COLOR_GREEN)write file: $(BIN_DIR)$(NAME)$(COLOR_END)"
 
-$(MLX):
+$(MLX_LIB):
 	@make -C $(MLX_DIR)
 
 %.o : %.c $(HDRS) $(MAKEFILE)
 	@mkdir -p $(OBJ_DIR)
-	@gcc -I $(INC_DIR) -I $(MLX_INC) $(CC_FLAGS) $< -o $(OBJ_DIR)$@
+	@gcc -I $(INC_DIR) -I $(MLX_INC) $(CC_FLAGS) $(LIB_FLAGS) $< -o $(OBJ_DIR)$@
 	@echo "$(COLOR_GREEN)write file: $(OBJ_DIR)$@ $(COLOR_END)"
 
 test: all
