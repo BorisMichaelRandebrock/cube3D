@@ -6,7 +6,7 @@
 /*   By: fran <fran@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 12:51:44 by fran              #+#    #+#             */
-/*   Updated: 2024/07/09 21:58:39 by fran             ###   ########.fr       */
+/*   Updated: 2024/07/09 22:02:39 by fran             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ typedef struct s_rect
 	int	x;
 	int	y;
 }	t_rect;
-
-typedef struct s_point
-{
-	float	x;
-	float	y;
-}	t_point;
 
 typedef struct s_tilemap
 {
