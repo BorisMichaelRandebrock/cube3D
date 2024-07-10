@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/04 11:42:02 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/10 11:50:48 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,13 @@ SRCS 			:= main.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= map.cub
 
-MLX_DIR			:= src/minilibx-linux/
-MLX_INC			:= src/minilibx-linux/
-MLX_LIB			:= src/minilibx-linux/libmlx_Linux.a
+MLX_DIR			:= src/MLX42/
+MLX_INC			:= src/MLX42/include/MLX42
+MLX_LIB			:= src/MLX42/build/libmlx42.a
+MLX_BUILD		:= src/MLX42/build/
 
 CC_FLAGS		:= -Wall -Werror -Wextra -g -c
-LIB_FLAGS		:= -lm -lX11 -lXext
+LIB_FLAGS		:= -lm -ldl -lglfw -pthread
 
 CLEAN_TARGETS	= $(wildcard $(addprefix $(OBJ_DIR), $(OBJS)))
 FCLEAN_TARGETS	= $(wildcard $(addprefix $(BIN_DIR), $(NAME)))
@@ -44,6 +45,14 @@ vpath %.c $(SRC_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 
+
+
+# git clone https://github.com/codam-coding-college/MLX42.git
+# cd MLX42
+# cmake -B build # build here refers to the outputfolder.
+# cmake --build build -j4 # or do make -C build -j4
+
+
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MLX_LIB)
@@ -52,7 +61,8 @@ $(NAME): $(OBJS) $(MLX_LIB)
 	@echo "$(COLOR_GREEN)write file: $(BIN_DIR)$(NAME)$(COLOR_END)"
 
 $(MLX_LIB):
-	@make -C $(MLX_DIR)
+	@cmake src/MLX42 -B src/MLX42/build
+	@make -C src/MLX42/build -j4
 
 %.o : %.c $(HDRS) $(MAKEFILE)
 	@mkdir -p $(OBJ_DIR)
@@ -67,7 +77,7 @@ clean:
 
 fclean: clean
 	@$(foreach item,$(FCLEAN_TARGETS),echo "$(COLOR_RED)delete file: $(item)$(COLOR_END)"; rm $(item);)
-	@make clean -C $(MLX_DIR)
+	@make clean -C $(MLX_BUILD)
 
 re: fclean all
 

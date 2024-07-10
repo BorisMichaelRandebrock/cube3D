@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilemap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fran <fran@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 12:51:44 by fran              #+#    #+#             */
-/*   Updated: 2024/07/09 22:02:39 by fran             ###   ########.fr       */
+/*   Updated: 2024/07/10 11:17:04 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,15 @@ static void	get_tilemap_size(int tilemap_fd, t_tilemap *tilemap)
 	}
 }
 
-static t_tilemap	*load_tilemap(int tilemap_fd)
+static t_tilemap	*load_tilemap(char *filename)
 {
-	t_tilemap	*tilemap;
+	int			level_fd;
+	t_tilemap	*tilemap; 
 	int			i;
 
+	level_fd = open(filename, O_RDONLY, 0777);
 	tilemap = ft_calloc(1, sizeof(t_tilemap));
-	get_tilemap_size(tilemap_fd, tilemap);
+	get_tilemap_size(level_fd, tilemap);
 
 	//TODO debug borrar
 	printf("map size is {%d,%d}\n", tilemap->size.x, tilemap->size.y);
@@ -107,6 +109,7 @@ static t_tilemap	*load_tilemap(int tilemap_fd)
 	tilemap->map = ft_calloc(tilemap->size.y, sizeof(char *));
 	while (i < tilemap->size.y)
 		tilemap->map[i++] = ft_calloc(tilemap->size.x, sizeof(char));
+	close(level_fd);
 
 	
 	//TODO copiar mapa a la ram (refactor, abrir el archivo y cerrarlo aqui...)
@@ -121,11 +124,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 
-	level_fd = open(argv[1], O_RDONLY, 0777);
-
 	//TODO Lectura de datos adicionales...
 	
-	tilemap = load_tilemap(level_fd);
+	tilemap = load_tilemap(argv[1]);
 	close(level_fd);
 	return (0);
 }
