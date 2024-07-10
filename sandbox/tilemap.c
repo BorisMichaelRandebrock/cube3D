@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 12:51:44 by fran              #+#    #+#             */
-/*   Updated: 2024/07/10 11:17:04 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:56:38 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static t_tilemap	*load_tilemap(char *filename)
 	level_fd = open(filename, O_RDONLY, 0777);
 	tilemap = ft_calloc(1, sizeof(t_tilemap));
 	get_tilemap_size(level_fd, tilemap);
-
+	close(level_fd);
 	//TODO debug borrar
 	printf("map size is {%d,%d}\n", tilemap->size.x, tilemap->size.y);
 
@@ -109,10 +109,11 @@ static t_tilemap	*load_tilemap(char *filename)
 	tilemap->map = ft_calloc(tilemap->size.y, sizeof(char *));
 	while (i < tilemap->size.y)
 		tilemap->map[i++] = ft_calloc(tilemap->size.x, sizeof(char));
+	
+	level_fd = open(filename, O_RDONLY, 0777);
+	//TODO copiar mapa a la ram (refactor, abrir el archivo y cerrarlo aqui...)
 	close(level_fd);
 
-	
-	//TODO copiar mapa a la ram (refactor, abrir el archivo y cerrarlo aqui...)
 	return (tilemap);
 }
 
