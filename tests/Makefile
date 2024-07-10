@@ -1,0 +1,1 @@
+# gcc -g -Iinclude/ tests/assets_manager_tests.c src/assets_manager.c src/strutils.c src/memutils.c -o tests/test && ./tests/test  | cat -e

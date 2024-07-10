@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/10 11:50:48 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/10 18:12:29 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ SRC_DIR			:= src/
 OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
 RES_DIR			:= res/
-NAME			:= cube3D
-HDRS 			:=
-SRCS 			:= main.c
+NAME			:= cube3d
+HDRS 			:= cube3d.h
+SRCS 			:= main.c memutils.c strutils.c strutils2.c intutils.c assets_manager.c
 OBJS			:= $(SRCS:.c=.o)
-TEST_MAP		:= map.cub
+TEST_MAP		:= level.cub
 
 MLX_DIR			:= src/MLX42/
 MLX_INC			:= src/MLX42/include/MLX42
@@ -69,7 +69,7 @@ $(MLX_LIB):
 	@gcc -I $(INC_DIR) -I $(MLX_INC) $(CC_FLAGS) $(LIB_FLAGS) $< -o $(OBJ_DIR)$@
 	@echo "$(COLOR_GREEN)write file: $(OBJ_DIR)$@ $(COLOR_END)"
 
-test: all
+run: all
 	@./$(BIN_DIR)$(NAME) $(RES_DIR)$(TEST_MAP)
 
 clean:
