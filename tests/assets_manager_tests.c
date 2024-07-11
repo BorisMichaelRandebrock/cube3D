@@ -3,15 +3,16 @@
 #include <stdio.h>
 #include "cube3d.h"
 
-/* 
+/*
 if map_file  exists
 if map is correct (walls)
-if map is correct (correct characters -> N, S, W, E, 0, 1, (Space is  allowed but only if surrounded by 1)))
+if map is correct (correct characters -> N, S, W, E, 0, 1,
+(Space is  allowed but only if surrounded by 1)))
 if map is correct (height or width is not superior to MAX_INT)
 if map is correct (colors are defined)
 if map is correct (colors are defined in rgb)
 there are at least 4 textures (NO, EA, SO, WE)
-textures are defined 
+textures are defined
  */
 
 bool	load_cub_test(void)
@@ -24,10 +25,10 @@ bool	load_cub_test(void)
 		{'1','0','N','0','1'},
 		{'1','1','1','1','1'}
 	};
-	
+
 	tilemap.map = (char **)map;
 
-	t_datamodel	ex_model = 
+	t_datamodel	ex_model =
 	{
 		.no_tex_path = "../res/north_texture.png",
 		.so_tex_path = "../res/south_texture.png",
@@ -49,7 +50,7 @@ bool	load_cub_test(void)
 
 	if (equal != 0)
 	{
-		printf("%d - Wrong texture path!\n", equal);
+		printf(RED"%d - Wrong texture path!\n"RES, equal);
 		printf("ex: %s\n", ex_model.no_tex_path);
 		printf("test: %s\n", test_model->no_tex_path);
 		return (false);
@@ -60,7 +61,7 @@ bool	load_cub_test(void)
 	printf("col ex %d\n", test_model->ceiling_color);
 	if (equal != 0)
 	{
-		printf("Wrong color!\n");
+		printf(RED"Wrong color!\n"RES);
 		return (false);
 	}
 
@@ -74,7 +75,7 @@ bool	load_cub_test(void)
 	equal += (ex_model.tilemap->size.y - test_model->tilemap->size.y);
 	if (equal != 0)
 	{
-		printf("Map wrong size! ex(%d,%d) vs test(%d,%d)\n",
+		printf(RED"Map wrong size! ex(%d,%d) vs test(%d,%d)\n"RES,
 			ex_model.tilemap->size.y,ex_model.tilemap->size.x,
 			test_model->tilemap->size.y,test_model->tilemap->size.x);
 		return (false);
@@ -86,7 +87,7 @@ bool	load_cub_test(void)
 		{
 			if (ex_model.tilemap->map[y][x] != test_model->tilemap->map[y][x])
 			{
-				printf("Map wrong value at (%d,%d), value is %d\n",
+				printf(RED"Map wrong value at (%d,%d), value is %d\n"RES,
 					y,x,test_model->tilemap->map[y][x]);
 				return (false);
 			}
