@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "cube3d.h"
-
+#include "libft.h"
 
 /* static bool	is_valid_map_character(char c)
 {
