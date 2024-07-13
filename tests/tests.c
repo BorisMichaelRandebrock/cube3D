@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "c3dtests.h"
+#include "tests.h"
 
 int	main(void)
 {

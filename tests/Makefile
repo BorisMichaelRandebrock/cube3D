@@ -1,5 +1,3 @@
-# gcc -g -Iinclude/ tests/assets_manager_tests.c src/assets_manager.c src/strutils.c src/memutils.c -o tests/test && ./tests/test  | cat -e
-
 MAKEFLAGS 		+= --silent
 MAKEFILE		:= Makefile
 
@@ -9,9 +7,9 @@ OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
 TARGET_INC_DIR	:= ../include/
 TARGET_SRC_DIR	:= ../src/
-NAME			:= c3dtests
-HDRS 			:= c3dtests.h cube3d.h libft.h
-SRCS 			:= c3dtests.c assets_manager_tests.c assets_manager.c
+NAME			:= tests
+HDRS 			:= tests.h cube3d.h libft.h
+SRCS 			:= tests.c assets_manager_tests.c assets_manager.c memutils.c
 OBJS			:= $(SRCS:.c=.o)
 
 CC_FLAGS		:= -Wall -Werror -Wextra -g -c

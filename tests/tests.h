@@ -1,5 +1,5 @@
-#ifndef C3DTESTS_H
-# define C3DTESTS_H
+#ifndef TESTS_H
+# define TESTS_H
 
 # include <stdbool.h>
 

@@ -6,7 +6,7 @@
 #    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/13 18:40:40 by fran             ###   ########.fr        #
+#    Updated: 2024/07/13 19:13:10 by fran             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RES_DIR			:= res/
 TESTS_DIR		:= tests/
 NAME			:= cube3d
 HDRS 			:= cube3d.h
-SRCS 			:= main.c assets_manager.c
+SRCS 			:= main.c memutils.c assets_manager.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= level.cub
 
@@ -90,4 +90,4 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-#TODO WRAP memory functions to guard.
+#TODO include header to all files;
