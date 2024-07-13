@@ -71,8 +71,8 @@ t_datamodel	*load_cub(char *filename)
 
 	datamodel = ft_calloc(1, sizeof(t_datamodel));
 	ft_memset(buffer, '\0', BUFSIZ);
-	//TODO check for any non valid char
-	//check elements
+
+	//LOAD ELEMENT PATHS
 	fd = open(filename, O_RDONLY, 0777);
 
 	i = 0;
@@ -85,7 +85,6 @@ t_datamodel	*load_cub(char *filename)
 		}
 		if (buffer[i] == '\n')
 		{
-			//procesar buffer
 			if (buffer[0] == 'N' && buffer[1] == 'O')
 			{
 				datamodel->no_tex_path = ft_strdup(&buffer[ELEMENT_PATH]);
@@ -115,7 +114,8 @@ t_datamodel	*load_cub(char *filename)
 		i++;
 	}
 
-	//check colors	i = 0;
+	//LOAD AND CONVERT RGBA TO HEX
+	i = 0;
 	while (read(fd, &buffer[i], 1))
 	{
 		if (buffer[0] == '\n')
@@ -155,24 +155,40 @@ t_datamodel	*load_cub(char *filename)
 		i++;
 	}
 
+	//LOAD MAP
+	char	*row;
+	t_list	*head;
+	t_list	*row_list;
 
+	datamodel->tilemap = ft_calloc(1, sizeof(t_tilemap));
 
-
-
-
-
-
-
-
-
-
-
-
+	i = 0;
+	while (read(fd, &buffer[i], 1))
+	{
+		if (buffer[i] == '\n')
+		{
+			row = ft_strdup(buffer);
+			row[ft_strlen(row) - 1] = '\0'; 
+			ft_lstadd_back(&row_list, ft_lstnew(row));
+			ft_memset(buffer, '\0', BUFSIZ);
+			if (i > datamodel->tilemap->size.x)
+				datamodel->tilemap->size.x = i;
+			datamodel->tilemap->size.y++;
+			i = 0;
+			continue;
+		}
+		i++;
+	}
 	close(fd);
 
-	//TODO populate tilemap
-	fd = open(filename, O_RDONLY, 0777);
-
-	close(fd);
+	datamodel->tilemap->map = ft_calloc(datamodel->tilemap->size.y, sizeof(char *));
+	i = 0;
+	while(i < datamodel->tilemap->size.y)
+	{
+		head = row_list;
+		datamodel->tilemap->map[i++] = head->content;
+		row_list = row_list->next;
+		free(head);
+	}
 	return (datamodel);
 }

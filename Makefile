@@ -6,7 +6,7 @@
 #    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/12 00:45:31 by fran             ###   ########.fr        #
+#    Updated: 2024/07/13 18:40:40 by fran             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_DIR			:= src/
 OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
 RES_DIR			:= res/
+TESTS_DIR		:= tests/
 NAME			:= cube3d
 HDRS 			:= cube3d.h
 SRCS 			:= main.c assets_manager.c
@@ -70,6 +71,9 @@ $(LIBFT_LIB):
 	@gcc -I $(INC_DIR) -I $(MLX_INC) -I $(LIBFT_INC) $(CC_FLAGS) $(LIB_FLAGS) $< -o $(OBJ_DIR)$@
 	@echo "$(COLOR_GREEN)write file: $(OBJ_DIR)$@ $(COLOR_END)"
 
+test: all
+	@make test -C $(TESTS_DIR)
+
 run: all
 	@./$(BIN_DIR)$(NAME) $(RES_DIR)$(TEST_MAP)
 
@@ -80,7 +84,10 @@ fclean: clean
 	@$(foreach item,$(FCLEAN_TARGETS),echo "$(COLOR_RED)delete file: $(item)$(COLOR_END)"; rm $(item);)
 	@make clean -C $(MLX_BUILD_DIR)
 	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(TESTS_DIR)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#TODO WRAP memory functions to guard.

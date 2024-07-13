@@ -14,20 +14,43 @@ there are at least 4 textures (NO, EA, SO, WE)
 textures are defined 
  */
 
+
+static void	free_test(t_tilemap *tilemap)
+{
+	int y = 0;
+
+	while(y < tilemap->size.y)
+		free(tilemap->map[y++]);
+	free(tilemap->map);
+}
+
 bool	load_cub_test(void)
 {
+	int	equal = 0;
+	int	i = 0;
+	int	x = 0;
+	int y = 0;
 	t_tilemap tilemap;
-	tilemap.size.x = 5;
+
+	//TEST 0 DATA
+	tilemap.size.x = 6;
 	tilemap.size.y = 3;
-	char map[3][5] = {
-		{'1','1','1','1','1'},
-		{'1','0','N','0','1'},
-		{'1','1','1','1','1'}
+
+	char map[3][6] = {
+		{' ','1','1','1','1','1'},
+		{' ','1','0','N','0','1'},
+		{' ','1','1','1','1','1'}
 	};
 	
-	tilemap.map = (char **)map;
+	tilemap.map = ft_calloc(tilemap.size.y, sizeof(char *));
+	while( i < tilemap.size.y)
+	{
+		tilemap.map[i] = ft_calloc(tilemap.size.x, sizeof(char));
+		memcpy(tilemap.map[i], map[i], tilemap.size.x);
+		i++;
+	}
 
-	t_datamodel	ex_model = 
+	t_datamodel	test_model =
 	{
 		.no_tex_path = "../res/north_texture.png",
 		.so_tex_path = "../res/south_texture.png",
@@ -38,67 +61,65 @@ bool	load_cub_test(void)
 		.tilemap = &tilemap
 	};
 
-	t_datamodel *test_model = load_cub("res/level_test.cub");
+	//DIFF TESTS
 
-	//Comparacion de datamodels
-	int	equal = 0;
-	equal += strcmp(ex_model.no_tex_path, test_model->no_tex_path);
-	equal += strcmp(ex_model.so_tex_path, test_model->so_tex_path);
-	equal += strcmp(ex_model.we_tex_path, test_model->we_tex_path);
-	equal += strcmp(ex_model.ea_tex_path, test_model->ea_tex_path);
-
+	t_datamodel *real_model = load_cub("../res/level_test.cub");
+	
+	//TEXTURE PATH DIFF TEST
+	equal += strcmp(test_model.no_tex_path, real_model->no_tex_path);
+	equal += strcmp(test_model.so_tex_path, real_model->so_tex_path);
+	equal += strcmp(test_model.we_tex_path, real_model->we_tex_path);
+	equal += strcmp(test_model.ea_tex_path, real_model->ea_tex_path);
 	if (equal != 0)
 	{
 		printf("%d - Wrong texture path!\n", equal);
-		printf("ex: %s\n", ex_model.no_tex_path);
-		printf("test: %s\n", test_model->no_tex_path);
+		printf("ex: %s\n", test_model.no_tex_path);
+		printf("test: %s\n", real_model->no_tex_path);
+		free_test(&tilemap);
 		return (false);
 	}
-	equal += (ex_model.ceiling_color - test_model->ceiling_color);
-	equal += (ex_model.floor_color - test_model->floor_color);
-	printf("col ex %d\n", ex_model.ceiling_color);
-	printf("col ex %d\n", test_model->ceiling_color);
+
+	//FLOOR CEILING COLOR DIFF TEST
+	equal += (test_model.ceiling_color - real_model->ceiling_color);
+	equal += (test_model.floor_color - real_model->floor_color);
 	if (equal != 0)
 	{
 		printf("Wrong color!\n");
+		free_test(&tilemap);
 		return (false);
 	}
 
-	if (equal != 0)
-		return (false);
+	//MAP SIZE DIFF TEST
 
-	int	x = 0;
-	int y = 0;
-
-	equal += (ex_model.tilemap->size.x - test_model->tilemap->size.x);
-	equal += (ex_model.tilemap->size.y - test_model->tilemap->size.y);
+	equal += (test_model.tilemap->size.x - real_model->tilemap->size.x);
+	equal += (test_model.tilemap->size.y - real_model->tilemap->size.y);
 	if (equal != 0)
 	{
-		printf("Map wrong size! ex(%d,%d) vs test(%d,%d)\n",
-			ex_model.tilemap->size.y,ex_model.tilemap->size.x,
-			test_model->tilemap->size.y,test_model->tilemap->size.x);
+		printf("Map wrong size! test(%d,%d) vs real(%d,%d)\n",
+			test_model.tilemap->size.y,test_model.tilemap->size.x,
+			real_model->tilemap->size.y,real_model->tilemap->size.x);
+		free_test(&tilemap);
 		return (false);
 	}
 
-	while (y < ex_model.tilemap->size.y)
+
+	//MAP DATA DIFF TEST
+	while (y < test_model.tilemap->size.y)
 	{
-		while (x < ex_model.tilemap->size.x)
+		while (x < test_model.tilemap->size.x)
 		{
-			if (ex_model.tilemap->map[y][x] != test_model->tilemap->map[y][x])
+			if (test_model.tilemap->map[y][x] != real_model->tilemap->map[y][x])
 			{
-				printf("Map wrong value at (%d,%d), value is %d\n",
-					y,x,test_model->tilemap->map[y][x]);
+				printf("Map wrong value at (%d,%d), value is '%c' and must be '%c'\n",
+					y,x,real_model->tilemap->map[y][x], test_model.tilemap->map[y][x]);
+				free_test(&tilemap);
 				return (false);
 			}
 			x++;
 		}
 		y++;
 	}
-
+	free_test(&tilemap);
+	return (true);
 }
 
-int	main(void)
-{
-	load_cub_test();
-	return (0);
-}
