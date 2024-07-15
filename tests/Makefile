@@ -11,7 +11,8 @@ T_AM_DIR		:= ../src/assets_manager/
 NAME			:= tests
 HDRS 			:= tests.h cube3d.h libft.h
 SRCS 			:= datamodel.c tests.c assets_manager_tests.c assets_manager.c utils.c\
-					dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
+					dm_load_colors.c dm_load_textures.c dm_load_tilemap.c dm_check_textures.c\
+					resources_tests.c
 OBJS			:= $(SRCS:.c=.o)
 
 CC_FLAGS		:= -Wall -Werror -Wextra -g -c

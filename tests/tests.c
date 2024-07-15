@@ -9,5 +9,12 @@ int	main(void)
 	if (!load_cub_test())
 		error_quit("FAILED\n");
 	printf(GREEN"PASSED\n"RES);
+
+	printf(CYAN"Test 1 - Check resource files: "RES);
+	if (!resources_test())
+		error_quit("FAILED\n");
+	printf(GREEN"PASSED\n"RES);
+
+
 	return (EXIT_SUCCESS);
 }

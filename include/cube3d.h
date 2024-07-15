@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <inttypes.h>
+# include <stdbool.h>
 
 # define GREEN "\033[1;32m"
 # define RED "\033[1;31m"
@@ -54,4 +55,6 @@ void	print_colors(const char *str, const char *color);
 void		dm_load_textures(t_datamodel *dm, char *buffer, int fd);
 void		dm_load_surfaces_color(t_datamodel *dm, char *buffer, int fd);
 void		dm_load_tilemap(t_datamodel *dm, char *buffer, int fd);
+bool    	dm_check_textures(t_datamodel *dm);
+
 #endif

@@ -20,3 +20,13 @@ t_datamodel	*load_cub(char *filename)
 	close(fd);
 	return (dm);
 }
+
+void	check_dm(void)
+{
+	t_datamodel *dm;
+	dm = get_dm(NULL);
+
+
+	dm_check_textures(dm);
+}
+

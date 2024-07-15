@@ -12,7 +12,7 @@
 			"program": "${workspaceFolder}/bin/cube3d",
 			"args": ["${workspaceFolder}/res/level.cub"],
 			"stopAtEntry": false,
-			"cwd": "${fileDirname}",
+			"cwd": "${workspaceFolder}/bin/",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb"
@@ -25,7 +25,7 @@
 			"program": "${workspaceFolder}/tests/bin/tests",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${fileDirname}",
+			"cwd": "${workspaceFolder}/tests/bin/",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb"
