@@ -8,6 +8,39 @@
 
 #define ELEMENT_PATH 3
 
+static char	*_load_textures_path(char *buffer)
+{
+	char	*path;
+	path = ft_strdup(buffer);
+	*(ft_strchr(path, '\n')) = '\0';
+	return (path);
+} 
+
+static void	_load_textures(int fd, char *buffer, int i, t_datamodel *datamodel)
+{
+		 while (read(fd, &buffer[i], 1))
+	{
+		if (buffer[0] == '\n')
+			break;
+		if (buffer[i] == '\n')
+		{
+			if (buffer[0] == 'N' && buffer[1] == 'O')
+				datamodel->no_tex_path = _load_textures_path(&buffer[ELEMENT_PATH]);
+			if (buffer[0] == 'S' && buffer[1] == 'O')
+				datamodel->so_tex_path = _load_textures_path(&buffer[ELEMENT_PATH]);
+			if (buffer[0] == 'W' && buffer[1] == 'E')
+				datamodel->we_tex_path = _load_textures_path(&buffer[ELEMENT_PATH]);
+			if (buffer[0] == 'E' && buffer[1] == 'A')
+				datamodel->ea_tex_path = _load_textures_path(&buffer[ELEMENT_PATH]);
+			ft_memset(buffer, '\0', BUFSIZ);
+			i = 0;
+			continue ;
+		}
+		i++;
+	} 
+	ft_memset(buffer, '\0', BUFSIZ);
+}
+
 static void	_load_map_data(t_datamodel *datamodel, t_list *row_list)
 {
 	t_list	*head;
@@ -51,8 +84,6 @@ static void	_load_tilemap(t_datamodel *datamodel, char *buffer, int fd)
 	}
 	_load_map_data(datamodel, row_list);
 }
-
-// 22222222
 
 int	_rgbtohex(char *buffer)
 {	
@@ -107,7 +138,6 @@ static void	_load_surfaces_color(t_datamodel *datamodel, char *buffer, int fd)
 	ft_memset(buffer, '\0', BUFSIZ);
 }
 
-
 t_datamodel	*load_cub(char *filename)
 {
 	int		fd;
@@ -122,47 +152,9 @@ t_datamodel	*load_cub(char *filename)
 	fd = open(filename, O_RDONLY, 0777);
 
 	i = 0;
-	while (read(fd, &buffer[i], 1))
-	{
-		if (buffer[0] == '\n')
-		{
-			ft_memset(buffer, '\0', BUFSIZ);
-			break;
-		}
-		if (buffer[i] == '\n')
-		{
-			if (buffer[0] == 'N' && buffer[1] == 'O')
-			{
-				datamodel->no_tex_path = ft_strdup(&buffer[ELEMENT_PATH]);
-				*(ft_strchr(datamodel->no_tex_path, '\n')) = '\0';
-			}
-			if (buffer[0] == 'S' && buffer[1] == 'O')
-			{
-				datamodel->so_tex_path = ft_strdup(&buffer[ELEMENT_PATH]);
-				*(ft_strchr(datamodel->so_tex_path, '\n')) = '\0';
-			}
-			if (buffer[0] == 'W' && buffer[1] == 'E')
-			{
-				datamodel->we_tex_path = ft_strdup(&buffer[ELEMENT_PATH]);
-				*(ft_strchr(datamodel->we_tex_path, '\n')) = '\0';
-			}
-			if (buffer[0] == 'E' && buffer[1] == 'A')
-			{
-				datamodel->ea_tex_path = ft_strdup(&buffer[ELEMENT_PATH]);
-				*(ft_strchr(datamodel->ea_tex_path, '\n')) = '\0';
-			}
-			
-
-			ft_memset(buffer, '\0', BUFSIZ);
-			i = 0;
-			continue ;
-		}
-		i++;
-	}
-
+	_load_textures(fd, buffer, i, datamodel);
 	_load_surfaces_color(datamodel, buffer, fd);
 	_load_tilemap(datamodel, buffer, fd);
 	close(fd);
 	return (datamodel);
 }
-
