@@ -5,11 +5,13 @@ INC_DIR			:= include/
 SRC_DIR			:= src/
 OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
-TARGET_INC_DIR	:= ../include/
-TARGET_SRC_DIR	:= ../src/
+T_INC_DIR		:= ../include/
+T_SRC_DIR		:= ../src/
+T_AM_DIR		:= ../src/assets_manager/
 NAME			:= tests
 HDRS 			:= tests.h cube3d.h libft.h
-SRCS 			:= tests.c assets_manager_tests.c assets_manager.c utils.c
+SRCS 			:= tests.c assets_manager_tests.c assets_manager.c utils.c\
+					dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
 OBJS			:= $(SRCS:.c=.o)
 
 CC_FLAGS		:= -Wall -Werror -Wextra -g -c
@@ -26,8 +28,8 @@ COLOR_RED		:=\033[0;31m
 COLOR_BLUE		:=\033[0;34m
 COLOR_END		:=\033[0m
 
-vpath %.h $(INC_DIR) $(TARGET_INC_DIR) $(LIBFT_INC)
-vpath %.c $(SRC_DIR) $(TARGET_SRC_DIR)
+vpath %.h $(INC_DIR) $(T_INC_DIR) $(LIBFT_INC)
+vpath %.c $(SRC_DIR) $(T_SRC_DIR) $(T_AM_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 
@@ -41,7 +43,7 @@ $(NAME): $(OBJS) $(LIBFT_LIB)
 
 %.o : %.c $(HDRS) $(MAKEFILE) $(LIBFT_LIB)
 	@mkdir -p $(OBJ_DIR)
-	@gcc -I $(INC_DIR) -I $(TARGET_INC_DIR) -I $(LIBFT_INC) $(CC_FLAGS) $< -o $(OBJ_DIR)$@
+	@gcc -I $(INC_DIR) -I $(T_INC_DIR) -I $(LIBFT_INC) $(CC_FLAGS) $< -o $(OBJ_DIR)$@
 	@echo "$(COLOR_GREEN)write file: $(OBJ_DIR)$@ $(COLOR_END)"
 
 $(LIBFT_LIB):

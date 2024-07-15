@@ -50,6 +50,7 @@ t_datamodel	*load_cub(char *filename);
 void	*__calloc(size_t nmemb, size_t size);
 void	error_quit(char *str);
 void	print_colors(const char *str, const char *color);
-
-
+void		dm_load_textures(t_datamodel *dm, char *buffer, int fd);
+void		dm_load_surfaces_color(t_datamodel *dm, char *buffer, int fd);
+void		dm_load_tilemap(t_datamodel *dm, char *buffer, int fd);
 #endif

@@ -9,6 +9,5 @@ int	main(void)
 	if (!load_cub_test())
 		error_quit("FAILED\n");
 	printf(GREEN"PASSED\n"RES);
-
 	return (EXIT_SUCCESS);
 }
