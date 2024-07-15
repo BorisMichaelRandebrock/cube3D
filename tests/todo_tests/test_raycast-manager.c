@@ -1,4 +1,4 @@
 /* 
 	test predicatable raycast examples
-	test output to datamodel
+	test output to dm
  */
