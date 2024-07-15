@@ -9,7 +9,7 @@ TARGET_INC_DIR	:= ../include/
 TARGET_SRC_DIR	:= ../src/
 NAME			:= tests
 HDRS 			:= tests.h cube3d.h libft.h
-SRCS 			:= tests.c assets_manager_tests.c assets_manager.c memutils.c
+SRCS 			:= tests.c assets_manager_tests.c assets_manager.c utils.c
 OBJS			:= $(SRCS:.c=.o)
 
 CC_FLAGS		:= -Wall -Werror -Wextra -g -c

@@ -21,7 +21,7 @@ RES_DIR			:= res/
 TESTS_DIR		:= tests/
 NAME			:= cube3d
 HDRS 			:= cube3d.h
-SRCS 			:= main.c memutils.c assets_manager.c
+SRCS 			:= main.c utils.c assets_manager.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= level.cub
 

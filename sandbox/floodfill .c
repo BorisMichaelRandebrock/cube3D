@@ -8,7 +8,7 @@ void	flood_fill(t_tilemap *game, size_t x, size_t y)
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
 		return ;
 	if (game->map[x][y] == ' ')
-		exit(perror("Map is not closed"));
+		error_quit("Map is not closed");
 	game->map[x][y] = 'V';
 	flood_fill(game, x + 1, y);
 	flood_fill(game, x - 1, y);
