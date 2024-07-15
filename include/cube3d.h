@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <inttypes.h>
 
+# define GREEN "\033[1;32m"
 # define RED "\033[1;31m"
 # define BLUE "\033[1;34m"
 # define YELLOW "\033[1;33m"
@@ -46,9 +47,9 @@ typedef struct s_datamodel
 }	t_datamodel;
 
 t_datamodel	*load_cub(char *filename);
-void		*__calloc(size_t nmemb, size_t size);
-void		error_quit(char *str);
-
+void	*__calloc(size_t nmemb, size_t size);
+void	error_quit(char *str);
+void	print_colors(const char *str, const char *color);
 void		dm_load_textures(t_datamodel *dm, char *buffer, int fd);
 void		dm_load_surfaces_color(t_datamodel *dm, char *buffer, int fd);
 void		dm_load_tilemap(t_datamodel *dm, char *buffer, int fd);
