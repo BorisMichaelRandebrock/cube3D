@@ -46,6 +46,7 @@ typedef struct s_datamodel
 	t_tilemap	*tilemap;
 }	t_datamodel;
 
+t_datamodel	*get_dm(t_datamodel *dm);
 t_datamodel	*load_cub(char *filename);
 void	*__calloc(size_t nmemb, size_t size);
 void	error_quit(char *str);

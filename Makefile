@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/15 16:44:04 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/15 17:25:16 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RES_DIR			:= res/
 TESTS_DIR		:= tests/
 NAME			:= cube3d
 HDRS 			:= cube3d.h
-SRCS 			:= main.c utils.c assets_manager.c dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
+SRCS 			:= main.c datamodel.c utils.c assets_manager.c dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= level.cub
 

@@ -11,6 +11,7 @@ t_datamodel	*load_cub(char *filename)
 	char		buffer[BUFSIZ];
 
 	dm = __calloc(1, sizeof(t_datamodel));
+	get_dm(dm);
 	ft_memset(buffer, '\0', BUFSIZ);
 	fd = open(filename, O_RDONLY, 0777);
 	dm_load_textures(dm, buffer, fd);

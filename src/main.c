@@ -6,10 +6,11 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/15 16:43:23 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:24:37 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <math.h>
 #include "cube3d.h"
 #include "libft.h"
@@ -19,14 +20,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_datamodel *dm;
-	
 	// Comprobar que se ha pasado 1 argumento
 	if (argc != 2)
 		return (1);
 
-	dm = load_cub(argv[CUB_FILENAME]);
-	(void)dm;
+	load_cub(argv[CUB_FILENAME]);
+	printf("%s", get_dm(NULL)->no_tex_path);
 
 
 	//return (0);

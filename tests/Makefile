@@ -10,7 +10,7 @@ T_SRC_DIR		:= ../src/
 T_AM_DIR		:= ../src/assets_manager/
 NAME			:= tests
 HDRS 			:= tests.h cube3d.h libft.h
-SRCS 			:= tests.c assets_manager_tests.c assets_manager.c utils.c\
+SRCS 			:= datamodel.c tests.c assets_manager_tests.c assets_manager.c utils.c\
 					dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
 OBJS			:= $(SRCS:.c=.o)
 
