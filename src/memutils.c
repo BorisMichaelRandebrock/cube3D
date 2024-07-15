@@ -1,35 +1,15 @@
-#include <stdlib.h>
-#include "cube3d.h"
+#include <stdio.h>
+#include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*__calloc(size_t nmemb, size_t size)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	void	*alloc;
 
-	i = 0;
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
+	alloc = ft_calloc(nmemb, size);
+	if (!alloc)
 	{
-		return (NULL);
+		perror("Error: Memory error");
+		exit(EXIT_FAILURE);
 	}
-	while (i < (nmemb * size))
-	{
-		ptr[i] = '\0';
-		i++;
-	}
-	return ((void *)ptr);
-}
-
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		*(unsigned char *)s = c;
-		i++;
-		s++;
-	}
-	return (s - i);
+	return (alloc);
 }

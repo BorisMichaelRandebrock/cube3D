@@ -2,6 +2,7 @@
 	"files.associations": {
 		"cube3d.h": "c",
 		"stdlib.h": "c",
-		"mlx42.h": "c"
+		"mlx42.h": "c",
+		"errno.h": "c"
 	}
 }
