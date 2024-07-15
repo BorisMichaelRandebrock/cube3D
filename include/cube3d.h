@@ -46,7 +46,10 @@ typedef struct s_datamodel
 }	t_datamodel;
 
 t_datamodel	*load_cub(char *filename);
-void	*__calloc(size_t nmemb, size_t size);
-void	error_quit(char *str);
+void		*__calloc(size_t nmemb, size_t size);
+void		error_quit(char *str);
 
+void		dm_load_textures(t_datamodel *dm, char *buffer, int fd);
+void		dm_load_surfaces_color(t_datamodel *dm, char *buffer, int fd);
+void		dm_load_tilemap(t_datamodel *dm, char *buffer, int fd);
 #endif

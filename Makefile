@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
+#    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/13 19:13:10 by fran             ###   ########.fr        #
+#    Updated: 2024/07/15 16:44:04 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ MAKEFILE		:= Makefile
 
 INC_DIR			:= include/
 SRC_DIR			:= src/
+AST_MAN_DIR		:= src/assets_manager/
 OBJ_DIR			:= obj/
 BIN_DIR			:= bin/
 RES_DIR			:= res/
 TESTS_DIR		:= tests/
 NAME			:= cube3d
 HDRS 			:= cube3d.h
-SRCS 			:= main.c utils.c assets_manager.c
+SRCS 			:= main.c utils.c assets_manager.c dm_load_colors.c dm_load_textures.c dm_load_tilemap.c
 OBJS			:= $(SRCS:.c=.o)
 TEST_MAP		:= level.cub
 
@@ -46,7 +47,7 @@ COLOR_BLUE		:=\033[0;34m
 COLOR_END		:=\033[0m
 
 vpath %.h $(INC_DIR) $(MLX_INC) $(LIBFT_INC)
-vpath %.c $(SRC_DIR)
+vpath %.c $(SRC_DIR) $(AST_MAN_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 
@@ -89,5 +90,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-#TODO include header to all files;

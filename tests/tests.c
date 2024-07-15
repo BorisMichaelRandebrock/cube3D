@@ -5,7 +5,7 @@
 
 int	main(void)
 {
-	printf("Test 0 - Cub file loading to datamodel: ");
+	printf("Test 0 - Cub file loading to dm: ");
 	if (!load_cub_test())
 		error_quit("FAILED\n");
 	printf("PASSED\n");
