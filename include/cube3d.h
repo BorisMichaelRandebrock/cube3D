@@ -4,6 +4,17 @@
 # include <stdlib.h>
 # include <inttypes.h>
 
+# define RED "\033[1;31m"
+# define BLUE "\033[1;34m"
+# define YELLOW "\033[1;33m"
+# define MAGENTA "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define WHITE "\033[1;37m"
+# define DARK_RED "\033[0;31m"
+# define ROSA "\033[38;2;255;102;204m"
+# define RES "\033[0m"
+
+
 typedef struct s_point
 {
 	float	x;
@@ -36,6 +47,5 @@ typedef struct s_datamodel
 
 t_datamodel	*load_cub(char *filename);
 void	*__calloc(size_t nmemb, size_t size);
-
 
 #endif

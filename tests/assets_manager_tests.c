@@ -3,15 +3,16 @@
 #include <stdio.h>
 #include "cube3d.h"
 
-/* 
+/*
 if map_file  exists
 if map is correct (walls)
-if map is correct (correct characters -> N, S, W, E, 0, 1, (Space is  allowed but only if surrounded by 1)))
+if map is correct (correct characters -> N, S, W, E, 0, 1,
+(Space is  allowed but only if surrounded by 1)))
 if map is correct (height or width is not superior to MAX_INT)
 if map is correct (colors are defined)
 if map is correct (colors are defined in rgb)
 there are at least 4 textures (NO, EA, SO, WE)
-textures are defined 
+textures are defined
  */
 
 
@@ -41,6 +42,7 @@ bool	load_cub_test(void)
 		{' ','1','0','N','0','1'},
 		{' ','1','1','1','1','1'}
 	};
+
 	
 	tilemap.map = (char **)calloc(tilemap.size.y, sizeof(char *));
 	while( i < tilemap.size.y)
@@ -72,7 +74,7 @@ bool	load_cub_test(void)
 	equal += strcmp(test_model.ea_tex_path, real_model->ea_tex_path);
 	if (equal != 0)
 	{
-		printf("%d - Wrong texture path!\n", equal);
+		printf(RED"%d - Wrong texture path!\n"RES, equal);
 		printf("ex: %s\n", test_model.no_tex_path);
 		printf("test: %s\n", real_model->no_tex_path);
 		free_test(&tilemap);
@@ -84,7 +86,7 @@ bool	load_cub_test(void)
 	equal += (test_model.floor_color - real_model->floor_color);
 	if (equal != 0)
 	{
-		printf("Wrong color!\n");
+		printf(RED"Wrong color!\n"RES);
 		free_test(&tilemap);
 		return (false);
 	}
@@ -95,7 +97,7 @@ bool	load_cub_test(void)
 	equal += (test_model.tilemap->size.y - real_model->tilemap->size.y);
 	if (equal != 0)
 	{
-		printf("Map wrong size! test(%d,%d) vs real(%d,%d)\n",
+		printf(RED"Map wrong size! test(%d,%d) vs real(%d,%d)\n"RES,
 			test_model.tilemap->size.y,test_model.tilemap->size.x,
 			real_model->tilemap->size.y,real_model->tilemap->size.x);
 		free_test(&tilemap);
@@ -110,9 +112,11 @@ bool	load_cub_test(void)
 		{
 			if (test_model.tilemap->map[y][x] != real_model->tilemap->map[y][x])
 			{
-				printf("Map wrong value at (%d,%d), value is '%c' and must be '%c'\n",
+
+				printf(RED"Map wrong value at (%d,%d), value is '%c' and must be '%c'\n"RES,
 					y,x,real_model->tilemap->map[y][x], test_model.tilemap->map[y][x]);
 				free_test(&tilemap);
+
 				return (false);
 			}
 			x++;
