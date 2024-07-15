@@ -41,68 +41,27 @@ static void	_load_textures(int fd, char *buffer, int i, t_datamodel *datamodel)
 	ft_memset(buffer, '\0', BUFSIZ);
 }
 
-
-t_datamodel	*load_cub(char *filename)
+static void	_load_map_data(t_datamodel *datamodel, t_list *row_list)
 {
-	int		fd;
-	int		i;
-	char	buffer[BUFSIZ];
-	t_datamodel *datamodel;
-
-	datamodel = __calloc(1, sizeof(t_datamodel));
-	ft_memset(buffer, '\0', BUFSIZ);
-
-	//LOAD ELEMENT PATHS
-	fd = open(filename, O_RDONLY, 0777);
-
-	i = 0;
-	_load_textures(fd, buffer, i, datamodel);
-
-	//LOAD AND CONVERT RGBA TO HEX
-	i = 0;
-	while (read(fd, &buffer[i], 1))
-	{
-		if (buffer[0] == '\n')
-		{
-			ft_memset(buffer, '\0', BUFSIZ);
-			break;
-		}
-		if (buffer[i] == '\n')
-		{
-			if (buffer[0] == 'F' || buffer[0] == 'C')
-			{
-				int	color;
-
-				char *rgb = ft_strdup(&buffer[2]);
-				char **split_values = ft_split(rgb, ',');
-				color = 0;
-				int	temp = ft_atoi(split_values[0]);
-				temp <<= 24;
-				color |= temp;
-				temp = ft_atoi(split_values[1]);
-				temp <<= 16;
-				color |= temp;
-				temp = ft_atoi(split_values[2]);
-				temp <<= 8;
-				color |= temp;
-				free(rgb);
-				free(split_values);
-				if (buffer[0] == 'F')
-					datamodel->floor_color = color;
-				else if (buffer[0] == 'C')
-					datamodel->ceiling_color = color;
-			}
-			ft_memset(buffer, '\0', BUFSIZ);
-			i = 0;
-			continue ;
-		}
-		i++;
-	}
-
-	//LOAD MAP
-	char	*row;
 	t_list	*head;
+	int		i;
+
+	i = 0;
+	datamodel->tilemap->map = __calloc(datamodel->tilemap->size.y, sizeof(char *));
+	while(i < datamodel->tilemap->size.y)
+	{
+		head = row_list;
+		datamodel->tilemap->map[i++] = head->content;
+		row_list = row_list->next;
+		free(head);
+	}
+}
+
+static void	_load_tilemap(t_datamodel *datamodel, char *buffer, int fd)
+{
+	char	*row;
 	t_list	*row_list;
+	int		i;
 
 	datamodel->tilemap = __calloc(1, sizeof(t_tilemap));
 	row_list = NULL;
@@ -123,16 +82,79 @@ t_datamodel	*load_cub(char *filename)
 		}
 		i++;
 	}
-	close(fd);
+	_load_map_data(datamodel, row_list);
+}
 
-	datamodel->tilemap->map = __calloc(datamodel->tilemap->size.y, sizeof(char *));
+int	_rgbtohex(char *buffer)
+{	
+	int		hex_color;
+	char	*rgb;
+	char	**split_values;
+	int		temp;
+
+	rgb = ft_strdup(&buffer[2]);
+	split_values = ft_split(rgb, ',');
+	hex_color = 0;
+	temp = ft_atoi(split_values[0]);
+	temp <<= 24;
+	hex_color |= temp;
+	temp = ft_atoi(split_values[1]);
+	temp <<= 16;
+	hex_color |= temp;
+	temp = ft_atoi(split_values[2]);
+	temp <<= 8;
+	hex_color |= temp;
+	free(rgb);
+	free(split_values);
+	return (hex_color);
+}
+
+static void	_load_surfaces_color(t_datamodel *datamodel, char *buffer, int fd)
+{
+	int	color;
+	int	i;
+
 	i = 0;
-	while(i < datamodel->tilemap->size.y)
+	while (read(fd, &buffer[i], 1))
 	{
-		head = row_list;
-		datamodel->tilemap->map[i++] = head->content;
-		row_list = row_list->next;
-		free(head);
+		if (buffer[0] == '\n')
+			break;
+		if (buffer[i] == '\n')
+		{
+			if (buffer[0] == 'F' || buffer[0] == 'C')
+			{
+				color = _rgbtohex(buffer);
+				if (buffer[0] == 'F')
+					datamodel->floor_color = color;
+				else if (buffer[0] == 'C')
+					datamodel->ceiling_color = color;
+			}
+			ft_memset(buffer, '\0', BUFSIZ);
+			i = 0;
+			continue ;
+		}
+		i++;
 	}
+	ft_memset(buffer, '\0', BUFSIZ);
+}
+
+t_datamodel	*load_cub(char *filename)
+{
+	int		fd;
+	int		i;
+	char	buffer[BUFSIZ];
+	t_datamodel *datamodel;
+
+	datamodel = __calloc(1, sizeof(t_datamodel));
+	ft_memset(buffer, '\0', BUFSIZ);
+
+	//LOAD ELEMENT PATHS
+	fd = open(filename, O_RDONLY, 0777);
+
+	i = 0;
+	_load_textures(fd, buffer, i, datamodel);
+	_load_surfaces_color(datamodel, buffer, fd);
+	_load_tilemap(datamodel, buffer, fd);
+	close(fd);
 	return (datamodel);
 }
