@@ -1,0 +1,32 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "ansi.h"
+#include "cube3d.h"
+#include "tests.h"
+
+//TODO memory leaks tests opcional
+
+int	main(void)
+{
+	printf(CYAN"Test 0 - Datamodel load textures path: "RES);
+	if (!test_dm_load_tex_path())
+		error_quit("FAILED\n");
+	printf(GREEN"PASSED\n"RES);
+
+	printf(CYAN"Test 1 - Datamodel load colors: "RES);
+	if (!test_dm_load_colors())
+		error_quit("FAILED\n");
+	printf(GREEN"PASSED\n"RES);
+
+	printf(CYAN"Test 2 - Datamodel load tilemap: "RES);
+	if (!test_dm_load_tilemap())
+		error_quit("FAILED\n");
+	printf(GREEN"PASSED\n"RES);
+
+	printf(CYAN"Test 3 - Datamodel check texture files: "RES);
+	if (!test_dm_check_tex_files())
+		error_quit("FAILED\n");
+	printf(GREEN"PASSED\n"RES);
+
+	return (EXIT_SUCCESS);
+}

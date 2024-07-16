@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
+#include "ansi.h"
 #include "cube3d.h"
 #include "libft.h"
 
-void	*__calloc(size_t nmemb, size_t size)
+void	*scalloc(size_t nmemb, size_t size)
 {
 	void	*alloc;
 

@@ -8,6 +8,9 @@
 		"stdbool.h": "c",
 		"stdio.h": "c",
 		"fcntl.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"@TODO": "plaintext",
+		"ansi.h": "c",
+		"tests.h": "c"
 	}
 }
