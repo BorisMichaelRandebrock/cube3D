@@ -12,6 +12,7 @@ static int	_rgbtohex(char *buffer)
 	char	*rgb;
 	char	**split_values;
 	int		temp;
+	int		i;
 
 	rgb = ft_strdup(&buffer[2]);
 	split_values = ft_split(rgb, ',');
@@ -26,14 +27,16 @@ static int	_rgbtohex(char *buffer)
 	temp <<= 8;
 	hex_color |= temp;
 	free(rgb);
-	free(split_values); //TODO free split values (TODAS!!)
+	i = 0;
+	while (split_values[i])
+		free(split_values[i++]);
+	free(split_values);
 	return (hex_color);
 }
 
 void	dm_load_colors(t_datamodel *dm, int fd)
 {
 	char	buffer[BUFSIZ];
-	int		color;
 	int		i;
 
 	ft_memset(buffer, '\0', BUFSIZ);
@@ -46,11 +49,10 @@ void	dm_load_colors(t_datamodel *dm, int fd)
 		{
 			if (buffer[0] == 'F' || buffer[0] == 'C')
 			{
-				color = _rgbtohex(buffer);
 				if (buffer[0] == 'F')
-					dm->floor_color = color;
+					dm->floor_color = _rgbtohex(buffer);
 				else if (buffer[0] == 'C')
-					dm->ceiling_color = color;
+					dm->ceiling_color = _rgbtohex(buffer);
 			}
 			ft_memset(buffer, '\0', BUFSIZ);
 			i = 0;

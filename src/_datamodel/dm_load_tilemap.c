@@ -13,6 +13,7 @@ static void	_load_map_data_(t_datamodel *dm, t_list *row_list)
 	while (i < dm->tilemap->size.y)
 	{
 		head = row_list;
+		((char *)head->content)[ft_strlen(head->content) - 1] = '\0';
 		dm->tilemap->map[i++] = head->content;
 		row_list = row_list->next;
 		free(head);
@@ -22,7 +23,6 @@ static void	_load_map_data_(t_datamodel *dm, t_list *row_list)
 void	dm_load_tilemap_(t_datamodel *dm, int fd)
 {
 	char	buffer[BUFSIZ];
-	char	*row;
 	t_list	*row_list;
 	int		i;
 
@@ -34,9 +34,7 @@ void	dm_load_tilemap_(t_datamodel *dm, int fd)
 	{
 		if (buffer[i] == '\n')
 		{
-			row = ft_strdup(buffer);
-			row[ft_strlen(row) - 1] = '\0';
-			ft_lstadd_back(&row_list, ft_lstnew(row));
+			ft_lstadd_back(&row_list, ft_lstnew(ft_strdup(buffer)));
 			ft_memset(buffer, '\0', BUFSIZ);
 			if (i > dm->tilemap->size.x)
 				dm->tilemap->size.x = i;
