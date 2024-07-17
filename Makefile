@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
+#    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/16 19:51:08 by fran             ###   ########.fr        #
+#    Updated: 2024/07/17 12:20:20 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ MLX_DIR			:=	src/MLX42/
 MLX_INC			:=	src/MLX42/include/MLX42
 MLX_LIB			:=	src/MLX42/build/libmlx42.a
 MLX_BUILD_DIR	:=	src/MLX42/build/
+MLX_FLAGS		:=	-B
 
 CC_FLAGS		:=	-Wall -Werror -Wextra -g -c
 LIB_FLAGS		:=	-lm -ldl -lglfw -pthread
@@ -75,7 +76,7 @@ $(TST_NAME): $(filter-out main.o, $(OBJS)) $(TST_OBJS) $(LIBFT_LIB) $(MLX_LIB)
 	@echo "$(COLOR_GREEN)write file: $(BIN_DIR)$(TST_NAME)$(COLOR_END)"
 
 $(MLX_LIB):
-	@cmake $(MLX_DIR)-B $(MLX_BUILD_DIR)
+	@cmake $(MLX_DIR) $(MLX_FLAGS) $(MLX_BUILD_DIR)
 	@make -C $(MLX_BUILD_DIR) -j4
 
 $(LIBFT_LIB):
