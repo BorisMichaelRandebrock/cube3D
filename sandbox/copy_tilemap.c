@@ -1,5 +1,3 @@
-//TODO map copy func
-
 #include "libft.h"
 #include "cube3d.h"
 

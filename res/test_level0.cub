@@ -3,7 +3,7 @@ SO res/south_texture.png
 WE res/west_texture.png
 EA res/east_texture.png
 
-F 0,100,200
+F 0,100,300
 C 100,100,100
 
  11111

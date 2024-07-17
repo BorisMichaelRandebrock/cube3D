@@ -4,8 +4,6 @@
 #include "cube3d.h"
 #include "tests.h"
 
-//TODO memory leaks tests opcional
-
 int	main(void)
 {
 	printf(CYAN"Test 0 - Datamodel load textures path: "RES);

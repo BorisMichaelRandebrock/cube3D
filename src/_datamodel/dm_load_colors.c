@@ -3,30 +3,33 @@
 #include "cube3d.h"
 #include "libft.h"
 
-//TODO y si faltan o sobran valores rgb en el cub?
-//TODO y si hay valores rgb invalidos?
+static void	_check_rgb_range(int rgb)
+{
+	if (rgb > 255 || rgb < 0)
+		error_quit("Wrong rbg range values.\n");
+}
 
 static int	_rgbtohex(char *buffer)
 {
 	int		hex_color;
-	char	*rgb;
 	char	**split_values;
-	int		temp;
+	int		lshift;
 	int		i;
+	int		tmp;
 
-	rgb = ft_strdup(&buffer[2]);
-	split_values = ft_split(rgb, ',');
+	tmp = 0;
+	lshift = 24;
+	split_values = ft_split(&buffer[2], ',');
 	hex_color = 0;
-	temp = ft_atoi(split_values[0]);
-	temp <<= 24;
-	hex_color |= temp;
-	temp = ft_atoi(split_values[1]);
-	temp <<= 16;
-	hex_color |= temp;
-	temp = ft_atoi(split_values[2]);
-	temp <<= 8;
-	hex_color |= temp;
-	free(rgb);
+	i = 0;
+	while (split_values[i])
+	{
+		tmp = ft_atoi(split_values[i++]);
+		_check_rgb_range(tmp);
+		tmp <<= lshift;
+		hex_color |= tmp;
+		lshift -= 8;
+	}
 	i = 0;
 	while (split_values[i])
 		free(split_values[i++]);
