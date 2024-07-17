@@ -22,7 +22,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"preLaunchTask":"make_tests",
-			"program": "${workspaceFolder}/bin/tests",
+			"program": "${workspaceFolder}/bin/testing",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
