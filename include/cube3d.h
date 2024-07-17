@@ -30,8 +30,8 @@ typedef struct s_datamodel
 	char		*so_tex_path;
 	char		*we_tex_path;
 	char		*ea_tex_path;
-	uint32_t	ceiling_color;
-	uint32_t	floor_color;
+	int			ceiling_color;
+	int			floor_color;
 	t_tilemap	*tilemap;
 }	t_datamodel;
 
@@ -44,5 +44,6 @@ void		dm_load_tex_path(t_datamodel *dm, int fd);
 void		dm_load_colors(t_datamodel *dm, int fd);
 void		dm_load_tilemap_(t_datamodel *dm, int fd);
 bool		dm_check_tex_files(t_datamodel *dm);
+bool		dm_check_colors(t_datamodel *dm);
 
 #endif

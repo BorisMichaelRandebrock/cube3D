@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/17 12:36:56 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/17 15:58:29 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,14 @@ NAME			:=	cube3d
 HDRS 			:=	cube3d.h ansi.h tests.h respath.h
 SRCS 			:=	main.c utils.c\
 					datamodel.c dm_load_colors.c dm_load_tex_path.c\
-					dm_load_tilemap.c dm_check_tex_files.c
+					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c
 OBJS			:=	$(SRCS:.c=.o)
 
 TST_DIR			:=	src/ttd/
 TST_NAME		:=	testing
 TST_SRCS		:=	testing.c test_dm_load_colors.c test_dm_load_tex_path.c\
-					test_dm_load_tilemap.c test_dm_check_tex_files.c
+					test_dm_load_tilemap.c test_dm_check_tex_files.c\
+					test_dm_check_colors.c
 TST_OBJS		:=	$(TST_SRCS:.c=.o)
 
 LIBFT_DIR		:=	src/libft/

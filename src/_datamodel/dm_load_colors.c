@@ -37,11 +37,18 @@ static int	_rgbtohex(char *buffer)
 	return (hex_color);
 }
 
+static void	_init_colors(t_datamodel *dm)
+{
+	dm->floor_color = -1;
+	dm->ceiling_color = -1;
+}
+
 void	dm_load_colors(t_datamodel *dm, int fd)
 {
 	char	buffer[BUFSIZ];
 	int		i;
 
+	_init_colors(dm);
 	ft_memset(buffer, '\0', BUFSIZ);
 	i = 0;
 	while (read(fd, &buffer[i], 1))

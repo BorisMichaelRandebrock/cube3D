@@ -11,7 +11,7 @@
 		{
 			"label": "make_tests",
 			"type": "shell",
-			"command": "make tests"
+			"command": "make testing"
 		}
 	]
 }
