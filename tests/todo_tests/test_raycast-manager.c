@@ -1,4 +1,0 @@
-/* 
-	test predicatable raycast examples
-	test output to dm
- */

@@ -5,18 +5,6 @@
 # include <inttypes.h>
 # include <stdbool.h>
 
-# define GREEN "\033[1;32m"
-# define RED "\033[1;31m"
-# define BLUE "\033[1;34m"
-# define YELLOW "\033[1;33m"
-# define MAGENTA "\033[1;35m"
-# define CYAN "\033[1;36m"
-# define WHITE "\033[1;37m"
-# define DARK_RED "\033[0;31m"
-# define ROSA "\033[38;2;255;102;204m"
-# define RES "\033[0m"
-
-
 typedef struct s_point
 {
 	float	x;
@@ -48,13 +36,13 @@ typedef struct s_datamodel
 }	t_datamodel;
 
 t_datamodel	*get_dm(t_datamodel *dm);
-t_datamodel	*load_cub(char *filename);
-void	*__calloc(size_t nmemb, size_t size);
-void	error_quit(char *str);
-void	print_colors(const char *str, const char *color);
-void		dm_load_textures(t_datamodel *dm, char *buffer, int fd);
-void		dm_load_surfaces_color(t_datamodel *dm, char *buffer, int fd);
-void		dm_load_tilemap(t_datamodel *dm, char *buffer, int fd);
-bool    	dm_check_textures(t_datamodel *dm);
+void		free_dm(t_datamodel *dm);
+void	*	scalloc(size_t nmemb, size_t size);
+void		error_quit(char *str);
+void		print_colors(const char *str, const char *color);
+void		dm_load_tex_path(t_datamodel *dm, int fd);
+void		dm_load_colors(t_datamodel *dm, int fd);
+void		dm_load_tilemap_(t_datamodel *dm, int fd);
+bool		dm_check_tex_files(t_datamodel *dm);
 
 #endif
