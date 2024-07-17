@@ -40,7 +40,7 @@ void		free_dm(t_datamodel *dm);
 void	*	scalloc(size_t nmemb, size_t size);
 void		error_quit(char *str);
 void		print_colors(const char *str, const char *color);
-void		dm_load_tex_path(t_datamodel *dm, int fd);
+void		dm_load_tex_path(t_datamodel *dm, char *cub_file);
 void		dm_load_colors(t_datamodel *dm, int fd);
 void		dm_load_tilemap_(t_datamodel *dm, int fd);
 bool		dm_check_tex_files(t_datamodel *dm);

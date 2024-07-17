@@ -14,17 +14,16 @@ static char	*_trim_path(char *buffer)
 	return (path);
 }
 
-void	dm_load_tex_path(t_datamodel *dm, int fd)
+void	dm_load_tex_path(t_datamodel *dm, char	*cub_file)
 {
 	char	buffer[BUFSIZ];
 	int		i;
 
 	ft_memset(buffer, '\0', BUFSIZ);
 	i = 0;
-	while (read(fd, &buffer[i], 1))
+	while (*cub_file)
 	{
-		if (buffer[0] == '\n')
-			break ;
+		buffer[i] = *cub_file;
 		if (buffer[i] == '\n')
 		{
 			if (buffer[0] == 'N' && buffer[1] == 'O')
@@ -37,8 +36,10 @@ void	dm_load_tex_path(t_datamodel *dm, int fd)
 				dm->ea_tex_path = _trim_path(&buffer[PATH_OFFSET]);
 			ft_memset(buffer, '\0', BUFSIZ);
 			i = 0;
+			cub_file++;
 			continue ;
 		}
+		cub_file++;
 		i++;
 	}
 }
