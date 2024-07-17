@@ -8,11 +8,6 @@
 #include "tests.h"
 #include "respath.h"
 
-static void _free_test(t_datamodel *dm)
-{
-	free(dm);
-}
-
 static void _skip_cub_section(int fd)
 {
 	char	buffer[BUFSIZ];
@@ -54,7 +49,6 @@ bool	test_dm_load_colors(void)
 	
 	equal += (test_model.ceiling_color - real_model->ceiling_color);
 	equal += (test_model.floor_color - real_model->floor_color);
-	_free_test(real_model);
 	if (equal != 0)
 	{
 		printf(RED"Wrong color!\n"RES);

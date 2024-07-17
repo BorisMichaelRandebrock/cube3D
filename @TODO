@@ -23,3 +23,6 @@
 	Window closes pressing ESC
 	Window minimizes with mouse
 	Windows ALT-TAB correctly
+
+
+	"${workspaceFolder}/res/level0.cub"

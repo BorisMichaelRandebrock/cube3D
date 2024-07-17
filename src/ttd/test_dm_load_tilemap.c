@@ -9,22 +9,6 @@
 #include "tests.h"
 #include "respath.h"
 
-static void	_free_test(t_datamodel *dm, t_tilemap *tilemap)
-{
-	int y = 0;
-
-	while(y < tilemap->size.y)
-		free(tilemap->map[y++]);
-	free(tilemap->map);
-
-	y = 0;
-	while(y < dm->tilemap->size.y)
-		free(dm->tilemap->map[y++]);
-	free(dm->tilemap->map);
-	free(dm->tilemap);
-	free(dm);
-}
-
 static void _skip_cub_section(int fd)
 {
 	char	buffer[BUFSIZ];
@@ -93,7 +77,6 @@ bool	test_dm_load_tilemap(void)
 		printf(RED"Map wrong size! test(%d,%d) vs real(%d,%d)\n"RES,
 			test_model.tilemap->size.y,test_model.tilemap->size.x,
 			real_model->tilemap->size.y,real_model->tilemap->size.x);
-		_free_test(real_model,&tilemap);
 		return (false);
 	}
 
@@ -107,13 +90,11 @@ bool	test_dm_load_tilemap(void)
 
 				printf(RED"Map wrong value at (%d,%d), value is '%c' and must be '%c'\n"RES,
 					y,x,real_model->tilemap->map[y][x], test_model.tilemap->map[y][x]);
-				_free_test(real_model,&tilemap);
 				return (false);
 			}
 			x++;
 		}
 		y++;
 	}
-	_free_test(real_model, &tilemap);
 	return (true);
 }

@@ -28,5 +28,6 @@ int	main(void)
 		error_quit("FAILED\n");
 	printf(GREEN"PASSED\n"RES);
 
+	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
