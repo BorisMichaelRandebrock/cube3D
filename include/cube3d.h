@@ -49,5 +49,7 @@ t_list		*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
 void		dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
 bool		dm_check_tex_files(t_datamodel *dm);
 bool		dm_check_colors(t_datamodel *dm);
+bool		dm_check_tilemap(t_datamodel *dm);
+
 
 #endif

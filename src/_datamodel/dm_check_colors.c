@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <fcntl.h>
 
-
 static void	_check_rgb_range(int rgb)
 {
 	if (rgb > 255 || rgb < 0)
