@@ -20,12 +20,16 @@ bool	test_dm_load_tex_path(void)
 	};
 
 	t_datamodel *real_model;
-	int			fd;
+	t_list		*lines_list = NULL;
+
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup("NO res/north_texture.png\n")));
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup("SO res/south_texture.png\n")));
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup("WE res/west_texture.png\n")));
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup("EA res/east_texture.png\n")));
 
 	real_model = scalloc(1, sizeof(t_datamodel));
-	fd = open(TEST_LEVEL0_PATH, O_RDONLY, 0777);
-	dm_load_tex_path(real_model, fd);
-	close(fd);
+
+	dm_load_tex_path(real_model, lines_list);
 	
 	equal += strcmp(test_model.no_tex_path, real_model->no_tex_path);
 	equal += strcmp(test_model.so_tex_path, real_model->so_tex_path);
@@ -38,5 +42,7 @@ bool	test_dm_load_tex_path(void)
 		printf("real_model: %s\n", real_model->no_tex_path);
 		return (false);
 	}
+
+	ft_lstclear(&lines_list, free);
 	return (true);
 }

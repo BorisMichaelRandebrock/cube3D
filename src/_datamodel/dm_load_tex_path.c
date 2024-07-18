@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "cube3d.h"
-#include "libft.h"
 
 #define PATH_OFFSET 3
 
@@ -14,32 +13,36 @@ static char	*_trim_path(char *buffer)
 	return (path);
 }
 
-void	dm_load_tex_path(t_datamodel *dm, char	*cub_file)
+static t_list	*_load_line(char **path, t_list *next_lines)
 {
-	char	buffer[BUFSIZ];
-	int		i;
+	char	*line;
 
-	ft_memset(buffer, '\0', BUFSIZ);
-	i = 0;
-	while (*cub_file)
+	line = next_lines->content;
+	*path = _trim_path(&line[PATH_OFFSET]);
+	return (next_lines);
+}
+
+t_list	*dm_load_tex_path(t_datamodel *dm, t_list *next_lines)
+{
+	char	*line;
+	t_list	*end_line;
+
+	dm->no_tex_path = ft_strdup("");
+	dm->so_tex_path = ft_strdup("");
+	dm->we_tex_path = ft_strdup("");
+	dm->ea_tex_path = ft_strdup("");
+	while (next_lines)
 	{
-		buffer[i] = *cub_file;
-		if (buffer[i] == '\n')
-		{
-			if (buffer[0] == 'N' && buffer[1] == 'O')
-				dm->no_tex_path = _trim_path(&buffer[PATH_OFFSET]);
-			if (buffer[0] == 'S' && buffer[1] == 'O')
-				dm->so_tex_path = _trim_path(&buffer[PATH_OFFSET]);
-			if (buffer[0] == 'W' && buffer[1] == 'E')
-				dm->we_tex_path = _trim_path(&buffer[PATH_OFFSET]);
-			if (buffer[0] == 'E' && buffer[1] == 'A')
-				dm->ea_tex_path = _trim_path(&buffer[PATH_OFFSET]);
-			ft_memset(buffer, '\0', BUFSIZ);
-			i = 0;
-			cub_file++;
-			continue ;
-		}
-		cub_file++;
-		i++;
+		line = next_lines->content;
+		if (line[0] == 'N' && line[1] == 'O' && sfree(dm->no_tex_path))
+			end_line = _load_line(&dm->no_tex_path, next_lines);
+		if (line[0] == 'S' && line[1] == 'O' && sfree(dm->so_tex_path))
+			end_line = _load_line(&dm->so_tex_path, next_lines);
+		if (line[0] == 'W' && line[1] == 'E' && sfree(dm->we_tex_path))
+			end_line = _load_line(&dm->we_tex_path, next_lines);
+		if (line[0] == 'E' && line[1] == 'A' && sfree(dm->ea_tex_path))
+			end_line = _load_line(&dm->ea_tex_path, next_lines);
+		next_lines = next_lines->next;
 	}
+	return (end_line->next);
 }

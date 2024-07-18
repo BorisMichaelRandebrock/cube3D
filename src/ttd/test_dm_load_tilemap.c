@@ -3,32 +3,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
-#include "libft.h"
 #include "ansi.h"
 #include "cube3d.h"
 #include "tests.h"
 #include "respath.h"
 
-static void _skip_cub_section(int fd)
-{
-	char	buffer[BUFSIZ];
-	int		i;
-
-	ft_memset(buffer, '\0', BUFSIZ);
-	i = 0;
-	while (read(fd, &buffer[i], 1))
-	{
-		if (buffer[0] == '\n')
-			break ;
-		if (buffer[i] == '\n')
-		{
-			ft_memset(buffer, '\0', BUFSIZ);
-			i = 0;
-			continue ;
-		}
-		i++;
-	}
-}
 
 bool	test_dm_load_tilemap(void)
 {
@@ -46,11 +25,11 @@ bool	test_dm_load_tilemap(void)
 		{' ','1','1','1','1','1'}
 	};
 	
-	tilemap.map = (char **)calloc(tilemap.size.y, sizeof(char *));
+	tilemap.tilemap = (char **)calloc(tilemap.size.y, sizeof(char *));
 	while( i < tilemap.size.y)
 	{
-		tilemap.map[i] = (char *)calloc(tilemap.size.x, sizeof(char));
-		memcpy(tilemap.map[i], map[i], tilemap.size.x);
+		tilemap.tilemap[i] = (char *)calloc(tilemap.size.x, sizeof(char));
+		memcpy(tilemap.tilemap[i], map[i], tilemap.size.x);
 		i++;
 	}
 
@@ -59,24 +38,27 @@ bool	test_dm_load_tilemap(void)
 		.tilemap = &tilemap
 	};
 
-	t_datamodel *real_model;
-	int			fd;
+	t_datamodel real_model =
+	{
+		.tilemap = NULL
+	};
 
-	real_model = scalloc(1, sizeof(t_datamodel));
-	fd = open(TEST_LEVEL0_PATH, O_RDONLY, 0777);
-	_skip_cub_section(fd);
-	_skip_cub_section(fd);
-	dm_load_tilemap_(real_model, fd);
-	close(fd);
+	t_list	*lines_list = NULL;
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup(" 11111\n")));
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup(" 10N01\n")));
+	ft_lstadd_back(&lines_list, ft_lstnew(ft_strdup(" 11111\n")));
+
+	dm_load_tilemap_(&real_model, lines_list);
+
 
 	//MAP SIZE DIFF TEST
-	equal += (test_model.tilemap->size.x - real_model->tilemap->size.x);
-	equal += (test_model.tilemap->size.y - real_model->tilemap->size.y);
+	equal += (test_model.tilemap->size.x - real_model.tilemap->size.x);
+	equal += (test_model.tilemap->size.y - real_model.tilemap->size.y);
 	if (equal != 0)
 	{
 		printf(RED"Map wrong size! test(%d,%d) vs real(%d,%d)\n"RES,
 			test_model.tilemap->size.y,test_model.tilemap->size.x,
-			real_model->tilemap->size.y,real_model->tilemap->size.x);
+			real_model.tilemap->size.y,real_model.tilemap->size.x);
 		return (false);
 	}
 
@@ -85,11 +67,11 @@ bool	test_dm_load_tilemap(void)
 	{
 		while (x < test_model.tilemap->size.x)
 		{
-			if (test_model.tilemap->map[y][x] != real_model->tilemap->map[y][x])
+			if (test_model.tilemap->tilemap[y][x] != real_model.tilemap->tilemap[y][x])
 			{
 
 				printf(RED"Map wrong value at (%d,%d), value is '%c' and must be '%c'\n"RES,
-					y,x,real_model->tilemap->map[y][x], test_model.tilemap->map[y][x]);
+					y,x,real_model.tilemap->tilemap[y][x], test_model.tilemap->tilemap[y][x]);
 				return (false);
 			}
 			x++;

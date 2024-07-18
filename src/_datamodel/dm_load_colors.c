@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "cube3d.h"
-#include "libft.h"
 
 static void	_check_rgb_range(int rgb)
 {
@@ -9,7 +8,7 @@ static void	_check_rgb_range(int rgb)
 		error_quit("Wrong rbg range values.\n");
 }
 
-static int	_rgbtohex(char *buffer)
+static int	_rgbtohex(char *line)
 {
 	int		hex_color;
 	char	**split_values;
@@ -19,7 +18,7 @@ static int	_rgbtohex(char *buffer)
 
 	tmp = 0;
 	lshift = 24;
-	split_values = ft_split(&buffer[2], ',');
+	split_values = ft_split(&line[2], ',');
 	hex_color = 0;
 	i = 0;
 	while (split_values[i])
@@ -37,37 +36,27 @@ static int	_rgbtohex(char *buffer)
 	return (hex_color);
 }
 
-static void	_init_colors(t_datamodel *dm)
+t_list	*dm_load_colors(t_datamodel *dm, t_list *next_lines)
 {
+	char	*line;
+	t_list	*end_line;
+
 	dm->floor_color = -1;
 	dm->ceiling_color = -1;
-}
-
-void	dm_load_colors(t_datamodel *dm, int fd)
-{
-	char	buffer[BUFSIZ];
-	int		i;
-
-	_init_colors(dm);
-	ft_memset(buffer, '\0', BUFSIZ);
-	i = 0;
-	while (read(fd, &buffer[i], 1))
+	while (next_lines)
 	{
-		if (buffer[0] == '\n')
-			break ;
-		if (buffer[i] == '\n')
+		line = next_lines->content;
+		if (line[0] == 'F')
 		{
-			if (buffer[0] == 'F' || buffer[0] == 'C')
-			{
-				if (buffer[0] == 'F')
-					dm->floor_color = _rgbtohex(buffer);
-				else if (buffer[0] == 'C')
-					dm->ceiling_color = _rgbtohex(buffer);
-			}
-			ft_memset(buffer, '\0', BUFSIZ);
-			i = 0;
-			continue ;
+			dm->floor_color = _rgbtohex(line);
+			end_line = next_lines;
 		}
-		i++;
+		else if (line[0] == 'C')
+		{
+			dm->ceiling_color = _rgbtohex(line);
+			end_line = next_lines;
+		}
+		next_lines = next_lines->next;
 	}
+	return (end_line->next);
 }

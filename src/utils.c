@@ -4,6 +4,7 @@
 #include "cube3d.h"
 #include "libft.h"
 
+
 void	*scalloc(size_t nmemb, size_t size)
 {
 	void	*alloc;
@@ -12,6 +13,16 @@ void	*scalloc(size_t nmemb, size_t size)
 	if (!alloc)
 		error_quit("Memory error");
 	return (alloc);
+}
+
+bool	sfree(void *ptr)
+{
+	if (ptr)
+	{
+		free(ptr);
+		return (true);
+	}
+	return (false);
 }
 
 void	error_quit(char *str)

@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/17 15:49:54 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:53:12 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,57 @@
 #include <stdio.h>
 #include <math.h>
 #include "cube3d.h"
-#include "libft.h"
 #include "MLX42.h"
 
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
 
+static void _get_cub_lines(t_list **cub_lines, int fd)
+{
+	int		i;
+	char	buffer[BUFSIZ];
+	char	*line;
+
+	i = 0;
+	while (read(fd, &buffer[i], 1))
+	{
+		if (buffer[0] == '\n')
+			continue ;
+		if (buffer[i] == '\n')
+		{
+			line = ft_strdup(buffer);
+			ft_lstadd_back(cub_lines, ft_lstnew(line));
+			i = 0;
+			continue ;
+		}
+		i++;
+	}
+	if (cub_lines == NULL)
+		error_quit("Cub file is empty.\n");
+}
+
 static void	_data_init(char *cub_filename)
 {
 	t_datamodel	*dm;
-	char		cub_file[CUB_BUFFER];
+	t_list		*cub_lines;
+	t_list		*next_lines;
 	int			fd;
-	int			i;
 
-	i = 0;
-	ft_memset(cub_file, '\0', CUB_BUFFER);
 	dm = scalloc(1, sizeof(t_datamodel));
 	get_dm(dm);
 	fd = open(cub_filename, O_RDONLY, 0777);
 	if (fd == CUB_FILE_ERROR)
 		error_quit("Bad file argument.\n");
-	while (read(fd, &cub_file[i++], 1))
-		 ;
+	cub_lines = NULL;
+	_get_cub_lines(&cub_lines, fd);
 	close(fd);
-	dm_load_tex_path(dm, cub_file);
+	next_lines = dm_load_tex_path(dm, cub_lines);
+	next_lines = dm_load_colors(dm, next_lines);
+	dm_load_tilemap_(dm, next_lines);
+	ft_lstclear(&cub_lines, free);
+
 	/* 
-	dm_load_colors(dm, fd);
-	dm_load_tilemap_(dm, fd);
-	close(fd);
 	if (!dm_check_tex_files(dm))
 		error_quit("Wrong texture file.\n");
 	if (!dm_check_colors(dm))

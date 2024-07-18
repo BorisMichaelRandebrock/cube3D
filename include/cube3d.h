@@ -4,6 +4,8 @@
 # include <stdlib.h>
 # include <inttypes.h>
 # include <stdbool.h>
+# include "libft.h"
+
 
 typedef struct s_point
 {
@@ -20,7 +22,7 @@ typedef struct s_rect
 typedef struct s_tilemap
 {
 	t_rect	size;
-	char	**map;
+	char	**tilemap;
 }	t_tilemap;
 
 
@@ -36,13 +38,13 @@ typedef struct s_datamodel
 }	t_datamodel;
 
 t_datamodel	*get_dm(t_datamodel *dm);
-void		free_dm(t_datamodel *dm);
-void	*	scalloc(size_t nmemb, size_t size);
+void		*scalloc(size_t nmemb, size_t size);
+bool		sfree(void *ptr);
 void		error_quit(char *str);
 void		print_colors(const char *str, const char *color);
-void		dm_load_tex_path(t_datamodel *dm, char *cub_file);
-void		dm_load_colors(t_datamodel *dm, int fd);
-void		dm_load_tilemap_(t_datamodel *dm, int fd);
+t_list		*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
+t_list		*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
+void		dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
 bool		dm_check_tex_files(t_datamodel *dm);
 bool		dm_check_colors(t_datamodel *dm);
 

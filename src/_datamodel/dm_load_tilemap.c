@@ -3,46 +3,34 @@
 #include "cube3d.h"
 #include "libft.h"
 
-static void	_load_map_data_(t_datamodel *dm, t_list *row_list)
+static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 {
-	t_list	*head;
 	int		i;
+	int		x_size;
 
 	i = 0;
-	dm->tilemap->map = scalloc(dm->tilemap->size.y, sizeof(char *));
+	dm->tilemap->tilemap = scalloc(dm->tilemap->size.y, sizeof(char *));
 	while (i < dm->tilemap->size.y)
 	{
-		head = row_list;
-		((char *)head->content)[ft_strlen(head->content) - 1] = '\0';
-		dm->tilemap->map[i++] = head->content;
-		row_list = row_list->next;
-		free(head);
+		((char *)next_lines->content)[ft_strlen(next_lines->content) - 1] = '\0';
+		x_size = ft_strlen(next_lines->content);
+		if (x_size > dm->tilemap->size.x)
+			dm->tilemap->size.x = (x_size);
+		dm->tilemap->tilemap[i++] = ft_strdup(next_lines->content);
+		next_lines = next_lines->next;
 	}
 }
 
-void	dm_load_tilemap_(t_datamodel *dm, int fd)
+void	dm_load_tilemap_(t_datamodel *dm, t_list *next_lines)
 {
-	char	buffer[BUFSIZ];
-	t_list	*row_list;
-	int		i;
+	t_list	*lines_list;
 
-	ft_memset(buffer, '\0', BUFSIZ);
+	lines_list = next_lines;
 	dm->tilemap = scalloc(1, sizeof(t_tilemap));
-	row_list = NULL;
-	i = 0;
-	while (read(fd, &buffer[i], 1))
+	while (lines_list)
 	{
-		if (buffer[i] == '\n')
-		{
-			ft_lstadd_back(&row_list, ft_lstnew(ft_strdup(buffer)));
-			ft_memset(buffer, '\0', BUFSIZ);
-			if (i > dm->tilemap->size.x)
-				dm->tilemap->size.x = i;
-			dm->tilemap->size.y++;
-			i = 0;
-			continue ;
-		}
-		i++;
+		dm->tilemap->size.y++;
+		lines_list = lines_list->next;
 	}
-	_load_map_data_(dm, row_list);
+	_load_map_data_(dm, next_lines);
 }
