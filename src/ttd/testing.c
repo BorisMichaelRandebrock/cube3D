@@ -22,7 +22,7 @@ int	main(void)
 		error_quit("FAILED\n");
 	printf(GREEN"PASSED\n"RES);
 
-/*
+
 	printf(CYAN"Test 3 - Datamodel check texture files: "RES);
 	if (!test_dm_check_tex_files())
 		error_quit("FAILED\n");
@@ -31,7 +31,7 @@ int	main(void)
 	printf(CYAN"Test 4 - Datamodel check colors: "RES);
 	if (!test_dm_check_colors())
 		error_quit("FAILED\n");
-	printf(GREEN"PASSED\n"RES); */
+	printf(GREEN"PASSED\n"RES);
 
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);

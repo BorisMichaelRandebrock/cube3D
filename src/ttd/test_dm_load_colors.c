@@ -6,14 +6,17 @@
 #include "cube3d.h"
 #include "tests.h"
 #include "respath.h"
+#include "string.h"
 
 bool	test_dm_load_colors(void)
 {
 	int	equal = 0;
+	
+
 	t_datamodel	test_model =
 	{
-		.floor_color = 0x0064C800,
-		.ceiling_color = 0x64646400,
+		.floor_raw = "F 0,100,200\n",
+		.ceiling_raw = "C 100,100,100\n"
 	};
 
 	t_datamodel	*real_model;
@@ -26,8 +29,8 @@ bool	test_dm_load_colors(void)
 
 	dm_load_colors(real_model, lines_list);
 
-	equal += (test_model.ceiling_color - real_model->ceiling_color);
-	equal += (test_model.floor_color - real_model->floor_color);
+	equal += strcmp(test_model.floor_raw, real_model->floor_raw);
+	equal += strcmp(test_model.ceiling_raw, real_model->ceiling_raw);
 	if (equal != 0)
 	{
 		printf(RED"Wrong color!\n"RES);

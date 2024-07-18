@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/18 13:53:12 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:54:12 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,10 @@ static void	_data_init(char *cub_filename)
 	next_lines = dm_load_colors(dm, next_lines);
 	dm_load_tilemap_(dm, next_lines);
 	ft_lstclear(&cub_lines, free);
-
-	/* 
 	if (!dm_check_tex_files(dm))
 		error_quit("Wrong texture file.\n");
 	if (!dm_check_colors(dm))
-		error_quit("Missing color values.\n"); */
+		error_quit("Missing color values.\n");
 }
 
 int	main(int argc, char **argv)

@@ -32,8 +32,10 @@ typedef struct s_datamodel
 	char		*so_tex_path;
 	char		*we_tex_path;
 	char		*ea_tex_path;
-	int			ceiling_color;
-	int			floor_color;
+	char		*ceiling_raw;
+	int			ceiling_hex;
+	char		*floor_raw;
+	int			floor_hex;
 	t_tilemap	*tilemap;
 }	t_datamodel;
 

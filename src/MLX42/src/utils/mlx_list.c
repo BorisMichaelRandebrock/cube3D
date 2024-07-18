@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_list.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 01:53:51 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/02/27 11:31:01 by W2Wizard      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_list.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 01:53:51 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/07/18 16:54:12 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static void mlx_lstdelone(mlx_list_t* lst, void (*del)(void *))
 
 void mlx_lstclear(mlx_list_t** lst, void (*del)(void*))
 {
-	mlx_list_t* next_lst;
+	mlx_list_t* next_linesst;
 
 	while (*lst != NULL)
 	{
-		next_lst = (*lst)->next;
+		next_linesst = (*lst)->next;
 		mlx_lstdelone(*lst, del);
-		*lst = next_lst;
+		*lst = next_linesst;
 	}
 }
 

@@ -4,7 +4,7 @@
 
 bool	test_dm_check_tex_files(void)
 {
-	t_datamodel dm =
+	t_datamodel test_model =
 	{
 		.no_tex_path = NO_TEX_PATH,
 		.so_tex_path = SO_TEX_PATH,
@@ -13,12 +13,12 @@ bool	test_dm_check_tex_files(void)
 	};
 
 	//ALL OK
-	if (!dm_check_tex_files(&dm))
+	if (!dm_check_tex_files(&test_model))
 		return (false);
 
 	//NO_TEX IS WRONG
-	dm.no_tex_path = "wrong_file_test";
-	if (!dm_check_tex_files(&dm))
+	test_model.no_tex_path = "wrong_file_test";
+	if (!dm_check_tex_files(&test_model))
 		return (false);
 	return (true);
 }
