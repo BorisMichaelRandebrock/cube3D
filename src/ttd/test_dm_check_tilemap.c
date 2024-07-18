@@ -3,8 +3,9 @@
 #include "cube3d.h"
 #include "libft.h"
 #include "string.h"
+#include "ansi.h"
 
-void	test_dm_check_tilemap()
+bool	test_dm_check_tilemap()
 {
 	t_tilemap	*tilemap = scalloc(1, sizeof(t_tilemap));
 	t_datamodel	*dm = scalloc(1, sizeof(t_datamodel));
@@ -15,6 +16,8 @@ void	test_dm_check_tilemap()
 		{' ','1','1','1','1','1'}
 	};
 	int i = 0;
+	tilemap->size.y = 3;
+	tilemap->size.x = 6;
 	tilemap->map = (char **)calloc(tilemap->size.y, sizeof(char *));
 	while( i < tilemap->size.y)
 	{
@@ -24,11 +27,15 @@ void	test_dm_check_tilemap()
 	}
 
 	dm->tilemap = tilemap;
-	tilemap->size.y = 3;
-	tilemap->size.x = 6;
+
 
 
 	//TESTS
-
-	dm_check_tilemap(dm);
+	if (!dm_check_tilemap(dm))
+		return (false);
+	dm->tilemap->map[2][3]  = '*';
+	if (dm_check_tilemap(dm))
+		return (false);
+	return (true);
+		
 }

@@ -33,6 +33,11 @@ int	main(void)
 		error_quit("FAILED\n");
 	printf(GREEN"PASSED\n"RES);
 
+	print_colors("Test 5 - Datamodel check map: ", CYAN);
+	if (!test_dm_check_tilemap())
+		error_quit("FAILED\n");
+	print_colors("PASSED\n",GREEN);
+
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
