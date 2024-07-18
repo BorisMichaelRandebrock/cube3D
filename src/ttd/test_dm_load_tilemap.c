@@ -25,11 +25,11 @@ bool	test_dm_load_tilemap(void)
 		{' ','1','1','1','1','1'}
 	};
 	
-	tilemap.tilemap = (char **)calloc(tilemap.size.y, sizeof(char *));
+	tilemap.map = (char **)calloc(tilemap.size.y, sizeof(char *));
 	while( i < tilemap.size.y)
 	{
-		tilemap.tilemap[i] = (char *)calloc(tilemap.size.x, sizeof(char));
-		memcpy(tilemap.tilemap[i], map[i], tilemap.size.x);
+		tilemap.map[i] = (char *)calloc(tilemap.size.x, sizeof(char));
+		memcpy(tilemap.map[i], map[i], tilemap.size.x);
 		i++;
 	}
 
@@ -67,11 +67,11 @@ bool	test_dm_load_tilemap(void)
 	{
 		while (x < test_model.tilemap->size.x)
 		{
-			if (test_model.tilemap->tilemap[y][x] != real_model.tilemap->tilemap[y][x])
+			if (test_model.tilemap->map[y][x] != real_model.tilemap->map[y][x])
 			{
 
 				printf(RED"Map wrong value at (%d,%d), value is '%c' and must be '%c'\n"RES,
-					y,x,real_model.tilemap->tilemap[y][x], test_model.tilemap->tilemap[y][x]);
+					y,x,real_model.tilemap->map[y][x], test_model.tilemap->map[y][x]);
 				return (false);
 			}
 			x++;

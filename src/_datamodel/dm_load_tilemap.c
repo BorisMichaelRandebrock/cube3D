@@ -9,14 +9,14 @@ static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 	int		x_size;
 
 	i = 0;
-	dm->tilemap->tilemap = scalloc(dm->tilemap->size.y, sizeof(char *));
+	dm->tilemap->map = scalloc(dm->tilemap->size.y, sizeof(char *));
 	while (i < dm->tilemap->size.y)
 	{
 		((char *)next_lines->content)[ft_strlen(next_lines->content) - 1] = '\0';
 		x_size = ft_strlen(next_lines->content);
 		if (x_size > dm->tilemap->size.x)
 			dm->tilemap->size.x = (x_size);
-		dm->tilemap->tilemap[i++] = ft_strdup(next_lines->content);
+		dm->tilemap->map[i++] = ft_strdup(next_lines->content);
 		next_lines = next_lines->next;
 	}
 }

@@ -5,5 +5,6 @@
 
 bool	dm_check_tilemap(t_datamodel *dm)
 {
+	(void)dm;
 	return (false);
 }

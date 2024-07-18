@@ -22,7 +22,7 @@ typedef struct s_rect
 typedef struct s_tilemap
 {
 	t_rect	size;
-	char	**tilemap;
+	char	**map;
 }	t_tilemap;
 
 
