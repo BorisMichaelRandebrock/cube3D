@@ -50,6 +50,8 @@ void		dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
 bool		dm_check_tex_files(t_datamodel *dm);
 bool		dm_check_colors(t_datamodel *dm);
 bool		dm_check_tilemap(t_datamodel *dm);
+void		dm_free_tilemap(t_tilemap *tilemap);
+t_tilemap	*dm_copy_tilemap_(t_tilemap *tilemap);
 
 
 #endif

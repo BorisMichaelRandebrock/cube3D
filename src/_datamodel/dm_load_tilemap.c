@@ -3,6 +3,18 @@
 #include "cube3d.h"
 #include "libft.h"
 
+
+static void	_clean_endline(char *line)
+{
+	char	c;
+	int		line_end;
+
+	line_end = ft_strlen(line) - 1;
+	c = line[line_end];
+	if (c == '\n')
+		line[line_end] = '\0';
+}
+
 static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 {
 	int		i;
@@ -12,7 +24,7 @@ static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 	dm->tilemap->map = scalloc(dm->tilemap->size.y, sizeof(char *));
 	while (i < dm->tilemap->size.y)
 	{
-		((char *)next_lines->content)[ft_strlen(next_lines->content) - 1] = '\0';
+		_clean_endline(next_lines->content);
 		x_size = ft_strlen(next_lines->content);
 		if (x_size > dm->tilemap->size.x)
 			dm->tilemap->size.x = (x_size);
@@ -27,10 +39,7 @@ void	dm_load_tilemap_(t_datamodel *dm, t_list *next_lines)
 
 	lines_list = next_lines;
 	dm->tilemap = scalloc(1, sizeof(t_tilemap));
-	while (lines_list)
-	{
-		dm->tilemap->size.y++;
+	while (lines_list && ++dm->tilemap->size.y)
 		lines_list = lines_list->next;
-	}
 	_load_map_data_(dm, next_lines);
 }

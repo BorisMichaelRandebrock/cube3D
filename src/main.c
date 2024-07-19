@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/18 16:54:12 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:44:28 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ static void _get_cub_lines(t_list **cub_lines, int fd)
 	i = 0;
 	while (read(fd, &buffer[i], 1))
 	{
-		if (buffer[0] == '\n')
-			continue ;
 		if (buffer[i] == '\n')
 		{
 			line = ft_strdup(buffer);
 			ft_lstadd_back(cub_lines, ft_lstnew(line));
 			i = 0;
+			ft_memset(buffer, '\0', BUFSIZ);
 			continue ;
 		}
 		i++;
 	}
+	line = ft_strdup(buffer);
+	ft_lstadd_back(cub_lines, ft_lstnew(line));
 	if (cub_lines == NULL)
 		error_quit("Cub file is empty.\n");
 }
@@ -68,6 +69,8 @@ static void	_data_init(char *cub_filename)
 		error_quit("Wrong texture file.\n");
 	if (!dm_check_colors(dm))
 		error_quit("Missing color values.\n");
+	if (!dm_check_tilemap(dm))
+		error_quit("Invalid tilemap.\n");
 }
 
 int	main(int argc, char **argv)

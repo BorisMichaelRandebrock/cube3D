@@ -6,7 +6,7 @@
 //TODO comprobar y conseguir puto de entrada && contador Highlander 
 // copy mapa previo
 
-static bool _check_flood_fill(t_tilemap *tilemap)
+/* static bool _check_flood_fill(t_tilemap *tilemap)
 {
 	int		x;
 	int		y;
@@ -24,7 +24,7 @@ static bool _check_flood_fill(t_tilemap *tilemap)
 	flood_fill(tilemap, x - 1, y);
 	flood_fill(tilemap, x, y + 1);
 	flood_fill(tilemap, x, y - 1);
-}
+} */
 
 static bool	_is_invalid(char c)
 {
@@ -64,6 +64,6 @@ bool	dm_check_tilemap(t_datamodel *dm)
 		return (false);
 
 
-	if (_check_flood_fill(dm->tilemap))
+/* 	if (_check_flood_fill(dm->tilemap)) */
 	return (true);
 }
