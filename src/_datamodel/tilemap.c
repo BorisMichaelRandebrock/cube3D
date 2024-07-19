@@ -1,24 +1,6 @@
 #include "cube3d.h"
 
-t_rect	dm_get_spawn_point(t_tilemap *tilemap)
-{
-	int		x;
-	int		y;
-	char	*line;
 
-	y = 0;
-	x = 0;
-	while (y < tilemap->size.y)
-	{
-		line = tilemap->map[y][x];
-		while (x < ft_strlen(line))
-		{
-
-			x++;
-		}
-		y++;
-	}
-}
 
 void	dm_free_tilemap(t_tilemap *tilemap)
 {

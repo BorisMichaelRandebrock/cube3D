@@ -36,34 +36,33 @@ static	t_rect	_get_player_position(t_tilemap *tilemap)
 	return (player_pos);	
 }
 
-static bool _check_flood_fill(t_tilemap *tilemap, t_rect position)
-{
-	int		x;
-	int		y;
-
-	x = position.x;
-	y = position.y;
-	if (x < 0 || y < 0 || x >= tilemap->size.x|| y >= tilemap->size.y
-		|| tilemap->map[x][y] == 'V' || tilemap->map[x][y] == '1'
-		|| tilemap->map[x][y] == 'E' || tilemap->map[x][y] == 'N'
-		|| tilemap->map[x][y] == 'W' || tilemap->map[x][y] == 'S')
-			;
-	else if	(tilemap->map[x][y] == ' ')
-		error_quit("Map is not closed");
-	tilemap->map[x][y] = 'V';
-	flood_fill(tilemap, x + 1, y);
-	flood_fill(tilemap, x - 1, y);
-	flood_fill(tilemap, x, y + 1);
-	flood_fill(tilemap, x, y - 1);
-	return (true);
-}
-
 static bool	_is_invalid(char c)
 {
 	if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'W'
 		&& c != 'E' && c != ' ')
 		return (true);
 	return (false);
+}
+
+static bool _check_flood_fill(t_tilemap *tilemap, int x, int y)
+{
+	char c = tilemap->map[x][y];
+	(void)c;
+	if (x < 0 || y < 0 || x >= tilemap->size.x|| y >= tilemap->size.y
+		|| tilemap->map[x][y] == '*' || tilemap->map[x][y] == '1')
+			return (true);
+	else if	(_is_invalid(tilemap->map[x][y]))
+		return (false);
+	tilemap->map[x][y] = '*';
+	if (!_check_flood_fill(tilemap, x + 1, y))
+		return (false);
+	if(_check_flood_fill(tilemap, x - 1, y))
+		return (false);
+	if(_check_flood_fill(tilemap, x, y + 1))
+		return (false);
+	if(_check_flood_fill(tilemap, x, y - 1))
+		return (false);
+	return (true);
 }
 
 static bool _check_map_chars(t_tilemap *tilemap)
@@ -93,11 +92,31 @@ static bool _check_map_chars(t_tilemap *tilemap)
 bool	dm_check_tilemap(t_datamodel *dm)
 {
 	t_rect	position;
-	t_datamodel	map_copy;
+	t_tilemap	*map_copy;
 
+	map_copy = dm_copy_tilemap_(dm->tilemap);
 	position = _get_player_position(dm->tilemap);
 	if (!_check_map_chars(dm->tilemap))
 		return (false);
-	if (_check_flood_fill(dm->tilemap, position))
+	int		y = 0;
+	while (y < dm->tilemap->size.y)
+		printf("%s\n", dm->tilemap->map[y++]);
+	printf("\n\n-----------------------------------------\n\n");
+	if (!_check_flood_fill(map_copy, position.x, position.y))
+	{
+		y = 0;
+		while (y < map_copy->size.y)
+			printf("%s\n", map_copy->map[y++]);
+		dm_free_tilemap(map_copy);
+		return (false);
+	}
+	dm_free_tilemap(map_copy);
 	return (true);
 }
+
+
+
+
+/* 		|| tilemap->map[x][y] == 'E' || tilemap->map[x][y] == 'N'
+		|| tilemap->map[x][y] == 'W' || tilemap->map[x][y] == 'S' */
+
