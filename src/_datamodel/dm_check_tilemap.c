@@ -12,6 +12,7 @@ static bool	_find_player(char c)
 	return (false);
 }
 
+
 static	t_rect	_get_player_position(t_tilemap *tilemap)
 {
 	int		line_size;
@@ -34,6 +35,7 @@ static	t_rect	_get_player_position(t_tilemap *tilemap)
 	error_quit("Player not found.. please try again\n");
 	return (player_pos);	
 }
+
 static bool _check_flood_fill(t_tilemap *tilemap, t_rect position)
 {
 	int		x;
@@ -93,12 +95,9 @@ bool	dm_check_tilemap(t_datamodel *dm)
 	t_rect	position;
 	t_datamodel	map_copy;
 
-
-
 	position = _get_player_position(dm->tilemap);
 	if (!_check_map_chars(dm->tilemap))
 		return (false);
-
 	if (_check_flood_fill(dm->tilemap, position))
 	return (true);
 }
