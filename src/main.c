@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fran <fran@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/19 12:44:28 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/20 19:23:04 by fran             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	_data_init(char *cub_filename)
 
 int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
+	//mlx_t		*mlx;
 	
 	if (argc != 2)
 		error_quit("Wrong number of arguments.\n");
@@ -84,13 +84,12 @@ int	main(int argc, char **argv)
 
 
 	//BASIC WINDOW
-	mlx_set_setting(MLX_MAXIMIZED, true);
+/* 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(1920, 1080, "Cube3D", true);
-	mlx_new_image(mlx, 256, 256);
 	mlx_loop(mlx);
 
 	
-	mlx_terminate(mlx);
+	mlx_terminate(mlx); */
 	exit(EXIT_SUCCESS);
 
 	return (0);

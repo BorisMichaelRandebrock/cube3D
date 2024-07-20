@@ -1,7 +1,5 @@
 #include "cube3d.h"
 
-
-
 void	dm_free_tilemap(t_tilemap *tilemap)
 {
 	int y;

@@ -25,17 +25,16 @@ bool	test_dm_check_tilemap()
 		memcpy(tilemap->map[i], map[i], tilemap->size.x);
 		i++;
 	}
-
 	dm->tilemap = tilemap;
-
-
 
 	//TESTS
 	if (!dm_check_tilemap(dm))
 		return (false);
-	dm->tilemap->map[2][3]  = '*';
+
+	dm->tilemap->map[1][2] = 'X';
 	if (dm_check_tilemap(dm))
 		return (false);
+	
 	return (true);
 		
 }

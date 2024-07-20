@@ -1,26 +1,11 @@
+	Test for player data
 
-	if map is correct (walls)
-	if map is correct (correct characters -> N, S, W, E, 0, 1,
-		(Space is  allowed but only if surrounded by 1)))
-	if map is correct (height or width is not superior to MAX_INT)
-	if map is correct (colors are defined)
-	if map is correct (colors are defined in rgb)
-	there are at least 4 textures (NO, EA, SO, WE)
-	textures are defined
-
-	test correct init of data_model ->initiated but emp
-	test loaded data is correct, comparative.
-
-	Test for initial player data (vs map)
-	Test for updated player data (vs dm)
+	Window closes pressing ESC
 
 	test predicatable raycast examples
 	test output to dm
 
-	Window is present
-	Window closes with mouse
-	Window closes pressing ESC
-	Window minimizes with mouse
-	Windows ALT-TAB correctly
-
-
+	//imprimir mapa...
+	int	y = 0;
+	while (y < map_copy->size.y)
+		printf("%s\n", map_copy->map[y++]);
