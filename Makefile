@@ -24,7 +24,7 @@ RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h
-SRCS			:=	main.c utils.c math_utils.c\
+SRCS			:=	main.c input.c utils.c math_utils.c\
 					datamodel.c tilemap.c dm_load_colors.c dm_load_tex_path.c\
 					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\
 					dm_check_tilemap.c dm_load_player_data.c

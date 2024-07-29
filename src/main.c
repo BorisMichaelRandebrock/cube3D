@@ -15,13 +15,10 @@
 #include <stdio.h>
 #include <math.h>
 #include "cube3d.h"
-#include "MLX42.h"
 
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
-
-
 
 static void _get_cub_lines(t_list **cub_lines, int fd)
 {
@@ -78,7 +75,7 @@ static void	_data_init(char *cub_filename)
 
 int	main(int argc, char **argv)
 {
-	//mlx_t		*mlx;
+	mlx_t		*mlx;
 	
 	if (argc != 2)
 		error_quit("Wrong number of arguments.\n");
@@ -87,12 +84,13 @@ int	main(int argc, char **argv)
 
 
 	//BASIC WINDOW
-/*  	mlx_set_setting(MLX_MAXIMIZED, true);
+  	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(1920, 1080, "Cube3D", true);
-	mlx_loop(mlx);
+    mlx_key_hook(mlx, input_init, mlx);
 
+	mlx_loop(mlx);
 	
-	mlx_terminate(mlx); */
+	mlx_terminate(mlx);
 	exit(EXIT_SUCCESS);
 
 	return (0);

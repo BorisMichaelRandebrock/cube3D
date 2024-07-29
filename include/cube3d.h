@@ -5,6 +5,7 @@
 # include <inttypes.h>
 # include <stdbool.h>
 # include "libft.h"
+#include "MLX42.h"
 
 
 typedef struct s_point
@@ -63,6 +64,8 @@ void			dm_free_tilemap(t_tilemap *tilemap);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
 double 			deg_to_rad(double degrees);
 double  		rad_to_deg(double radians);
+void			input_init(mlx_key_data_t keydata, void *param);
+
 
 
 #endif
