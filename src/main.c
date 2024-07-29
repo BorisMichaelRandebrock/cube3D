@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/29 16:31:30 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:24:59 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <math.h>
+#include "respath.h"
 #include "cube3d.h"
 
-#include <time.h>
 
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
+
 
 static void _get_cub_lines(t_list **cub_lines, int fd)
 {
@@ -76,32 +77,44 @@ static void	_data_init(char *cub_filename)
 }
 
 
-static void	print_pos(void *param)
+/* static void	test(void *param)
 {
 	(void)param;
 	printf("x: %f y:%f\n", get_dm(NULL)->player->pos.x, get_dm(NULL)->player->pos.y);
 	printf("rad: %f\n", get_dm(NULL)->player->orientation);
-}
+} */
 
 int	main(int argc, char **argv)
 {
-	mlx_t	*mlx;
+	mlx_t		*mlx;
+	t_datamodel	*dm;
+	mlx_texture_t	*icon;
 	
 	if (argc != 2)
 		error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
 
+	dm = get_dm(NULL);
 
 	//BASIC WINDOW
 	//mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx = mlx_init(1920, 1080, "Cube3D", true);
-	
+	mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
+	icon = mlx_load_png(ICON_TEX_PATH);
+	mlx_set_icon(mlx, icon);
 	mlx_close_hook( mlx, close_game, mlx);
 	mlx_key_hook(mlx, input_init, mlx);
-	mlx_loop_hook(mlx, print_pos , mlx);
+	set_background(dm, mlx);
+
+
+
+	
+	//mlx_loop_hook(mlx, test , mlx);
 
 	mlx_loop(mlx);
-
+	
+//TODO gestionar image delete	
+/*	mlx_delete_image(mlx, top);
+	mlx_delete_image(mlx, bottom); */
 	
 	close_game(mlx);
 	return (0);

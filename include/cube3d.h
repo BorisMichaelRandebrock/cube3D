@@ -7,6 +7,9 @@
 # include "libft.h"
 # include "MLX42.h"
 
+# define H_RES 640
+# define V_RES 480
+
 typedef struct s_point
 {
 	float	x;
@@ -40,9 +43,9 @@ typedef struct s_datamodel
 	char		*we_tex_path;
 	char		*ea_tex_path;
 	char		*ceiling_raw;
-	int			ceiling_hex;
+	uint32_t	ceiling_hex;
 	char		*floor_raw;
-	int			floor_hex;
+	uint32_t	floor_hex;
 	t_tilemap	*tilemap;
 	t_player	*player;
 }	t_datamodel;
@@ -67,5 +70,5 @@ void			input_init(mlx_key_data_t keydata, void *param);
 void			close_game(void* param);
 void			move_player(t_point move);
 void			rotate_player(float rotation);
-
+void			set_background(t_datamodel *dm, mlx_t *mlx);
 #endif
