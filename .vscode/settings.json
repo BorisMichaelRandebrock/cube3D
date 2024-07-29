@@ -13,6 +13,7 @@
 		"ansi.h": "c",
 		"tests.h": "c",
 		"math.h": "c",
-		"inttypes.h": "c"
+		"inttypes.h": "c",
+		"respath.h": "c"
 	}
 }

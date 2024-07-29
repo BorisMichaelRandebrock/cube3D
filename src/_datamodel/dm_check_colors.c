@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include <fcntl.h>
 
+#define MAX_ALPHA 0x000000FF
+
 static void	_check_rgb_range(int rgb)
 {
 	if (rgb > 255 || rgb < 0)
@@ -33,7 +35,7 @@ static int	_rgbtohex(char *line)
 	while (split_values[i])
 		free(split_values[i++]);
 	free(split_values);
-	return (hex_color);
+	return (hex_color | MAX_ALPHA);
 }
 
 bool	dm_check_colors(t_datamodel *dm)
@@ -44,7 +46,5 @@ bool	dm_check_colors(t_datamodel *dm)
 		return (false);
 	dm->ceiling_hex = _rgbtohex(dm->ceiling_raw);
 	dm->floor_hex = _rgbtohex(dm->floor_raw);
-	if (dm->ceiling_hex < 0 || dm->floor_hex < 0)
-		return (false);
 	return (true);
 }
