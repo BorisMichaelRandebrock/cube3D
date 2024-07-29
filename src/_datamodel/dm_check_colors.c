@@ -40,6 +40,8 @@ bool	dm_check_colors(t_datamodel *dm)
 {
 	dm->ceiling_raw[ft_strlen(dm->ceiling_raw) - 1] = '\0';
 	dm->floor_raw[ft_strlen(dm->floor_raw) - 1] = '\0';
+	if (*dm->floor_raw == '\0' || *dm->ceiling_raw == '\0')
+		return (false);
 	dm->ceiling_hex = _rgbtohex(dm->ceiling_raw);
 	dm->floor_hex = _rgbtohex(dm->floor_raw);
 	if (dm->ceiling_hex < 0 || dm->floor_hex < 0)
