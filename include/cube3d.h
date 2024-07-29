@@ -5,8 +5,7 @@
 # include <inttypes.h>
 # include <stdbool.h>
 # include "libft.h"
-#include "MLX42.h"
-
+# include "MLX42.h"
 
 typedef struct s_point
 {
@@ -62,10 +61,11 @@ bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
-double 			deg_to_rad(double degrees);
-double  		rad_to_deg(double radians);
+double			deg_to_rad(double degrees);
+double			rad_to_deg(double radians);
 void			input_init(mlx_key_data_t keydata, void *param);
-
-
+void			close_game(void* param);
+void			move_player(t_point move);
+void			rotate_player(float rotation);
 
 #endif
