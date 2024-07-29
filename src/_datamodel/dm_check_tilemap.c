@@ -51,6 +51,14 @@ static bool	_check_flood_fill(t_tilemap *tilemap, int x, int y)
 	return (true);
 }
 
+static	bool	_set_spawn(t_tilemap *tilemap, char c, int x, int y)
+{
+	tilemap->spawn_point.x = x;
+	tilemap->spawn_point.y = y;
+	tilemap->spawn_char =  c;
+	return (true);
+}
+
 static bool	_check_map_chars(t_tilemap *tilemap)
 {
 	int		x;
@@ -71,7 +79,7 @@ static bool	_check_map_chars(t_tilemap *tilemap)
 			if ((ft_strchr("NSWE", c) && ok_flag) || (!ft_strchr("NSWE01 ", c)))
 				return (false);
 			if (ft_strchr("NSWE", c))
-				ok_flag = true;
+				ok_flag = _set_spawn(tilemap, c, x, y);
 			x++;
 		}
 		x = 0;

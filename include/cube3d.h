@@ -15,16 +15,23 @@ typedef struct s_point
 
 typedef struct s_rect
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 }	t_rect;
 
 typedef struct s_tilemap
 {
-	t_rect	size;
-	char	**map;
+	t_rect		size;
+	char		**map;
+	t_point		spawn_point;
+	char		spawn_char;
 }	t_tilemap;
 
+typedef struct s_player
+{
+	t_point		pos;
+	float		orientation;	
+}	t_player;
 
 typedef struct s_datamodel
 {
@@ -37,21 +44,25 @@ typedef struct s_datamodel
 	char		*floor_raw;
 	int			floor_hex;
 	t_tilemap	*tilemap;
+	t_player	*player;
 }	t_datamodel;
 
-t_datamodel	*get_dm(t_datamodel *dm);
-void		*scalloc(size_t nmemb, size_t size);
-bool		sfree(void *ptr);
-void		error_quit(char *str);
-void		print_colors(const char *str, const char *color);
-t_list		*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
-t_list		*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
-void		dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
-bool		dm_check_tex_files(t_datamodel *dm);
-bool		dm_check_colors(t_datamodel *dm);
-bool		dm_check_tilemap(t_datamodel *dm);
-void		dm_free_tilemap(t_tilemap *tilemap);
-t_tilemap	*dm_copy_tilemap_(t_tilemap *tilemap);
+t_datamodel		*get_dm(t_datamodel *dm);
+void			*scalloc(size_t nmemb, size_t size);
+bool			sfree(void *ptr);
+void			error_quit(char *str);
+void			print_colors(const char *str, const char *color);
+t_list			*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
+t_list			*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
+void			dm_load_player_data(t_datamodel *dm);
+void			dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
+bool			dm_check_tex_files(t_datamodel *dm);
+bool			dm_check_colors(t_datamodel *dm);
+bool			dm_check_tilemap(t_datamodel *dm);
+void			dm_free_tilemap(t_tilemap *tilemap);
+t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
+double 			deg_to_rad(double degrees);
+double  		rad_to_deg(double radians);
 
 
 #endif

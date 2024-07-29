@@ -21,6 +21,8 @@
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
 
+
+
 static void _get_cub_lines(t_list **cub_lines, int fd)
 {
 	int		i;
@@ -71,6 +73,7 @@ static void	_data_init(char *cub_filename)
 		error_quit("Missing color values.\n");
 	if (!dm_check_tilemap(dm))
 		error_quit("Invalid tilemap.\n");
+	dm_load_player_data(dm);
 }
 
 int	main(int argc, char **argv)
@@ -84,7 +87,7 @@ int	main(int argc, char **argv)
 
 
 	//BASIC WINDOW
-/* 	mlx_set_setting(MLX_MAXIMIZED, true);
+/*  	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(1920, 1080, "Cube3D", true);
 	mlx_loop(mlx);
 

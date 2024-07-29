@@ -11,6 +11,7 @@
 		"libft.h": "c",
 		"@TODO": "plaintext",
 		"ansi.h": "c",
-		"tests.h": "c"
+		"tests.h": "c",
+		"math.h": "c"
 	}
 }
