@@ -12,6 +12,7 @@
 		"@TODO": "plaintext",
 		"ansi.h": "c",
 		"tests.h": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"inttypes.h": "c"
 	}
 }

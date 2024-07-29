@@ -44,5 +44,7 @@ t_list	*dm_load_tex_path(t_datamodel *dm, t_list *next_lines)
 			end_line = _load_line(&dm->ea_tex_path, next_lines);
 		next_lines = next_lines->next;
 	}
+	if (!end_line)
+		error_quit("Wrong level file");
 	return (end_line->next);
 }

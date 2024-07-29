@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fran <fran@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/20 19:23:04 by fran             ###   ########.fr       */
+/*   Updated: 2024/07/29 16:31:30 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 #include <stdio.h>
 #include <math.h>
 #include "cube3d.h"
-#include "MLX42.h"
+
+#include <time.h>
 
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
-
-
 
 static void _get_cub_lines(t_list **cub_lines, int fd)
 {
@@ -76,24 +75,34 @@ static void	_data_init(char *cub_filename)
 	dm_load_player_data(dm);
 }
 
+
+static void	print_pos(void *param)
+{
+	(void)param;
+	printf("x: %f y:%f\n", get_dm(NULL)->player->pos.x, get_dm(NULL)->player->pos.y);
+	printf("rad: %f\n", get_dm(NULL)->player->orientation);
+}
+
 int	main(int argc, char **argv)
 {
-	//mlx_t		*mlx;
+	mlx_t	*mlx;
 	
 	if (argc != 2)
 		error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
 
 
-
 	//BASIC WINDOW
-/*  	mlx_set_setting(MLX_MAXIMIZED, true);
+	//mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx = mlx_init(1920, 1080, "Cube3D", true);
+	
+	mlx_close_hook( mlx, close_game, mlx);
+	mlx_key_hook(mlx, input_init, mlx);
+	mlx_loop_hook(mlx, print_pos , mlx);
+
 	mlx_loop(mlx);
 
 	
-	mlx_terminate(mlx); */
-	exit(EXIT_SUCCESS);
-
+	close_game(mlx);
 	return (0);
 }
