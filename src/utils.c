@@ -4,6 +4,16 @@
 #include "cube3d.h"
 #include "libft.h"
 
+float	clamp(float min, float max, float num)
+{
+	if (num < min)
+		return (min);
+	else if (num > max)
+		return (max);
+	else
+		return (num);
+}
+
 void	*scalloc(size_t nmemb, size_t size)
 {
 	void	*alloc;

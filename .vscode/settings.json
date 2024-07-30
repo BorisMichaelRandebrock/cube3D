@@ -14,6 +14,7 @@
 		"tests.h": "c",
 		"math.h": "c",
 		"inttypes.h": "c",
-		"respath.h": "c"
+		"respath.h": "c",
+		"iterator": "c"
 	}
 }

@@ -9,6 +9,7 @@
 
 # define H_RES 640
 # define V_RES 480
+# define MM_RES 8
 
 typedef struct s_point
 {
@@ -48,9 +49,11 @@ typedef struct s_datamodel
 	uint32_t	floor_hex;
 	t_tilemap	*tilemap;
 	t_player	*player;
+	mlx_t		*mlx;
 }	t_datamodel;
 
 t_datamodel		*get_dm(t_datamodel *dm);
+float			clamp(float min, float max, float num);
 void			*scalloc(size_t nmemb, size_t size);
 bool			sfree(void *ptr);
 void			error_quit(char *str);
@@ -68,7 +71,11 @@ double			deg_to_rad(double degrees);
 double			rad_to_deg(double radians);
 void			input_init(mlx_key_data_t keydata, void *param);
 void			close_game(void* param);
-void			move_player(t_point move);
+void			move_player_walk(int vect, float rad_mod);
 void			rotate_player(float rotation);
 void			set_background(t_datamodel *dm, mlx_t *mlx);
+void			draw_wall(void *mlx);
+void			mm_build_minimap(mlx_image_t *minimap);
+void			mm_draw_minimap(void *minimap);
+float			cast_ray(void);
 #endif

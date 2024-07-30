@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/29 18:01:53 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/30 18:56:37 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,17 @@ OBJ_DIR			:=	obj/
 BIN_DIR			:=	bin/
 RES_DIR			:=	res/
 _DM_DIR			:=	$(SRC_DIR)_datamodel/
+_MM_DIR			:=	$(SRC_DIR)_minimap/
 
 RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h
-SRCS			:=	main.c input.c player.c background.c utils.c math_utils.c\
+SRCS			:=	main.c input.c player.c background.c raycaster.c utils.c math_utils.c\
 					datamodel.c tilemap.c dm_load_colors.c dm_load_tex_path.c\
 					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\
-					dm_check_tilemap.c dm_load_player_data.c
+					dm_check_tilemap.c dm_load_player_data.c\
+					mm_draw.c
 OBJS			:=	$(SRCS:.c=.o)
 
 TST_DIR			:=	src/ttd/
@@ -59,7 +61,7 @@ COLOR_BLUE		:=	\033[0;34m
 COLOR_END		:=	\033[0m
 
 vpath %.h $(INC_DIR) $(MLX_INC) $(LIBFT_INC)
-vpath %.c $(SRC_DIR) $(TST_DIR) $(_DM_DIR)
+vpath %.c $(SRC_DIR) $(TST_DIR) $(_DM_DIR) $(_MM_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 
