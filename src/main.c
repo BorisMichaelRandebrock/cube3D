@@ -77,6 +77,7 @@ static void	_data_init(char *cub_filename)
 }
 
 
+
 /* static void	test(void *ship)
 {
 	t_datamodel *dm = get_dm(NULL);
@@ -85,6 +86,7 @@ static void	_data_init(char *cub_filename)
 	_ship->instances[0].x = dm->player->pos.x;
 	_ship->instances[0].y = dm->player->pos.y;
 } */
+
 
 
 
@@ -152,6 +154,7 @@ int	main(int argc, char **argv)
 	mlx_image_to_window(mlx, shipimg, H_RES /2, V_RES /2);
 
 	mlx_loop_hook(mlx, test , shipimg); */
+
 
 	mlx_loop(dm->mlx);
 	
