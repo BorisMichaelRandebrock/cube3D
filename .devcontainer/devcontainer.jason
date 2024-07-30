@@ -1,0 +1,13 @@
+{
+    "name": "cube_3d",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:1": {},
+      "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libglfw3-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev",
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
+    }
+  }
+  

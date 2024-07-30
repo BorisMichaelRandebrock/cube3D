@@ -1,9 +1,9 @@
 #include "cube3d.h"
 
-#define	N_DEG 0.0
-#define	S_DEG 180.0
-#define	W_DEG 270.0
-#define	E_DEG 90.0
+#define	E_DEG 0.0
+#define	N_DEG 90.0
+#define	W_DEG 180.0
+#define	S_DEG 270.0
 
 void	dm_load_player_data(t_datamodel *dm)
 {
