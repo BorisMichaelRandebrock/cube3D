@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/29 18:24:59 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:12:10 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,22 @@ static void	_data_init(char *cub_filename)
 }
 
 
- static void	test(void *param)
+
+/* static void	test(void *ship)
 {
-	(void)param;
-	printf("x: %f y:%f\n", get_dm(NULL)->player->pos.x, get_dm(NULL)->player->pos.y);
-	printf("rad: %f\n", get_dm(NULL)->player->orientation);
-}
+	t_datamodel *dm = get_dm(NULL);
+	mlx_image_t *_ship = (mlx_image_t *)ship;
+
+	_ship->instances[0].x = dm->player->pos.x;
+	_ship->instances[0].y = dm->player->pos.y;
+} */
+
+
+
+
 
 int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
 	t_datamodel	*dm;
 	mlx_texture_t	*icon;
 	
@@ -97,25 +103,65 @@ int	main(int argc, char **argv)
 	dm = get_dm(NULL);
 
 	//BASIC WINDOW
-	//mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
+
+	dm->mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
 	icon = mlx_load_png(ICON_TEX_PATH);
-	mlx_set_icon(mlx, icon);
-	mlx_close_hook( mlx, close_game, mlx);
-	mlx_key_hook(mlx, input_init, mlx);
-	set_background(dm, mlx);
+	mlx_set_icon(dm->mlx, icon);
+	mlx_close_hook(dm->mlx, close_game, dm->mlx);
+	mlx_key_hook(dm->mlx, input_init, dm->mlx);
+	set_background(dm, dm->mlx);
+
+	//TODO acabar de dibujar
+
+		//dibujar minimap
+	mlx_image_t *minimap =  mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES, dm->tilemap->size.y * MM_RES);
+	mm_build_minimap(minimap);
+	mlx_loop_hook(dm->mlx, mm_draw_minimap, minimap);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//lanzar rayitos
+
+	//mlx_texture_t	*wall = mlx_load_png("res/blank.png");
+	//mlx_image_t		*wallimg = mlx_texture_to_image(dm->mlx, wall);
 	
-	mlx_loop_hook(mlx, test , mlx);
+	//mlx_loop_hook(dm->mlx, draw_wall , wallimg);
 
-	mlx_loop(mlx);
+		//test Dibujar navecita
 	
-//TODO gestionar image delete	
+/*	mlx_texture_t *shiptex = mlx_load_png("res/test_ship.png");
+	mlx_image_t	*shipimg = mlx_texture_to_image(mlx, shiptex);
+	mlx_image_to_window(mlx, shipimg, H_RES /2, V_RES /2);
+
+	mlx_loop_hook(mlx, test , shipimg); */
+
+
+	mlx_loop(dm->mlx);
+	
+//TODO gestionar image delete
 /*	mlx_delete_image(mlx, top);
 	mlx_delete_image(mlx, bottom); */
 	
-	close_game(mlx);
+	close_game(dm->mlx);
 	return (0);
 }
