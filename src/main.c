@@ -77,12 +77,12 @@ static void	_data_init(char *cub_filename)
 }
 
 
-/* static void	test(void *param)
+ static void	test(void *param)
 {
 	(void)param;
 	printf("x: %f y:%f\n", get_dm(NULL)->player->pos.x, get_dm(NULL)->player->pos.y);
 	printf("rad: %f\n", get_dm(NULL)->player->orientation);
-} */
+}
 
 int	main(int argc, char **argv)
 {
@@ -108,7 +108,7 @@ int	main(int argc, char **argv)
 
 
 	
-	//mlx_loop_hook(mlx, test , mlx);
+	mlx_loop_hook(mlx, test , mlx);
 
 	mlx_loop(mlx);
 	
