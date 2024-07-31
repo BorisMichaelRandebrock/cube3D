@@ -24,7 +24,7 @@ static	t_rect	_get_player_position(t_tilemap *tilemap)
 		player_pos.x = 0;
 		player_pos.y++;
 	}
-	error_quit("Player not found.. please try again\n");
+	ut_error_quit("Player not found.. please try again\n");
 	return (player_pos);
 }
 

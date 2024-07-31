@@ -9,15 +9,15 @@ void	dm_load_player_data(t_datamodel *dm)
 {
 	char    c;
 
-	dm->player = scalloc(1,sizeof(t_player));
+	dm->player = ut_scalloc(1,sizeof(t_player));
 	dm->player->pos = dm->tilemap->spawn_point;
 	c = dm->tilemap->spawn_char;
 	if (c == 'N')
-		dm->player->orientation = deg_to_rad(N_DEG);
+		dm->player->orientation = ut_deg_to_rad(N_DEG);
 	else if (c == 'S')
-		dm->player->orientation = deg_to_rad(S_DEG);
+		dm->player->orientation = ut_deg_to_rad(S_DEG);
 	else if (c == 'W')
-		dm->player->orientation = deg_to_rad(W_DEG);
+		dm->player->orientation = ut_deg_to_rad(W_DEG);
 	else if (c == 'E')
-		dm->player->orientation = deg_to_rad(E_DEG);
+		dm->player->orientation = ut_deg_to_rad(E_DEG);
 }

@@ -4,29 +4,13 @@
 #define RAY_LENGTH 0.001
 #include <stdio.h>
 
-void	draw_wall(void *img)
-{
-	mlx_t			*_mlx = get_dm(NULL)->mlx;
-	mlx_image_t		*wallimg = (mlx_image_t *)img;
-	
-	float	ray = cast_ray();
-	float	new_heigth = clamp (1, V_RES, (V_RES / ray));
-	
-	mlx_resize_image(wallimg,10, new_heigth);
-	printf("height: %f - ray: %f - ppos: %f,%f\n", new_heigth, ray, get_dm(NULL)->player->pos.x, get_dm(NULL)->player->pos.y);
-
-
-	mlx_image_to_window(_mlx, wallimg, ((H_RES /2) - (wallimg->width / 2)), ((V_RES - new_heigth)/2));
-}
-
-
-float	cast_ray(void)
+float	rc_cast(void)
 {
 	float		distance;
 	t_datamodel	*dm;
 	t_point		endpoint;
 
-	dm = get_dm(NULL);
+	dm = dm_get(NULL);
 	endpoint = dm->player->pos;
 	endpoint.x = RAY_LENGTH * cosf(dm->player->orientation);
 	endpoint.y = RAY_LENGTH * sinf(dm->player->orientation);
@@ -41,7 +25,7 @@ float	cast_ray(void)
 }
 
 
-/* float	cast_ray(void)
+/* float	rc_cast(void)
 {
 	float		distance;
 	t_datamodel	*dm;

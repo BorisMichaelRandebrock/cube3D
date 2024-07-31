@@ -34,17 +34,17 @@ t_list	*dm_load_tex_path(t_datamodel *dm, t_list *next_lines)
 	while (next_lines)
 	{
 		line = next_lines->content;
-		if (line[0] == 'N' && line[1] == 'O' && sfree(dm->no_tex_path))
+		if (line[0] == 'N' && line[1] == 'O' && ut_sfree(dm->no_tex_path))
 			end_line = _load_line(&dm->no_tex_path, next_lines);
-		if (line[0] == 'S' && line[1] == 'O' && sfree(dm->so_tex_path))
+		if (line[0] == 'S' && line[1] == 'O' && ut_sfree(dm->so_tex_path))
 			end_line = _load_line(&dm->so_tex_path, next_lines);
-		if (line[0] == 'W' && line[1] == 'E' && sfree(dm->we_tex_path))
+		if (line[0] == 'W' && line[1] == 'E' && ut_sfree(dm->we_tex_path))
 			end_line = _load_line(&dm->we_tex_path, next_lines);
-		if (line[0] == 'E' && line[1] == 'A' && sfree(dm->ea_tex_path))
+		if (line[0] == 'E' && line[1] == 'A' && ut_sfree(dm->ea_tex_path))
 			end_line = _load_line(&dm->ea_tex_path, next_lines);
 		next_lines = next_lines->next;
 	}
 	if (!end_line)
-		error_quit("Wrong level file");
+		ut_error_quit("Wrong level file");
 	return (end_line->next);
 }

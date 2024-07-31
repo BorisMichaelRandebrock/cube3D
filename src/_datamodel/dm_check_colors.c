@@ -7,7 +7,7 @@
 static void	_check_rgb_range(int rgb)
 {
 	if (rgb > 255 || rgb < 0)
-		error_quit("Wrong rbg range values.\n");
+		ut_error_quit("Wrong rbg range values.\n");
 }
 
 static int	_rgbtohex(char *line)

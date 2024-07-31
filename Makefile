@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/30 18:56:37 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/31 12:57:21 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,29 @@ BIN_DIR			:=	bin/
 RES_DIR			:=	res/
 _DM_DIR			:=	$(SRC_DIR)_datamodel/
 _MM_DIR			:=	$(SRC_DIR)_minimap/
+_BG_DIR			:=	$(SRC_DIR)_background/
+_UT_DIR			:=	$(SRC_DIR)_utils/
+_PL_DIR			:=	$(SRC_DIR)_player/
+_RC_DIR			:=	$(SRC_DIR)_raycast/
+_WALL_DIR		:=	$(SRC_DIR)_walls/
 
 RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h
-SRCS			:=	main.c input.c player.c background.c raycaster.c utils.c math_utils.c\
-					datamodel.c tilemap.c dm_load_colors.c dm_load_tex_path.c\
+SRCS			:=	main.c\
+					ut_math.c ut_memory.c ut_print.c ut_degrees.c\
+					dm_setup.c dm_tilemap.c dm_load_colors.c dm_load_tex_path.c\
 					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\
 					dm_check_tilemap.c dm_load_player_data.c\
-					mm_draw.c
+					pl_input.c pl_move.c\
+					bg_setup.c\
+					mm_setup.c mm_draw.c\
+					rc_ray.c\
+					wall_draw.c
 OBJS			:=	$(SRCS:.c=.o)
 
-TST_DIR			:=	src/ttd/
+_TST_DIR		:=	$(SRC_DIR)_test/
 TST_NAME		:=	testing
 TST_SRCS		:=	testing.c test_dm_load_colors.c test_dm_load_tex_path.c\
 					test_dm_load_tilemap.c test_dm_check_tex_files.c\
@@ -61,7 +71,7 @@ COLOR_BLUE		:=	\033[0;34m
 COLOR_END		:=	\033[0m
 
 vpath %.h $(INC_DIR) $(MLX_INC) $(LIBFT_INC)
-vpath %.c $(SRC_DIR) $(TST_DIR) $(_DM_DIR) $(_MM_DIR)
+vpath %.c $(SRC_DIR) $(_TST_DIR) $(_DM_DIR) $(_MM_DIR) $(_BG_DIR) $(_UT_DIR) $(_PL_DIR) $(_RC_DIR) $(_WALL_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 

@@ -52,12 +52,16 @@ typedef struct s_datamodel
 	mlx_t		*mlx;
 }	t_datamodel;
 
-t_datamodel		*get_dm(t_datamodel *dm);
-float			clamp(float min, float max, float num);
-void			*scalloc(size_t nmemb, size_t size);
-bool			sfree(void *ptr);
-void			error_quit(char *str);
-void			print_colors(const char *str, const char *color);
+
+void			close_game(void* param);
+double			ut_deg_to_rad(double degrees);
+double			ut_rad_to_deg(double radians);
+void			*ut_scalloc(size_t nmemb, size_t size);
+bool			ut_sfree(void *ptr);
+void			ut_error_quit(char *str);
+void			ut_print_colors(const char *str, const char *color);
+float			ut_clamp(float min, float max, float num);
+t_datamodel		*dm_get(t_datamodel *dm);
 t_list			*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
 t_list			*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
 void			dm_load_player_data(t_datamodel *dm);
@@ -67,15 +71,12 @@ bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
-double			deg_to_rad(double degrees);
-double			rad_to_deg(double radians);
-void			input_init(mlx_key_data_t keydata, void *param);
-void			close_game(void* param);
-void			move_player_walk(int vect, float rad_mod);
-void			rotate_player(float rotation);
-void			set_background(t_datamodel *dm, mlx_t *mlx);
-void			draw_wall(void *mlx);
-void			mm_build_minimap(mlx_image_t *minimap);
+void			pl_input(mlx_key_data_t keydata, void *param);
+void			pl_walk(int vect, float rad_mod);
+void			pl_rotate(float rotation);
+void			bg_setup(t_datamodel *dm);
+void			mm_setup(t_datamodel *dm);
 void			mm_draw_minimap(void *minimap);
-float			cast_ray(void);
+float			rc_cast(void);
+void			wall_draw(void *mlx);
 #endif
