@@ -21,7 +21,7 @@ static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 	int		x_size;
 
 	i = 0;
-	dm->tilemap->map = scalloc(dm->tilemap->size.y, sizeof(char *));
+	dm->tilemap->map = ut_scalloc(dm->tilemap->size.y, sizeof(char *));
 	while (i < dm->tilemap->size.y)
 	{
 		_clean_endline(next_lines->content);
@@ -38,7 +38,7 @@ void	dm_load_tilemap_(t_datamodel *dm, t_list *next_lines)
 	t_list	*lines_list;
 
 	lines_list = next_lines;
-	dm->tilemap = scalloc(1, sizeof(t_tilemap));
+	dm->tilemap = ut_scalloc(1, sizeof(t_tilemap));
 	while (lines_list && ++dm->tilemap->size.y)
 		lines_list = lines_list->next;
 	_load_map_data_(dm, next_lines);

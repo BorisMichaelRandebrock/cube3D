@@ -1,6 +1,6 @@
 #include "cube3d.h"
 
-t_datamodel	*get_dm(t_datamodel *dm)
+t_datamodel	*dm_get(t_datamodel *dm)
 {
 	static t_datamodel	*datamodel = NULL;
 

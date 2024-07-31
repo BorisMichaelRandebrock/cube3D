@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/03 17:29:41 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/30 19:12:10 by fmontser         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -22,6 +10,12 @@
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
 
+
+void	close_game(void *param)
+{
+	mlx_terminate(param);
+	exit(EXIT_SUCCESS);
+}
 
 static void _get_cub_lines(t_list **cub_lines, int fd)
 {
@@ -45,7 +39,7 @@ static void _get_cub_lines(t_list **cub_lines, int fd)
 	line = ft_strdup(buffer);
 	ft_lstadd_back(cub_lines, ft_lstnew(line));
 	if (cub_lines == NULL)
-		error_quit("Cub file is empty.\n");
+		ut_error_quit("Cub file is empty.\n");
 }
 
 static void	_data_init(char *cub_filename)
@@ -55,11 +49,11 @@ static void	_data_init(char *cub_filename)
 	t_list		*next_lines;
 	int			fd;
 
-	dm = scalloc(1, sizeof(t_datamodel));
-	get_dm(dm);
+	dm = ut_scalloc(1, sizeof(t_datamodel));
+	dm_get(dm);
 	fd = open(cub_filename, O_RDONLY, 0777);
 	if (fd == CUB_FILE_ERROR)
-		error_quit("Bad file argument.\n");
+		ut_error_quit("Bad file argument.\n");
 	cub_lines = NULL;
 	_get_cub_lines(&cub_lines, fd);
 	close(fd);
@@ -68,11 +62,11 @@ static void	_data_init(char *cub_filename)
 	dm_load_tilemap_(dm, next_lines);
 	ft_lstclear(&cub_lines, free);
 	if (!dm_check_tex_files(dm))
-		error_quit("Wrong texture file.\n");
+		ut_error_quit("Wrong texture file.\n");
 	if (!dm_check_colors(dm))
-		error_quit("Missing color values.\n");
+		ut_error_quit("Missing color values.\n");
 	if (!dm_check_tilemap(dm))
-		error_quit("Invalid tilemap.\n");
+		ut_error_quit("Invalid tilemap.\n");
 	dm_load_player_data(dm);
 }
 
@@ -97,10 +91,10 @@ int	main(int argc, char **argv)
 	mlx_texture_t	*icon;
 	
 	if (argc != 2)
-		error_quit("Wrong number of arguments.\n");
+		ut_error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
 
-	dm = get_dm(NULL);
+	dm = dm_get(NULL);
 
 	//BASIC WINDOW
 
@@ -108,44 +102,16 @@ int	main(int argc, char **argv)
 	icon = mlx_load_png(ICON_TEX_PATH);
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);
-	mlx_key_hook(dm->mlx, input_init, dm->mlx);
-	set_background(dm, dm->mlx);
-
-	//TODO acabar de dibujar
-
-		//dibujar minimap
-	mlx_image_t *minimap =  mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES, dm->tilemap->size.y * MM_RES);
-	mm_build_minimap(minimap);
-	mlx_loop_hook(dm->mlx, mm_draw_minimap, minimap);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
+	bg_setup(dm);
+	mm_setup(dm);
 
 		//lanzar rayitos
 
 	//mlx_texture_t	*wall = mlx_load_png("res/blank.png");
 	//mlx_image_t		*wallimg = mlx_texture_to_image(dm->mlx, wall);
 	
-	//mlx_loop_hook(dm->mlx, draw_wall , wallimg);
+	//mlx_loop_hook(dm->mlx, wall_draw , wallimg);
 
 		//test Dibujar navecita
 	

@@ -15,10 +15,10 @@ t_tilemap	*dm_copy_tilemap_(t_tilemap *tilemap)
 	int			y;
 	t_tilemap	*_tilemap;
 
-	_tilemap = scalloc(1, sizeof(t_tilemap));
+	_tilemap = ut_scalloc(1, sizeof(t_tilemap));
 	_tilemap->size.x = tilemap->size.x;
 	_tilemap->size.y = tilemap->size.y;
-	_tilemap->map = scalloc(_tilemap->size.y, sizeof(char *));
+	_tilemap->map = ut_scalloc(_tilemap->size.y, sizeof(char *));
 	y = 0;
 
 	while (y < _tilemap->size.y)

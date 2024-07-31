@@ -1,14 +1,14 @@
 #include  "cube3d.h"
 
-void	set_background(t_datamodel *dm, mlx_t *mlx)
+void	bg_setup(t_datamodel *dm)
 {	
 	mlx_image_t	*top;
 	mlx_image_t	*bottom;
 	int y;
 	int x;
 
-	top = mlx_new_image(mlx, H_RES, V_RES / 2);
-	bottom = mlx_new_image(mlx, H_RES, V_RES / 2);
+	top = mlx_new_image(dm->mlx, H_RES, V_RES / 2);
+	bottom = mlx_new_image(dm->mlx, H_RES, V_RES / 2);
 	x = 0;
 	y = 0;
 	while (y < V_RES / 2)
@@ -22,6 +22,6 @@ void	set_background(t_datamodel *dm, mlx_t *mlx)
 		x = 0;
 		y++;
 	}
-	mlx_image_to_window(mlx, top, 0, 0);
-	mlx_image_to_window(mlx, bottom, 0, V_RES / 2);
+	mlx_image_to_window(dm->mlx, top, 0, 0);
+	mlx_image_to_window(dm->mlx, bottom, 0, V_RES / 2);
 }
