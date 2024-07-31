@@ -37,9 +37,17 @@ void	dm_load_tilemap_(t_datamodel *dm, t_list *next_lines)
 {
 	t_list	*lines_list;
 
+	while (next_lines && ((char *)next_lines->content)[0] == '\n')
+		next_lines = next_lines->next;
 	lines_list = next_lines;
 	dm->tilemap = ut_scalloc(1, sizeof(t_tilemap));
-	while (lines_list && ++dm->tilemap->size.y)
+	while (lines_list)
+	{
+		if (((char *)lines_list->content)[0] == '\0'
+			|| !ft_strchr("NSWE10 \t", ((char *)lines_list->content)[0]))
+			break ;
 		lines_list = lines_list->next;
+		++dm->tilemap->size.y;
+	}
 	_load_map_data_(dm, next_lines);
 }

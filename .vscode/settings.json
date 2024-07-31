@@ -15,6 +15,7 @@
 		"math.h": "c",
 		"inttypes.h": "c",
 		"respath.h": "c",
-		"iterator": "c"
+		"iterator": "c",
+		"random": "c"
 	}
 }
