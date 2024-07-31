@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/31 12:57:21 by fmontser         ###   ########.fr        #
+#    Updated: 2024/07/31 19:36:08 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS			:=	main.c\
 					bg_setup.c\
 					mm_setup.c mm_draw.c\
 					rc_ray.c\
-					wall_draw.c
+					wall_draw.c wall_setup.c
 OBJS			:=	$(SRCS:.c=.o)
 
 _TST_DIR		:=	$(SRC_DIR)_test/

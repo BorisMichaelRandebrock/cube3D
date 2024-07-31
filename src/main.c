@@ -79,11 +79,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ut_error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
-
 	dm = dm_get(NULL);
-
-	//BASIC WINDOW
-
 	dm->mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
 	icon = mlx_load_png(ICON_TEX_PATH);
 	mlx_set_icon(dm->mlx, icon);
@@ -91,27 +87,7 @@ int	main(int argc, char **argv)
 	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
 	bg_setup(dm);
 	mm_setup(dm);
-
-
-
-
-
-		//lanzar rayitos
-
-	//mlx_texture_t	*wall = mlx_load_png("res/blank.png");
-	//mlx_image_t		*wallimg = mlx_texture_to_image(dm->mlx, wall);
-	
-	//mlx_loop_hook(dm->mlx, wall_draw , wallimg);
-
-		//test Dibujar navecita
-	
-/*	mlx_texture_t *shiptex = mlx_load_png("res/test_ship.png");
-	mlx_image_t	*shipimg = mlx_texture_to_image(mlx, shiptex);
-	mlx_image_to_window(mlx, shipimg, H_RES /2, V_RES /2);
-
-	mlx_loop_hook(mlx, test , shipimg); */
-
-
+	wall_setup(dm);
 	mlx_loop(dm->mlx);
 	
 //TODO gestionar image delete

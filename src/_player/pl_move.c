@@ -5,15 +5,23 @@
 #define ROT_SPEED 0.05
 
 //TODO factor in delta time
-void	pl_walk(int vect, float rad_mod)
+void	pl_walk(int mag, float rad_mod)
 {
 	t_datamodel	*dm;
 	float		delta_x;
 	float		delta_y;
+	float		_rad_mod;
 
 	dm = dm_get(NULL);
-	delta_x = vect * (MOVE_SPEED * cosf(dm->player->orientation + rad_mod));
-	delta_y = vect * (MOVE_SPEED * sinf(dm->player->orientation + rad_mod));
+	if (mag < 0)
+		_rad_mod = ut_rad_mirror(rad_mod);
+	else
+		_rad_mod = rad_mod;
+	rc_cast_offset(dm->player->coldet_ray, _rad_mod);
+	if (dm->player->coldet_ray->length * MM_RES <= dm->player->mm_size)
+		return ;
+	delta_x = (MOVE_SPEED * cosf(dm->player->orientation + _rad_mod));
+	delta_y = (MOVE_SPEED * sinf(dm->player->orientation + _rad_mod));
 	dm->player->pos.x += delta_x;
 	dm->player->pos.y += delta_y;
 }

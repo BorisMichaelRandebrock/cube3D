@@ -1,6 +1,5 @@
 #include "cube3d.h"
 
-#define PLAYER_SIZE 16
 #define MARKER_SIZE 8
 
 static void	_mm_build_minimap(mlx_image_t *minimap)
@@ -57,7 +56,7 @@ void	mm_setup(t_datamodel *dm)
 
 	//dibuja jugador
 	player = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
-	mlx_resize_image(player, PLAYER_SIZE, PLAYER_SIZE);
+	mlx_resize_image(player, dm->player->mm_size, dm->player->mm_size);
 	mlx_image_to_window(dm->mlx, player, 0 ,0);
 	mlx_loop_hook(dm->mlx, mm_draw_player, &player->instances[0]);
 

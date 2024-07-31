@@ -7,9 +7,9 @@
 # include "libft.h"
 # include "MLX42.h"
 
-# define H_RES 1024
-# define V_RES 786
-# define MM_RES 32
+# define H_RES 1336
+# define V_RES 768
+# define MM_RES 16
 
 typedef struct s_point
 {
@@ -39,8 +39,10 @@ typedef struct s_tilemap
 
 typedef struct s_player
 {
+	int			mm_size;
 	t_point		pos;
-	float		orientation;	
+	float		orientation;
+	t_ray		*coldet_ray;
 }	t_player;
 
 typedef struct s_datamodel
@@ -63,6 +65,8 @@ typedef struct s_datamodel
 void			close_game(void* param);
 double			ut_deg_to_rad(double degrees);
 double			ut_rad_to_deg(double radians);
+double			ut_rad_mirror(double radians);
+float			ut_abs(float num);
 void			*ut_scalloc(size_t nmemb, size_t size);
 bool			ut_sfree(void *ptr);
 void			ut_error_quit(char *str);
@@ -87,5 +91,7 @@ void			mm_draw_destination(void *marker);
 void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
 void			rc_cast(void *ray);
-void			wall_draw(void *mlx);
+void			rc_cast_offset(void *ray, float rad_offset);
+void			wall_setup(t_datamodel *dm);
+void			wall_draw(void *wallimg);
 #endif

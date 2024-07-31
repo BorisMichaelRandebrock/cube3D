@@ -10,7 +10,7 @@ void	pl_input(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
 		pl_walk(1, ut_deg_to_rad(90));
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
-		pl_walk(1, 0);
+			pl_walk(1, 0);
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
 		pl_walk(-1, 0);
 	else if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_Q)

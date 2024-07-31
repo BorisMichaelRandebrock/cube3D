@@ -24,29 +24,26 @@ void	rc_cast(void *ray)
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
-	_ray->length = distance;
+	_ray->length = ut_abs(distance);
 }
 
-
-/* float	rc_cast(void)
+void	rc_cast_offset(void *ray, float rad_offset)
 {
 	float		distance;
 	t_datamodel	*dm;
-	t_point		spoint;
 	t_point		endpoint;
+	t_ray		*_ray;
 
-	dm = get_dm(NULL);
-	distance = 0;
-	spoint = dm->player->pos;
-	endpoint.x = (spoint.x + RAY_LENGTH) * cosf(dm->player->orientation);
-	endpoint.y = (spoint.y + RAY_LENGTH) * sinf(dm->player->orientation);
+	dm = dm_get(NULL);
+	_ray = (t_ray *)ray;
+	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		spoint = endpoint;
-		endpoint.x = (spoint.x + RAY_LENGTH) * cosf(dm->player->orientation);
-		endpoint.y = (spoint.y + RAY_LENGTH) * sinf(dm->player->orientation);
+		endpoint.x += RAY_LENGTH * cosf(dm->player->orientation + rad_offset);
+		endpoint.y += RAY_LENGTH * sinf(dm->player->orientation + rad_offset);
 	}
-	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
+ 	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
-	return (distance);
-} */
+	_ray->endpoint = endpoint;
+	_ray->length = ut_abs(distance);
+}
