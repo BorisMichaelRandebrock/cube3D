@@ -48,10 +48,11 @@ void	mm_setup(t_datamodel *dm)
 	
 	minimap =  mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES, dm->tilemap->size.y * MM_RES);
 	_mm_build_minimap(minimap);
-	mlx_loop_hook(dm->mlx, mm_draw_minimap, minimap);
+	mlx_image_to_window(dm->mlx, minimap, 0 ,0);
 
 	player = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
 	mlx_resize_image(player, 16, 16);
-	mlx_loop_hook(dm->mlx, mm_draw_player, player);
+	mlx_image_to_window(dm->mlx, player, 0 ,0);
+	mlx_loop_hook(dm->mlx, mm_draw_player, &player->instances[0]);
 }
 

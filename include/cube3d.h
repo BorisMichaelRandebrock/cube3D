@@ -76,7 +76,6 @@ void			pl_walk(int vect, float rad_mod);
 void			pl_rotate(float rotation);
 void			bg_setup(t_datamodel *dm);
 void			mm_setup(t_datamodel *dm);
-void			mm_draw_minimap(void *minimap);
 void			mm_draw_player(void *param);
 float			rc_cast(void);
 void			wall_draw(void *mlx);
