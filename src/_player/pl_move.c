@@ -2,7 +2,7 @@
 #include <math.h>
 
 #define MOVE_SPEED 0.2
-#define ROT_SPEED 0.2
+#define ROT_SPEED 0.05
 
 //TODO factor in delta time
 void	pl_walk(int vect, float rad_mod)

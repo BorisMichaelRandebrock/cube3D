@@ -1,27 +1,30 @@
 #include "cube3d.h"
 #include <math.h>
 
-#define RAY_LENGTH 0.001
+#define RAY_LENGTH 0.01
 #include <stdio.h>
 
-float	rc_cast(void)
+
+
+void	rc_cast(void *ray)
 {
 	float		distance;
 	t_datamodel	*dm;
 	t_point		endpoint;
+	t_ray		*_ray;
 
 	dm = dm_get(NULL);
+	_ray = (t_ray *)ray;
 	endpoint = dm->player->pos;
-	endpoint.x = RAY_LENGTH * cosf(dm->player->orientation);
-	endpoint.y = RAY_LENGTH * sinf(dm->player->orientation);
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
 		endpoint.x += RAY_LENGTH * cosf(dm->player->orientation);
 		endpoint.y += RAY_LENGTH * sinf(dm->player->orientation);
 	}
-	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
+ 	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
-	return (distance);
+	_ray->endpoint = endpoint;
+	_ray->length = distance;
 }
 
 

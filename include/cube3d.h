@@ -9,13 +9,19 @@
 
 # define H_RES 1024
 # define V_RES 786
-# define MM_RES 16
+# define MM_RES 32
 
 typedef struct s_point
 {
 	float	x;
 	float	y;
 }	t_point;
+
+typedef struct s_ray
+{
+	float	length;
+	t_point	endpoint;
+}	t_ray;
 
 typedef struct s_rect
 {
@@ -50,6 +56,7 @@ typedef struct s_datamodel
 	t_tilemap	*tilemap;
 	t_player	*player;
 	mlx_t		*mlx;
+	t_ray		*front_ray;
 }	t_datamodel;
 
 
@@ -76,7 +83,9 @@ void			pl_walk(int vect, float rad_mod);
 void			pl_rotate(float rotation);
 void			bg_setup(t_datamodel *dm);
 void			mm_setup(t_datamodel *dm);
+void			mm_draw_destination(void *marker);
+void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
-float			rc_cast(void);
+void			rc_cast(void *ray);
 void			wall_draw(void *mlx);
 #endif

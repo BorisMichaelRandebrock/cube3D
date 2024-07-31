@@ -50,6 +50,7 @@ static void	_data_init(char *cub_filename)
 	int			fd;
 
 	dm = ut_scalloc(1, sizeof(t_datamodel));
+	dm->front_ray = ut_scalloc(1, sizeof(t_ray));
 	dm_get(dm);
 	fd = open(cub_filename, O_RDONLY, 0777);
 	if (fd == CUB_FILE_ERROR)
