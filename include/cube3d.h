@@ -7,9 +7,9 @@
 # include "libft.h"
 # include "MLX42.h"
 
-# define H_RES 640
-# define V_RES 480
-# define MM_RES 8
+# define H_RES 1024
+# define V_RES 786
+# define MM_RES 16
 
 typedef struct s_point
 {
@@ -77,6 +77,7 @@ void			pl_rotate(float rotation);
 void			bg_setup(t_datamodel *dm);
 void			mm_setup(t_datamodel *dm);
 void			mm_draw_minimap(void *minimap);
+void			mm_draw_player(void *param);
 float			rc_cast(void);
 void			wall_draw(void *mlx);
 #endif

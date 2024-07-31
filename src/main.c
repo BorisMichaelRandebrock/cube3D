@@ -70,21 +70,6 @@ static void	_data_init(char *cub_filename)
 	dm_load_player_data(dm);
 }
 
-
-
-/* static void	test(void *ship)
-{
-	t_datamodel *dm = get_dm(NULL);
-	mlx_image_t *_ship = (mlx_image_t *)ship;
-
-	_ship->instances[0].x = dm->player->pos.x;
-	_ship->instances[0].y = dm->player->pos.y;
-} */
-
-
-
-
-
 int	main(int argc, char **argv)
 {
 	t_datamodel	*dm;
@@ -105,6 +90,10 @@ int	main(int argc, char **argv)
 	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
 	bg_setup(dm);
 	mm_setup(dm);
+
+
+
+
 
 		//lanzar rayitos
 
