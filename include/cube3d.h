@@ -94,4 +94,6 @@ void			rc_cast(void *ray);
 void			rc_cast_offset(void *ray, float rad_offset);
 void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *wallimg);
+void			rc_cast_fan(void *s_ray);
+
 #endif

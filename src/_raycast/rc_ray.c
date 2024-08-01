@@ -47,3 +47,21 @@ void	rc_cast_offset(void *ray, float rad_offset)
 	_ray->endpoint = endpoint;
 	_ray->length = ut_abs(distance);
 }
+
+void	rc_cast_fan(void *s_ray)
+{
+	t_ray		*ray;
+//	t_datamodel	*dm;
+	float		rad_offset;
+	int			i;
+
+//	dm = dm_get(NULL);
+	ray = (t_ray *)s_ray;
+	i = 0;
+	while (i < 60)
+	{
+		rad_offset = ut_deg_to_rad(i - 30);
+		rc_cast_offset(ray + i, rad_offset);
+		i++;
+	}	
+}
