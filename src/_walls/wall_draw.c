@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-#define SHADOW_DEPTH 0.2
+#define SHADOW_DEPTH 0.25
 
 static void	_pixel_shader(mlx_image_t *img, float distance)
 {
@@ -66,6 +66,4 @@ void	wall_draw(void *timon)
 		_pixel_shader(_img, ((t_ray *)_ray_list->content)->length);
 		_ray_list = _ray_list->next;
 	}
-
-
 }
