@@ -47,3 +47,24 @@ void	rc_cast_offset(void *ray, float rad_offset)
 	_ray->endpoint = endpoint;
 	_ray->length = ut_abs(distance);
 }
+
+void	rc_cast_fan(t_list **ray_list)
+{
+	t_ray		*ray;
+	float		rad_offset;
+	float		fov;
+	int			i;
+
+	//TODO check si faltan columnas
+	i = H_RES;
+	fov = 60;
+	while (i)
+	{
+		ray = ut_scalloc(1, sizeof(t_ray));
+		ray->h_pos = i--;
+		rad_offset = ut_deg_to_rad(fov);
+		rc_cast_offset(ray, rad_offset);
+		ft_lstadd_back(ray_list, ft_lstnew(ray));
+		fov -= fov /H_RES;
+	}	
+}
