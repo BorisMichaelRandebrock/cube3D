@@ -64,7 +64,7 @@ void	rc_cast_fan(void *dm)
 	{
 		ray = ut_scalloc(1, sizeof(t_ray));
 		ray->h_pos = columns--;
-		rad_offset = ut_deg_to_rad(fov - 30);
+		rad_offset = ut_deg_to_rad(fov - 30); //TODO magic number
 		rc_cast_offset(ray, rad_offset);
 		ft_lstadd_back(&_dm->ray_list, ft_lstnew(ray));
 		fov -= fov / H_RES;
