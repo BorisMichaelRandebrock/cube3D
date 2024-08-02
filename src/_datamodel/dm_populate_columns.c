@@ -1,10 +1,10 @@
 #include "cube3d.h"
 
-void    dm_populate_columns(t_datamodel *dm)
+/* void	dm_populate_columns(t_datamodel *dm)
 {
-	int             i;
-	mlx_texture_t   *blank_texture;
-	mlx_image_t     *col;
+	int				i;
+	mlx_texture_t	*blank_texture;
+	mlx_image_t		*col;
 	
 	i = 0;
 	blank_texture = mlx_load_png("res/blank.png");
@@ -15,4 +15,4 @@ void    dm_populate_columns(t_datamodel *dm)
 		col->enabled = false;
 		dm->wall_columms[i++] = col;
 	}
-}
+} */

@@ -11,6 +11,12 @@
 # define V_RES 768
 # define MM_RES 16
 
+
+typedef struct t_timon
+{
+	mlx_image_t	*img[H_RES];
+}	t_timon;
+
 typedef struct s_point
 {
 	float		x;
@@ -60,7 +66,7 @@ typedef struct s_datamodel
 	t_player	*player;
 	mlx_t		*mlx;
 	t_ray		*front_ray;
-	mlx_image_t	*wall_columms[H_RES];
+	t_list		*ray_list;
 }	t_datamodel;
 
 
@@ -96,7 +102,7 @@ void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
 void			rc_cast(void *ray);
 void			rc_cast_offset(void *ray, float rad_offset);
-void			rc_cast_fan(t_list **ray_list);
+void			rc_cast_fan(void *param);
 void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
 

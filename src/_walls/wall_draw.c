@@ -4,7 +4,7 @@
 
 #define SHADOW_DEPTH 0.2
 
-/* void	shadow_pixel_shader(mlx_image_t *img, float distance)
+static void	_pixel_shader(mlx_image_t *img, float distance)
 {
 	uint32_t	px = 0;
 	uint32_t	py = 0;
@@ -43,29 +43,29 @@
 		px = 0;
 		py++;
 	}
-} */
+}
 
-void	wall_draw(void *dm)
+void	wall_draw(void *timon)
 {
-	t_datamodel *_dm;
-	t_list		*ray_list;
-	t_list		*ray_start;
-	t_ray		*ray;
-	mlx_image_t	*col;
+	t_datamodel	*dm;
+	mlx_image_t	*_img;
+	float		new_height;
 
-	_dm = (t_datamodel *)dm;
-	ray_list = NULL;
-	ray_start = ray_list;
-	rc_cast_fan(&ray_list);
-	ut_sort_rays(ray_list);
-	while (ray_list)
+	dm = dm_get(NULL);
+	t_list	*_ray_list = dm->ray_list;
+	t_timon	*_timon = (t_timon *)timon;
+
+	int i = 0;
+	while (_ray_list)
 	{
-		ray = (t_ray *)ray_list->content;
-		col = _dm->wall_columms[ray->h_pos - 1]; //TODO magic number
-		mlx_resize_image(col, 1, V_RES / ray->length);
-		col->enabled = true;
-		ray_list = ray_list->next;
+		_img = _timon->img[i++];
+		new_height = V_RES / ((t_ray *)_ray_list->content)->length;
+		mlx_resize_image(_img, 1 , new_height);
+		_img->instances[0].x = ((t_ray *)_ray_list->content)->h_pos;
+		_img->instances[0].y = (V_RES /2) - (new_height / 2);
+		_pixel_shader(_img, ((t_ray *)_ray_list->content)->length);
+		_ray_list = _ray_list->next;
 	}
-	(void)ray_start;
-	ft_lstclear(&ray_start, free);
+
+
 }
