@@ -31,9 +31,9 @@ RUN_MAP_NAME	:=	level0.cub
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h
 SRCS			:=	main.c\
-					ut_math.c ut_memory.c ut_print.c ut_degrees.c\
+					ut_math.c ut_memory.c ut_print.c ut_degrees.c ut_lists.c\
 					dm_setup.c dm_tilemap.c dm_load_colors.c dm_load_tex_path.c\
-					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\
+					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c dm_populate_columns.c\
 					dm_check_tilemap.c dm_load_player_data.c\
 					pl_input.c pl_move.c\
 					bg_setup.c\

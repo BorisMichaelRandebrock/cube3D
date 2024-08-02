@@ -51,6 +51,8 @@ static void	_data_init(char *cub_filename)
 
 	dm = ut_scalloc(1, sizeof(t_datamodel));
 	dm->front_ray = ut_scalloc(1, sizeof(t_ray));
+	dm->mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
+	dm_populate_columns(dm);
 	dm_get(dm);
 	fd = open(cub_filename, O_RDONLY, 0777);
 	if (fd == CUB_FILE_ERROR)
@@ -80,7 +82,6 @@ int	main(int argc, char **argv)
 		ut_error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
 	dm = dm_get(NULL);
-	dm->mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
 	icon = mlx_load_png(ICON_TEX_PATH);
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);

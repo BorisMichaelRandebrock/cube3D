@@ -1,13 +1,14 @@
 #include "cube3d.h"
+#include <stdio.h>
 
 void	wall_setup(t_datamodel *dm)
 {
-	t_point		center;
-	mlx_image_t	*wallimg;
-	wallimg = mlx_texture_to_image(dm->mlx, mlx_load_png("res/blank.png"));
+	(void)dm;
 
-	center.x = (H_RES / 2) - (wallimg->width / 2);
-	center.y = (V_RES /2) - (wallimg->height / 2);
-	mlx_image_to_window(dm->mlx, wallimg, center.x, center.y);
-	mlx_loop_hook(dm->mlx, wall_draw , wallimg);
+	mlx_loop_hook(dm->mlx, wall_draw, dm);
+	/* while (ray_list)
+	{
+		printf("%f\n",((t_ray *)ray_list->content)->length);
+		ray_list = ray_list->next;
+	} */	
 }

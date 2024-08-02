@@ -13,14 +13,15 @@
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
+	float		x;
+	float		y;
 }	t_point;
 
 typedef struct s_ray
 {
-	float	length;
-	t_point	endpoint;
+	float		length;
+	t_point		endpoint;
+	uint32_t	h_pos;
 }	t_ray;
 
 typedef struct s_rect
@@ -59,6 +60,7 @@ typedef struct s_datamodel
 	t_player	*player;
 	mlx_t		*mlx;
 	t_ray		*front_ray;
+	mlx_image_t	*wall_columms[H_RES];
 }	t_datamodel;
 
 
@@ -72,6 +74,7 @@ bool			ut_sfree(void *ptr);
 void			ut_error_quit(char *str);
 void			ut_print_colors(const char *str, const char *color);
 float			ut_clamp(float min, float max, float num);
+t_list			*ut_sort_rays(t_list *lst);
 t_datamodel		*dm_get(t_datamodel *dm);
 t_list			*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
 t_list			*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
@@ -82,6 +85,7 @@ bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
+void    		dm_populate_columns(t_datamodel *dm);
 void			pl_input(mlx_key_data_t keydata, void *param);
 void			pl_walk(int vect, float rad_mod);
 void			pl_rotate(float rotation);
@@ -92,8 +96,8 @@ void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
 void			rc_cast(void *ray);
 void			rc_cast_offset(void *ray, float rad_offset);
+void			rc_cast_fan(t_list **ray_list);
 void			wall_setup(t_datamodel *dm);
-void			wall_draw(void *wallimg);
-void			rc_cast_fan(void *s_ray);
+void			wall_draw(void *dm);
 
 #endif
