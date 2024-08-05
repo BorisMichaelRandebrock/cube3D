@@ -1,5 +1,6 @@
-#include "cube3d.h"
 #include <math.h>
+#include "cube3d.h"
+#include "rad.h"
 
 #define MOVE_SPEED 0.2
 #define ROT_SPEED 0.05
@@ -25,11 +26,18 @@ void	pl_walk(int mag, float rad_mod)
 	dm->player->pos.x += delta_x;
 	dm->player->pos.y += delta_y;
 }
-
+//TODO comprobar esto...
 void	pl_rotate(float rotation)
 {
 	t_datamodel	*dm;
-
+	float		mod;
+	
 	dm = dm_get(NULL);
-	dm->player->orientation += rotation * ROT_SPEED;
+	mod = rotation * ROT_SPEED;
+	if (mod + dm->player->orientation < RAD_0)
+		dm->player->orientation = RAD_360 + (mod + dm->player->orientation);
+	else if (mod + dm->player->orientation > RAD_360)
+		dm->player->orientation = RAD_0 + ((mod + dm->player->orientation) - RAD_360);
+	else
+		dm->player->orientation += mod;
 }

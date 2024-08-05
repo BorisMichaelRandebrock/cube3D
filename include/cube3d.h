@@ -100,6 +100,7 @@ void			mm_setup(t_datamodel *dm);
 void			mm_draw_destination(void *marker);
 void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
+void			rc_dda(void *ray);
 void			rc_cast(void *ray);
 void			rc_cast_offset(void *ray, float rad_offset);
 void			rc_cast_fan(void *param);
