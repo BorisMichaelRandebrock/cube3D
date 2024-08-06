@@ -53,6 +53,7 @@ void	mm_setup(t_datamodel *dm)
 	minimap =  mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES, dm->tilemap->size.y * MM_RES);
 	_mm_build_minimap(minimap);
 	mlx_image_to_window(dm->mlx, minimap, 0 ,0);
+	mlx_set_instance_depth(&((mlx_instance_t *)minimap->instances)[0], 10);
 
 	//dibuja jugador
 	player = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));

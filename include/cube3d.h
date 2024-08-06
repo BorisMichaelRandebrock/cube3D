@@ -9,7 +9,7 @@
 
 # define H_RES 1336
 # define V_RES 768
-# define MM_RES 16
+# define MM_RES 10
 
 
 typedef struct t_timon
@@ -55,7 +55,6 @@ typedef struct s_player
 	int			mm_size;
 	t_point		pos;
 	double		rad;
-	t_ray		*coldet_ray;
 }	t_player;
 
 typedef struct s_datamodel

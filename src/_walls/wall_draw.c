@@ -65,5 +65,6 @@ void	wall_draw(void *timon)
 		_img->instances[0].y = (V_RES /2) - (new_height / 2);
 		_pixel_shader(_img, ((t_ray *)_ray_list->content)->length);
 		_ray_list = _ray_list->next;
+		mlx_set_instance_depth(&_img->instances[0],1);
 	}
 }

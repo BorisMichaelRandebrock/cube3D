@@ -19,6 +19,5 @@ void	dm_load_player_data(t_datamodel *dm)
 	else if (c == 'E')
 		dm->player->rad = RAD_0;
 	dm->player->rad *= -1;
-	dm->player->coldet_ray = ut_scalloc(1,sizeof(t_ray));
 	dm->player->mm_size = MM_SIZE;
 }
