@@ -3,14 +3,30 @@
 
 #define RAY_LENGTH 0.01
 
-static t_point	_get_next_step(t_point endpoint, double orientation)
+static t_point	_get_next_step(t_point endpoint, double yaw)
 {
-	t_point	direction;
-	direction = ut_get_direction(orientation);
-	(void)direction;
+	t_point	vector;
+	double	ad;
+	double	op;
 
-	endpoint.x += RAY_LENGTH * cos(orientation);
-	endpoint.y += RAY_LENGTH * sin(orientation);
+	vector.x = ut_cos(yaw);
+	vector.y = ut_sin(yaw);
+	if (fabs(vector.x) > fabs(vector.y))
+	{
+		// Calcular en base a X
+		ad = 1 - (endpoint.x - trunc(endpoint.x));
+		op = ad * tan(yaw);
+		endpoint.x += ad;
+		endpoint.y += op;
+	}
+	else
+	{
+		// Calcular en base a Y
+		ad = 1 - (endpoint.y - trunc(endpoint.y));
+		op = ad * tan(yaw);
+		endpoint.y += ad;
+		endpoint.x += op;
+	}
 	return (endpoint);
 }
 
@@ -25,7 +41,7 @@ void	rc_dda(void *ray)
 	_ray = (t_ray *)ray;
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
-		endpoint = _get_next_step(endpoint, dm->player->rad);
+		endpoint = _get_next_step(endpoint, dm->player->yaw);
 	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
@@ -45,8 +61,8 @@ void	rc_cast(void *ray)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cos(dm->player->rad);
-		endpoint.y += RAY_LENGTH * sin(dm->player->rad);
+		endpoint.x += RAY_LENGTH * ut_cos(dm->player->yaw);
+		endpoint.y += RAY_LENGTH * ut_sin(dm->player->yaw);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
@@ -66,8 +82,8 @@ void	rc_cast_offset(void *ray, double radians)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cos(dm->player->rad + radians);
-		endpoint.y += RAY_LENGTH * sin(dm->player->rad + radians);
+		endpoint.x += RAY_LENGTH * ut_cos(dm->player->yaw + radians);
+		endpoint.y += RAY_LENGTH * ut_sin(dm->player->yaw + radians);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));

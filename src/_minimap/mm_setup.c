@@ -62,7 +62,7 @@ void	mm_setup(t_datamodel *dm)
 	mlx_loop_hook(dm->mlx, mm_draw_player, &player->instances[0]);
 
 	//raycasting
-	mlx_loop_hook(dm->mlx, rc_cast, dm->front_ray);
+	mlx_loop_hook(dm->mlx, rc_dda, dm->front_ray); //TODO DDA
 
 	//dibuja bolita del destino / heading
 	marker = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));

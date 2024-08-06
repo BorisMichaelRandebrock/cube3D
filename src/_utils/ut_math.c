@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <unistd.h>
-#include "ansi.h"
-#include "cube3d.h"
-#include "libft.h"
+#include <math.h>
+#include "float.h"
 
 double	ut_clamp(double min, double max, double num)
 {
@@ -12,4 +9,30 @@ double	ut_clamp(double min, double max, double num)
 		return (max);
 	else
 		return (num);
+}
+
+double	ut_cos(double angle)
+{
+	double	_cos = cos(angle);
+
+	if (fabs(_cos) < DBL_EPSILON)
+		return (0);
+	else if (fabs(_cos + 1) < DBL_EPSILON)
+		return(-1);
+	else if (fabs(_cos - 1) < DBL_EPSILON)
+		return (1);
+	return (_cos);
+}
+
+double	ut_sin(double angle)
+{
+	double	_sin = sin(angle);
+
+	if (fabs(_sin) < DBL_EPSILON)
+		return (0);
+	else if (fabs(_sin + 1) < DBL_EPSILON)
+		return(-1);
+	else if (fabs(_sin - 1) < DBL_EPSILON)
+		return (1);
+	return (_sin);
 }

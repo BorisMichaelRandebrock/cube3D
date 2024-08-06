@@ -40,7 +40,7 @@ void	mm_draw_heading(void *heading)
 	_heading = (mlx_instance_t *)heading;
 	_heading->x = (dm->player->pos.x) * MM_RES;
 	_heading->y = (dm->player->pos.y) * MM_RES;
-	_heading->x += cos(dm->player->rad) * MM_RES;
-	_heading->y += sin(dm->player->rad) * MM_RES;
+	_heading->x += ut_cos(dm->player->yaw) * MM_RES;
+	_heading->y += ut_sin(dm->player->yaw) * MM_RES;
 	mlx_set_instance_depth(_heading, 12);
 }

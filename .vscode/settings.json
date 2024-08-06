@@ -17,7 +17,8 @@
 		"respath.h": "c",
 		"iterator": "c",
 		"random": "c",
-		"rad.h": "c"
+		"rad.h": "c",
+		"cmath": "c"
 	},
 	"cmake.configureOnOpen": true
 }

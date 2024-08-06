@@ -54,7 +54,7 @@ typedef struct s_player
 {
 	int			mm_size;
 	t_point		pos;
-	double		rad;
+	double		yaw;
 }	t_player;
 
 typedef struct s_datamodel
@@ -84,6 +84,8 @@ bool			ut_sfree(void *ptr);
 void			ut_error_quit(char *str);
 void			ut_print_colors(const char *str, const char *color);
 double			ut_clamp(double min, double max, double num);
+double			ut_cos(double angle);
+double			ut_sin(double angle);
 t_point			ut_get_direction(double radians);
 t_list			*ut_sort_rays(t_list *lst);
 t_datamodel		*dm_get(t_datamodel *dm);

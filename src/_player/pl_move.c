@@ -31,8 +31,8 @@ void	pl_walk(int mag, double radians)
 
 	dm = dm_get(NULL);
 	delta =  dm->player->pos;
-	delta.x += mag * MOVE_SPEED * cos(dm->player->rad + radians);
-	delta.y += mag * MOVE_SPEED * sin(dm->player->rad + radians);
+	delta.x += mag * MOVE_SPEED * ut_cos(dm->player->yaw + radians);
+	delta.y += mag * MOVE_SPEED * ut_sin(dm->player->yaw + radians);
 	if (pl_coldet(dm, delta))
 		return ;
 	dm->player->pos = delta;
@@ -44,5 +44,5 @@ void	pl_rotate(int mag)
 	t_datamodel	*dm;
 
 	dm = dm_get(NULL);
-	dm->player->rad += -1 * (mag * ROT_SPEED);
+	dm->player->yaw += -1 * (mag * ROT_SPEED);
 }
