@@ -1,14 +1,22 @@
-#include "cube3d.h"
 #include <math.h>
+#include "cube3d.h"
 
 #define RAY_LENGTH 0.01
-#include <stdio.h>
 
+static t_point	_get_next_step(t_point endpoint, double orientation)
+{
+	t_point	direction;
+	direction = ut_get_direction(orientation);
+	(void)direction;
 
+	endpoint.x += RAY_LENGTH * cos(orientation);
+	endpoint.y += RAY_LENGTH * sin(orientation);
+	return (endpoint);
+}
 
 void	rc_dda(void *ray)
 {
-	float		distance;
+	double		distance;
 	t_datamodel	*dm;
 	t_point		endpoint;
 	t_ray		*_ray;
@@ -17,20 +25,17 @@ void	rc_dda(void *ray)
 	_ray = (t_ray *)ray;
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
-	{
-		endpoint.x += RAY_LENGTH * cosf(dm->player->orientation);
-		endpoint.y += RAY_LENGTH * sinf(dm->player->orientation);
-	}
- 	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
+		endpoint = _get_next_step(endpoint, dm->player->orientation);
+	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
-	_ray->length = ut_abs(distance);
+	_ray->length = fabs(distance);
 }
 
 
 void	rc_cast(void *ray)
 {
-	float		distance;
+	double		distance;
 	t_datamodel	*dm;
 	t_point		endpoint;
 	t_ray		*_ray;
@@ -40,18 +45,18 @@ void	rc_cast(void *ray)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cosf(dm->player->orientation);
-		endpoint.y += RAY_LENGTH * sinf(dm->player->orientation);
+		endpoint.x += RAY_LENGTH * cos(dm->player->orientation);
+		endpoint.y += RAY_LENGTH * sin(dm->player->orientation);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
-	_ray->length = ut_abs(distance);
+	_ray->length = fabs(distance);
 }
 
-void	rc_cast_offset(void *ray, float rad_offset)
+void	rc_cast_offset(void *ray, double radians)
 {
-	float		distance;
+	double		distance;
 	t_datamodel	*dm;
 	t_point		endpoint;
 	t_ray		*_ray;
@@ -61,20 +66,20 @@ void	rc_cast_offset(void *ray, float rad_offset)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cosf(dm->player->orientation + rad_offset);
-		endpoint.y += RAY_LENGTH * sinf(dm->player->orientation + rad_offset);
+		endpoint.x += RAY_LENGTH * cos(dm->player->orientation + radians);
+		endpoint.y += RAY_LENGTH * sin(dm->player->orientation + radians);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
-	_ray->length = ut_abs(distance);
+	_ray->length = fabs(distance);
 }
 
 void	rc_cast_fan(void *dm)
 {
 	t_ray		*ray;
-	float		rad_offset;
-	float		fov;
+	double		radians;
+	double		fov;
 	int			columns;
 	t_datamodel	*_dm;
 
@@ -86,9 +91,10 @@ void	rc_cast_fan(void *dm)
 	{
 		ray = ut_scalloc(1, sizeof(t_ray));
 		ray->h_pos = columns--;
-		rad_offset = ut_deg_to_rad(fov - 30); //TODO magic number
-		rc_cast_offset(ray, rad_offset);
+		radians = ut_deg_to_rad(fov - 30); //TODO arreglar esto con los radianes bien!
+		rc_cast_offset(ray, radians);
 		ft_lstadd_back(&_dm->ray_list, ft_lstnew(ray));
 		fov -= fov / H_RES;
 	}
+
 }

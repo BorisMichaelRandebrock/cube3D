@@ -61,12 +61,14 @@ void	mm_setup(t_datamodel *dm)
 	mlx_loop_hook(dm->mlx, mm_draw_player, &player->instances[0]);
 
 	//raycasting
-	mlx_loop_hook(dm->mlx, rc_dda, dm->front_ray);
+	mlx_loop_hook(dm->mlx, rc_cast, dm->front_ray);
 
-	//dibuja bolita del destino
+	//dibuja bolita del destino / heading
 	marker = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
 	mlx_resize_image(marker, MARKER_SIZE, MARKER_SIZE);
 	mlx_image_to_window(dm->mlx, marker, 0 ,0);
+	mlx_image_to_window(dm->mlx, marker, 0 ,0);
 	mlx_loop_hook(dm->mlx, mm_draw_destination, &marker->instances[0]);
+	mlx_loop_hook(dm->mlx, mm_draw_heading, &marker->instances[1]);
 }
 

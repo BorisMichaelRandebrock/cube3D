@@ -4,8 +4,8 @@ t_list *ut_sort_rays(t_list *lst)
 {
     void     *swap;
     t_list  *start;
-    float     a;
-    float     b;
+    double     a;
+    double     b;
 
     start = lst;
     while (lst->next)
