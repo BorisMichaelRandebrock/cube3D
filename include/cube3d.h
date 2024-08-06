@@ -36,6 +36,12 @@ typedef struct s_rect
 	int			y;
 }	t_rect;
 
+typedef struct s_coldet_rect
+{
+	t_point	top_left;
+	t_point	bottom_right;
+}	t_coldet_rect;
+
 typedef struct s_tilemap
 {
 	t_rect		size;
@@ -48,7 +54,7 @@ typedef struct s_player
 {
 	int			mm_size;
 	t_point		pos;
-	double		orientation;
+	double		rad;
 	t_ray		*coldet_ray;
 }	t_player;
 

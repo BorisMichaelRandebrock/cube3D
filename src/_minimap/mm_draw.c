@@ -39,6 +39,6 @@ void	mm_draw_heading(void *heading)
 	_heading = (mlx_instance_t *)heading;
 	_heading->x = (dm->player->pos.x) * MM_RES - (MARKER_SIZE / 2);
 	_heading->y = (dm->player->pos.y) * MM_RES - (MARKER_SIZE / 2);
-	_heading->x += cos(dm->player->orientation) * MM_RES;
-	_heading->y += sin(dm->player->orientation) * MM_RES;
+	_heading->x += cos(dm->player->rad) * MM_RES;
+	_heading->y += sin(dm->player->rad) * MM_RES;
 }

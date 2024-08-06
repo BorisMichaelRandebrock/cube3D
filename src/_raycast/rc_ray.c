@@ -25,7 +25,7 @@ void	rc_dda(void *ray)
 	_ray = (t_ray *)ray;
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
-		endpoint = _get_next_step(endpoint, dm->player->orientation);
+		endpoint = _get_next_step(endpoint, dm->player->rad);
 	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
 	_ray->endpoint = endpoint;
@@ -45,8 +45,8 @@ void	rc_cast(void *ray)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cos(dm->player->orientation);
-		endpoint.y += RAY_LENGTH * sin(dm->player->orientation);
+		endpoint.x += RAY_LENGTH * cos(dm->player->rad);
+		endpoint.y += RAY_LENGTH * sin(dm->player->rad);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
@@ -66,8 +66,8 @@ void	rc_cast_offset(void *ray, double radians)
 	endpoint = dm->player->pos;
 	while (dm->tilemap->map[(int)endpoint.y][(int)endpoint.x] != '1')
 	{
-		endpoint.x += RAY_LENGTH * cos(dm->player->orientation + radians);
-		endpoint.y += RAY_LENGTH * sin(dm->player->orientation + radians);
+		endpoint.x += RAY_LENGTH * cos(dm->player->rad + radians);
+		endpoint.y += RAY_LENGTH * sin(dm->player->rad + radians);
 	}
  	distance = sqrt(pow(endpoint.x - dm->player->pos.x, 2)
 			+ pow(endpoint.y - dm->player->pos.y, 2));
