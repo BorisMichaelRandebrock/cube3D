@@ -86,6 +86,7 @@ void			ut_print_colors(const char *str, const char *color);
 double			ut_clamp(double min, double max, double num);
 double			ut_cos(double angle);
 double			ut_sin(double angle);
+double			ut_clamped_tan(double angle);
 t_point			ut_get_direction(double radians);
 t_list			*ut_sort_rays(t_list *lst);
 t_datamodel		*dm_get(t_datamodel *dm);

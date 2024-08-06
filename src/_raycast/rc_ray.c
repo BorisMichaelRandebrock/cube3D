@@ -15,7 +15,9 @@ static t_point	_get_next_step(t_point endpoint, double yaw)
 	{
 		// Calcular en base a X
 		ad = 1 - (endpoint.x - trunc(endpoint.x));
-		op = ad * tan(yaw);
+
+		//TODO arreglar la tangemte o buscar otro camino...
+		op = ad * ut_clamped_tan(yaw);
 		endpoint.x += ad;
 		endpoint.y += op;
 	}
@@ -23,7 +25,9 @@ static t_point	_get_next_step(t_point endpoint, double yaw)
 	{
 		// Calcular en base a Y
 		ad = 1 - (endpoint.y - trunc(endpoint.y));
-		op = ad * tan(yaw);
+
+		//TODO arreglar la tangemte o buscar otro camino...
+		op = ad * ut_clamped_tan(yaw);
 		endpoint.y += ad;
 		endpoint.x += op;
 	}
