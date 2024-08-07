@@ -1,7 +1,6 @@
 #include <math.h>
 #include "cube3d.h"
 #include "rad.h"
-#include "float.h"
 
 #define MOVE_SPEED 0.2
 #define ROT_SPEED 0.05
