@@ -16,8 +16,8 @@ void	pl_input(mlx_key_data_t keydata, void *param)
 		pl_walk(-1, RAD_0);
 	else if ((keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_Q)
 		&& keydata.action >= MLX_PRESS)
-		pl_rotate(1);
+		pl_rotate(-1);
 	else if ((keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_E)
 		&& keydata.action >= MLX_PRESS)
-		pl_rotate(-1);
+		pl_rotate(1);
 }

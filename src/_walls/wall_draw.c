@@ -4,6 +4,7 @@
 
 #define SHADOW_DEPTH 0.25
 
+//TODO compactar...
 static void	_pixel_shader(mlx_image_t *img, double distance)
 {
 	uint32_t	px = 0;

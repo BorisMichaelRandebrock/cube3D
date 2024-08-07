@@ -78,7 +78,6 @@ typedef struct s_datamodel
 void			close_game(void* param);
 double			ut_deg_to_rad(double degrees);
 double			ut_rad_to_deg(double radians);
-double			ut_rad_mirror(double radians);
 void			*ut_scalloc(size_t nmemb, size_t size);
 bool			ut_sfree(void *ptr);
 void			ut_error_quit(char *str);
@@ -88,6 +87,7 @@ double			ut_cos(double angle);
 double			ut_sin(double angle);
 double			ut_clamped_tan(double angle);
 t_point			ut_get_direction(double radians);
+double			ut_norm_angle(double angle);
 t_list			*ut_sort_rays(t_list *lst);
 t_datamodel		*dm_get(t_datamodel *dm);
 t_list			*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);

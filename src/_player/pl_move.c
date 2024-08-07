@@ -7,7 +7,7 @@
 #define ROT_SPEED 0.05
 #define COLDET_SCALE 0.3
 
-static bool	pl_coldet(t_datamodel *dm, t_point delta)
+static bool	pl_sat_coldet(t_datamodel *dm, t_point delta)
 {
 	t_coldet_rect	rect;
 
@@ -33,16 +33,16 @@ void	pl_walk(int mag, double radians)
 	delta =  dm->player->pos;
 	delta.x += mag * MOVE_SPEED * ut_cos(dm->player->yaw + radians);
 	delta.y += mag * MOVE_SPEED * ut_sin(dm->player->yaw + radians);
-	if (pl_coldet(dm, delta))
+	if (pl_sat_coldet(dm, delta))
 		return ;
 	dm->player->pos = delta;
 }
-
 
 void	pl_rotate(int mag)
 {
 	t_datamodel	*dm;
 
 	dm = dm_get(NULL);
-	dm->player->yaw += -1 * (mag * ROT_SPEED);
+	dm->player->yaw += (mag * ROT_SPEED);
+	dm->player->yaw = ut_norm_angle(dm->player->yaw);
 }

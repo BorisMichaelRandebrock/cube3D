@@ -1,6 +1,8 @@
 #include <math.h>
+#include "rad.h"
 
 #define EPSILON 0.000001
+
 double	ut_clamp(double min, double max, double num)
 {
 	if (num < min)
@@ -36,7 +38,10 @@ double	ut_sin(double angle)
 	return (_sin);
 }
 
-double	ut_clamped_tan(double angle)
+double ut_norm_angle(double angle)
 {
-	return (ut_clamp(-57.28996,57.28996,tan(angle)));
+	angle = fmod(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	return angle;
 }

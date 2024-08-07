@@ -1,6 +1,8 @@
 #include "cube3d.h"
 #include <stdio.h>
 
+//TODO buscar la forma de quitar t_timon
+//TODO arreglar columna 0 (izq) no renderiza
 void	wall_setup(t_datamodel *dm)
 {
 	t_timon *timon = ut_scalloc(1, sizeof(t_timon));
