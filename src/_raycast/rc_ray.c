@@ -1,5 +1,6 @@
 #include <math.h>
 #include "cube3d.h"
+#include <stdio.h>
 
 #define RAY_LENGTH 0.01
 
@@ -71,7 +72,7 @@ void	rc_cast_offset(void *ray, double radians)
 	_ray->endpoint = endpoint;
 	_ray->length = fabs(distance);
 }
-
+//TODO HARDCODED TEXTURE_SIZE
 void	rc_cast_fan(void *dm)
 {
 	t_ray		*ray;
@@ -90,16 +91,11 @@ void	rc_cast_fan(void *dm)
 		ray->h_pos = columns--;
 		radians = ut_deg_to_rad(fov - 30); //TODO arreglar esto con los radianes bien!
 		rc_cast_offset(ray, radians);
-
-
-		// (1.7 - 1) = 0.7
-		if (ray->endpoint.x - trunc(ray->endpoint.x) > 0)
-			ray->h_tex_pos = 256 * (ray->endpoint.x - trunc(ray->endpoint.x > 0));
+		if (fabs(ray->endpoint.x - round(ray->endpoint.x)) > fabs(ray->endpoint.y - round(ray->endpoint.y)))
+			ray->h_tex_pos = fabs(256 * (ray->endpoint.x - trunc(ray->endpoint.x)));
 		else
-			ray->h_tex_pos = 256 * (ray->endpoint.y - trunc(ray->endpoint.y > 0));
-
+			ray->h_tex_pos = fabs(256 * (ray->endpoint.y - trunc(ray->endpoint.y)));
 		ft_lstadd_back(&_dm->ray_list, ft_lstnew(ray));
 		fov -= fov / H_RES;
 	}
-
 }
