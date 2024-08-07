@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
+#    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/08/07 09:00:31 by fran             ###   ########.fr        #
+#    Updated: 2024/08/07 13:46:03 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ _UT_DIR			:=	$(SRC_DIR)_utils/
 _PL_DIR			:=	$(SRC_DIR)_player/
 _RC_DIR			:=	$(SRC_DIR)_raycast/
 _WALL_DIR		:=	$(SRC_DIR)_walls/
+_PIX_DIR		:=	$(SRC_DIR)_pixels/
 
 RUN_MAP_NAME	:=	level0.cub
 
@@ -39,7 +40,8 @@ SRCS			:=	main.c\
 					bg_setup.c\
 					mm_setup.c mm_draw.c\
 					rc_ray.c\
-					wall_draw.c wall_setup.c
+					wall_draw.c wall_setup.c\
+					colors.c
 OBJS			:=	$(SRCS:.c=.o)
 
 _TST_DIR		:=	$(SRC_DIR)_test/
@@ -71,7 +73,7 @@ COLOR_BLUE		:=	\033[0;34m
 COLOR_END		:=	\033[0m
 
 vpath %.h $(INC_DIR) $(MLX_INC) $(LIBFT_INC)
-vpath %.c $(SRC_DIR) $(_TST_DIR) $(_DM_DIR) $(_MM_DIR) $(_BG_DIR) $(_UT_DIR) $(_PL_DIR) $(_RC_DIR) $(_WALL_DIR)
+vpath %.c $(SRC_DIR) $(_TST_DIR) $(_DM_DIR) $(_MM_DIR) $(_BG_DIR) $(_UT_DIR) $(_PL_DIR) $(_RC_DIR) $(_WALL_DIR) $(_PIX_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 

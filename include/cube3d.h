@@ -11,12 +11,6 @@
 # define V_RES 768
 # define MM_RES 10
 
-
-typedef struct t_timon
-{
-	mlx_image_t	*img[H_RES];
-}	t_timon;
-
 typedef struct s_point
 {
 	double		x;
@@ -28,6 +22,7 @@ typedef struct s_ray
 	double		length;
 	t_point		endpoint;
 	uint32_t	h_pos;
+	uint32_t	h_tex_pos;
 }	t_ray;
 
 typedef struct s_rect
@@ -49,6 +44,12 @@ typedef struct s_tilemap
 	t_point		spawn_point;
 	char		spawn_char;
 }	t_tilemap;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*mlx_texture;
+	uint32_t		**pixels;
+}	t_texture;
 
 typedef struct s_player
 {
@@ -72,6 +73,8 @@ typedef struct s_datamodel
 	mlx_t		*mlx;
 	t_ray		*front_ray;
 	t_list		*ray_list;
+	mlx_image_t	*columns[H_RES];
+
 }	t_datamodel;
 
 
@@ -115,5 +118,6 @@ void			rc_cast_offset(void *ray, double rad_offset);
 void			rc_cast_fan(void *param);
 void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
+uint32_t		decode_pixel(uint8_t *pixel);
 
 #endif

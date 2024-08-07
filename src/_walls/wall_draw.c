@@ -5,7 +5,7 @@
 #define SHADOW_DEPTH 0.25
 
 //TODO compactar...
-static void	_pixel_shader(mlx_image_t *img, double distance)
+/* static void	_pixel_shader(mlx_image_t *img, double distance)
 {
 	uint32_t	px = 0;
 	uint32_t	py = 0;
@@ -44,28 +44,44 @@ static void	_pixel_shader(mlx_image_t *img, double distance)
 		px = 0;
 		py++;
 	}
-}
+} */
 
-void	wall_draw(void *timon)
+void	wall_draw(void *walltex)
 {
 	t_datamodel	*dm;
-	mlx_image_t	*_img;
+	mlx_image_t	*img;
 	double		new_height;
+	t_texture	*_walltex;
+	t_ray		*ray;
 
 	dm = dm_get(NULL);
 	t_list	*_ray_list = dm->ray_list;
-	t_timon	*_timon = (t_timon *)timon;
+	_walltex = (t_texture *)walltex;
 
 	int i = 0;
 	while (_ray_list)
 	{
-		_img = _timon->img[i++];
-		new_height = V_RES / ((t_ray *)_ray_list->content)->length;
-		mlx_resize_image(_img, 1 , new_height);
-		_img->instances[0].x = ((t_ray *)_ray_list->content)->h_pos;
-		_img->instances[0].y = (V_RES /2) - (new_height / 2);
-		_pixel_shader(_img, ((t_ray *)_ray_list->content)->length);
+		ray = ((t_ray *)_ray_list->content);
+		img = dm->columns[i++];
+		new_height = V_RES / ray->length;
+		mlx_resize_image(img, 1 , new_height);
+
+		int y = 0;
+		while (y < new_height - 1)
+		{
+			if (y > 255)
+				break ;
+			uint32_t pixel = _walltex->pixels[y][ray->h_tex_pos];
+			mlx_put_pixel(img, 0, y, pixel);
+			y++;
+		}
+		
+		// mover a la columna
+		img->instances[0].x = ray->h_pos;
+		img->instances[0].y = (V_RES /2) - (new_height / 2);
+	
+		//_pixel_shader(img, (ray->length));
 		_ray_list = _ray_list->next;
-		mlx_set_instance_depth(&_img->instances[0],1);
+		mlx_set_instance_depth(&img->instances[0],1);
 	}
 }
