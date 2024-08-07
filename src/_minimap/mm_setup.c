@@ -1,7 +1,5 @@
 #include "cube3d.h"
 
-#define MARKER_SIZE 8
-
 static void	_mm_build_minimap(mlx_image_t *minimap)
 {
 	t_datamodel	*dm;
@@ -53,6 +51,7 @@ void	mm_setup(t_datamodel *dm)
 	minimap =  mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES, dm->tilemap->size.y * MM_RES);
 	_mm_build_minimap(minimap);
 	mlx_image_to_window(dm->mlx, minimap, 0 ,0);
+	mlx_set_instance_depth(&((mlx_instance_t *)minimap->instances)[0], 10);
 
 	//dibuja jugador
 	player = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
@@ -63,10 +62,12 @@ void	mm_setup(t_datamodel *dm)
 	//raycasting
 	mlx_loop_hook(dm->mlx, rc_cast, dm->front_ray);
 
-	//dibuja bolita del destino
+	//dibuja bolita del destino / heading
 	marker = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
-	mlx_resize_image(marker, MARKER_SIZE, MARKER_SIZE);
+	mlx_resize_image(marker, dm->player->mm_size / 2, dm->player->mm_size / 2);
+	mlx_image_to_window(dm->mlx, marker, 0 ,0);
 	mlx_image_to_window(dm->mlx, marker, 0 ,0);
 	mlx_loop_hook(dm->mlx, mm_draw_destination, &marker->instances[0]);
+	mlx_loop_hook(dm->mlx, mm_draw_heading, &marker->instances[1]);
 }
 

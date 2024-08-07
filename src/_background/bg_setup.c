@@ -24,4 +24,6 @@ void	bg_setup(t_datamodel *dm)
 	}
 	mlx_image_to_window(dm->mlx, top, 0, 0);
 	mlx_image_to_window(dm->mlx, bottom, 0, V_RES / 2);
+	mlx_set_instance_depth(&top->instances[0],0);
+	mlx_set_instance_depth(&bottom->instances[0],0);
 }

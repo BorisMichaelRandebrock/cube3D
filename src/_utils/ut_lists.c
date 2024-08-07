@@ -1,27 +1,28 @@
 #include "cube3d.h"
 
+//TODO probablemente no necesario, borrar?
 t_list *ut_sort_rays(t_list *lst)
 {
-    void     *swap;
-    t_list  *start;
-    float     a;
-    float     b;
+	void	*swap;
+	t_list	*start;
+	double	a;
+	double	b;
 
-    start = lst;
-    while (lst->next)
-    {
-        a = ((t_ray *)lst->content)->length;
-        b = ((t_ray *)lst->next->content)->length;
-        if (a < b)
-        {
-            swap = lst->content;
-            lst->content = lst->next->content;
-            lst->next->content = swap;
-            lst = start;
-        }
-        else
-            lst = lst->next;
-    }
-    lst = start;
-    return (lst);
+	start = lst;
+	while (lst->next)
+	{
+		a = ((t_ray *)lst->content)->length;
+		b = ((t_ray *)lst->next->content)->length;
+		if (a < b)
+		{
+			swap = lst->content;
+			lst->content = lst->next->content;
+			lst->next->content = swap;
+			lst = start;
+		}
+		else
+			lst = lst->next;
+	}
+	lst = start;
+	return (lst);
 }

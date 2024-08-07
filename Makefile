@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
+#    By: fran <fran@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/07/31 19:36:08 by fmontser         ###   ########.fr        #
+#    Updated: 2024/08/07 09:00:31 by fran             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ _WALL_DIR		:=	$(SRC_DIR)_walls/
 RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
-HDRS			:=	cube3d.h ansi.h tests.h respath.h
+HDRS			:=	cube3d.h ansi.h tests.h respath.h rad.h
 SRCS			:=	main.c\
-					ut_math.c ut_memory.c ut_print.c ut_degrees.c ut_lists.c\
+					ut_math.c ut_memory.c ut_print.c ut_lists.c ut_degrees.c\
 					dm_setup.c dm_tilemap.c dm_load_colors.c dm_load_tex_path.c\
-					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c dm_populate_columns.c\
+					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\
 					dm_check_tilemap.c dm_load_player_data.c\
 					pl_input.c pl_move.c\
 					bg_setup.c\

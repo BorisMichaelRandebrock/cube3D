@@ -42,6 +42,7 @@ static void _get_cub_lines(t_list **cub_lines, int fd)
 		ut_error_quit("Cub file is empty.\n");
 }
 
+//TODO mover inicializacion a archivo dm_setup.c
 static void	_data_init(char *cub_filename)
 {
 	t_datamodel	*dm;

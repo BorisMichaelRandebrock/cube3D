@@ -4,7 +4,8 @@
 
 #define SHADOW_DEPTH 0.25
 
-static void	_pixel_shader(mlx_image_t *img, float distance)
+//TODO compactar...
+static void	_pixel_shader(mlx_image_t *img, double distance)
 {
 	uint32_t	px = 0;
 	uint32_t	py = 0;
@@ -49,7 +50,7 @@ void	wall_draw(void *timon)
 {
 	t_datamodel	*dm;
 	mlx_image_t	*_img;
-	float		new_height;
+	double		new_height;
 
 	dm = dm_get(NULL);
 	t_list	*_ray_list = dm->ray_list;
@@ -65,5 +66,6 @@ void	wall_draw(void *timon)
 		_img->instances[0].y = (V_RES /2) - (new_height / 2);
 		_pixel_shader(_img, ((t_ray *)_ray_list->content)->length);
 		_ray_list = _ray_list->next;
+		mlx_set_instance_depth(&_img->instances[0],1);
 	}
 }

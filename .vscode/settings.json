@@ -16,7 +16,9 @@
 		"inttypes.h": "c",
 		"respath.h": "c",
 		"iterator": "c",
-		"random": "c"
+		"random": "c",
+		"rad.h": "c",
+		"cmath": "c"
 	},
 	"cmake.configureOnOpen": true
 }
