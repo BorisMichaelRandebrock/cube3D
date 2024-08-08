@@ -26,15 +26,20 @@ void	wall_draw(void *walltex)
 		new_height = V_RES / ray->length;
 		mlx_resize_image(img, 1 , new_height);
 
-		int y = 0;
-		while (y < new_height - 1)
+		uint32_t sy = 0;
+		uint32_t dy = 0;
+		while (dy < new_height - 1)
 		{
-			if (y > 255)
+			if (sy > 255)
 				break ;
-			uint32_t pixel = _walltex->pixels[y][ray->h_tex_pos];
+
+			double ratio = new_height / 256;
+			sy = dy / ratio; 
+
+			uint32_t pixel = _walltex->pixels[sy][ray->h_tex_pos];
 			pixel = px_pixel_shader(pixel, ray->length);
-			mlx_put_pixel(img, 0, y, pixel);
-			y++;
+			mlx_put_pixel(img, 0, dy, pixel);
+			dy++;
 		}
 		
 		// mover a la columna
