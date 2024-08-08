@@ -1,8 +1,6 @@
 #include "cube3d.h"
 #include <stdio.h>
 
-
-
 //TODO quitar TEX RESOLUTION hardcoded 256
 #define TEXTURE_SIZE 256
 
@@ -26,7 +24,7 @@ void	wall_setup(t_datamodel *dm)
 		walltex->pixels[y] = ut_scalloc(TEXTURE_SIZE, sizeof(uint32_t));
 		while (x < TEXTURE_SIZE)
 		{
-			walltex->pixels[y][x] = decode_pixel(&texture->pixels[i * texture->bytes_per_pixel]);
+			walltex->pixels[y][x] = px_decode_pixel(&texture->pixels[i * texture->bytes_per_pixel]);
 			x++;
 			i++;
 		}

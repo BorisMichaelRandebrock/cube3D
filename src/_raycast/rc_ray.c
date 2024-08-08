@@ -73,6 +73,7 @@ void	rc_cast_offset(void *ray, double radians)
 	_ray->length = fabs(distance);
 }
 //TODO HARDCODED TEXTURE_SIZE
+//TODO GET NWSE 
 void	rc_cast_fan(void *dm)
 {
 	t_ray		*ray;

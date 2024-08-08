@@ -118,6 +118,7 @@ void			rc_cast_offset(void *ray, double rad_offset);
 void			rc_cast_fan(void *param);
 void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
-uint32_t		decode_pixel(uint8_t *pixel);
+uint32_t		px_decode_pixel(uint8_t *pixel);
+uint32_t		px_pixel_shader(uint32_t pixel, double distance);
 
 #endif

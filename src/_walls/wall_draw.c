@@ -2,49 +2,9 @@
 #include <math.h>
 
 
-#define SHADOW_DEPTH 0.25
-
-//TODO compactar...
-/* static void	_pixel_shader(mlx_image_t *img, double distance)
-{
-	uint32_t	px = 0;
-	uint32_t	py = 0;
-	uint32_t	color = 0;
-	uint32_t	temp = 0;
 
 
-	(void)distance;
-	while (py < img->height)
-	{
-		while (px < img->width)
-		{
-			int	r = 0xFF / fmax(SHADOW_DEPTH * distance, 1);
-			int	g = 0xFF / fmax(SHADOW_DEPTH * distance, 1);
-			int	b = 0xFF /fmax(SHADOW_DEPTH * distance, 1);
-			int	a = 0xFF;
 
-			temp = r;
-			temp <<= 24;
-			color |= temp;
-
-			temp = g;
-			temp <<= 16;
-			color |= temp;
-
-			temp = b;
-			temp <<= 8;
-			color |= temp;
-
-			temp = a;
-			color |= temp;
-
-			mlx_put_pixel(img, px, py, color);
-			px++;
-		}
-		px = 0;
-		py++;
-	}
-} */
 
 void	wall_draw(void *walltex)
 {
@@ -72,6 +32,7 @@ void	wall_draw(void *walltex)
 			if (y > 255)
 				break ;
 			uint32_t pixel = _walltex->pixels[y][ray->h_tex_pos];
+			pixel = px_pixel_shader(pixel, ray->length);
 			mlx_put_pixel(img, 0, y, pixel);
 			y++;
 		}
@@ -80,7 +41,7 @@ void	wall_draw(void *walltex)
 		img->instances[0].x = ray->h_pos;
 		img->instances[0].y = (V_RES /2) - (new_height / 2);
 	
-		//_pixel_shader(img, (ray->length));
+		
 		_ray_list = _ray_list->next;
 		mlx_set_instance_depth(&img->instances[0],1);
 	}
