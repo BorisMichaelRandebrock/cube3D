@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:36:36 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -5,11 +17,9 @@
 #include "respath.h"
 #include "cube3d.h"
 
-
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
-
 
 void	close_game(void *param)
 {
@@ -17,7 +27,7 @@ void	close_game(void *param)
 	exit(EXIT_SUCCESS);
 }
 
-static void _get_cub_lines(t_list **cub_lines, int fd)
+static void	_get_cub_lines(t_list **cub_lines, int fd)
 {
 	int		i;
 	char	buffer[BUFSIZ];
@@ -42,7 +52,16 @@ static void _get_cub_lines(t_list **cub_lines, int fd)
 		ut_error_quit("Cub file is empty.\n");
 }
 
-//TODO mover inicializacion a archivo dm_setup.c
+static void	_check_data(t_datamodel *dm)
+{
+	if (!dm_check_tex_files(dm))
+		ut_error_quit("Wrong texture file.\n");
+	if (!dm_check_colors(dm))
+		ut_error_quit("Missing color values.\n");
+	if (!dm_check_tilemap(dm))
+		ut_error_quit("Invalid tilemap.\n");
+}
+
 static void	_data_init(char *cub_filename)
 {
 	t_datamodel	*dm;
@@ -51,7 +70,7 @@ static void	_data_init(char *cub_filename)
 	int			fd;
 
 	dm = ut_scalloc(1, sizeof(t_datamodel));
-	dm->front_ray = ut_scalloc(1, sizeof(t_ray));
+	dm->fray = ut_scalloc(1, sizeof(t_ray));
 	dm->mlx = mlx_init(H_RES, V_RES, "Cube3D", true);
 	dm->ray_list = NULL;
 	dm_get(dm);
@@ -65,20 +84,15 @@ static void	_data_init(char *cub_filename)
 	next_lines = dm_load_colors(dm, next_lines);
 	dm_load_tilemap_(dm, next_lines);
 	ft_lstclear(&cub_lines, free);
-	if (!dm_check_tex_files(dm))
-		ut_error_quit("Wrong texture file.\n");
-	if (!dm_check_colors(dm))
-		ut_error_quit("Missing color values.\n");
-	if (!dm_check_tilemap(dm))
-		ut_error_quit("Invalid tilemap.\n");
+	_check_data(dm);
 	dm_load_player_data(dm);
 }
 
 int	main(int argc, char **argv)
 {
-	t_datamodel	*dm;
+	t_datamodel		*dm;
 	mlx_texture_t	*icon;
-	
+
 	if (argc != 2)
 		ut_error_quit("Wrong number of arguments.\n");
 	_data_init(argv[CUB_FILENAME]);
@@ -91,12 +105,6 @@ int	main(int argc, char **argv)
 	mm_setup(dm);
 	wall_setup(dm);
 	mlx_loop(dm->mlx);
-	
-
-//TODO gestionar image delete
-/*	mlx_delete_image(mlx, top);
-	mlx_delete_image(mlx, bottom); */
-	
 	close_game(dm->mlx);
 	return (0);
 }

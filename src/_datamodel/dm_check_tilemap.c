@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dm_check_tilemap.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:33:38 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:33:39 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include "cube3d.h"
@@ -55,7 +67,7 @@ static	bool	_set_spawn(t_tilemap *tilemap, char c, int x, int y)
 {
 	tilemap->spawn_point.x = x;
 	tilemap->spawn_point.y = y;
-	tilemap->spawn_char =  c;
+	tilemap->spawn_char = c;
 	return (true);
 }
 

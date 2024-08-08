@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mm_draw.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:36:11 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:38:03 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include "cube3d.h"
 
 void	mm_draw_player(void *player)
 {
-	t_datamodel	*dm;
+	t_datamodel		*dm;
 	mlx_instance_t	*_player;
 
 	dm = dm_get(NULL);
@@ -20,8 +32,8 @@ void	mm_draw_destination(void *marker)
 
 	dm = dm_get(NULL);
 	_marker = (mlx_instance_t *)marker;
-	_marker->x = (dm->front_ray->endpoint.x * MM_RES) - (dm->player->mm_size / 4);
-	_marker->y = (dm->front_ray->endpoint.y * MM_RES) - (dm->player->mm_size / 4);
+	_marker->x = (dm->fray->endpoint.x * MM_RES) - (dm->player->mm_size / 4);
+	_marker->y = (dm->fray->endpoint.y * MM_RES) - (dm->player->mm_size / 4);
 	mlx_set_instance_depth(_marker, 11);
 }
 

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dm_tilemap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:34:57 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:35:23 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube3d.h"
 
 void	dm_free_tilemap(t_tilemap *tilemap)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < tilemap->size.y)
@@ -20,11 +32,10 @@ t_tilemap	*dm_copy_tilemap_(t_tilemap *tilemap)
 	_tilemap->size.y = tilemap->size.y;
 	_tilemap->map = ut_scalloc(_tilemap->size.y, sizeof(char *));
 	y = 0;
-
 	while (y < _tilemap->size.y)
 	{
 		_tilemap->map[y] = ft_strdup(tilemap->map[y]);
 		y++;
 	}
-	return(_tilemap);
+	return (_tilemap);
 }

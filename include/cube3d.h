@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:36:36 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
@@ -72,7 +84,7 @@ typedef struct s_datamodel
 	t_tilemap	*tilemap;
 	t_player	*player;
 	mlx_t		*mlx;
-	t_ray		*front_ray;
+	t_ray		*fray;
 	t_list		*ray_list;
 	mlx_image_t	*columns[H_RES];
 	t_texture	*wall_e;
@@ -83,8 +95,7 @@ typedef struct s_datamodel
 
 }	t_datamodel;
 
-
-void			close_game(void* param);
+void			close_game(void *param);
 double			ut_deg_to_rad(double degrees);
 double			ut_rad_to_deg(double radians);
 void			*ut_scalloc(size_t nmemb, size_t size);
@@ -108,7 +119,6 @@ bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
-void    		dm_populate_columns(t_datamodel *dm);
 void			pl_input(mlx_key_data_t keydata, void *param);
 void			pl_walk(int vect, double rad_mod);
 void			pl_rotate(int mag);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mm_setup.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 17:38:15 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 17:39:30 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube3d.h"
 
 static void	_mm_build_minimap(mlx_image_t *minimap)
@@ -7,7 +19,6 @@ static void	_mm_build_minimap(mlx_image_t *minimap)
 	int			x;
 	int			px;
 	int			py;
-
 
 	dm = dm_get(NULL);
 	y = 0;
@@ -60,7 +71,7 @@ void	mm_setup(t_datamodel *dm)
 	mlx_loop_hook(dm->mlx, mm_draw_player, &player->instances[0]);
 
 	//raycasting
-	mlx_loop_hook(dm->mlx, rc_cast, dm->front_ray);
+	mlx_loop_hook(dm->mlx, rc_cast, dm->fray);
 
 	//dibuja bolita del destino / heading
 	marker = mlx_texture_to_image(dm->mlx, mlx_load_png("res/mm_player.png"));
