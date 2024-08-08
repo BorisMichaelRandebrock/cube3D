@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ut_lists.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/08 18:22:18 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/08 18:22:43 by fmontser         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube3d.h"
 
 //TODO probablemente no necesario, borrar?
-t_list *ut_sort_rays(t_list *lst)
+t_list	*ut_sort_rays(t_list *lst)
 {
 	void	*swap;
 	t_list	*start;

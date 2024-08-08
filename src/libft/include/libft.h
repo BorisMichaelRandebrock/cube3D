@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fran <fran@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:49:16 by fmontser          #+#    #+#             */
-/*   Updated: 2024/07/12 00:11:49 by fran             ###   ########.fr       */
+/*   Updated: 2024/08/08 18:50:54 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define NUL_SZ 1
 # define READ_EOF 0
 
-#include <stdint.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <stdbool.h>
 
@@ -23,7 +23,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}t_list;
+}	t_list;
 
 int64_t	ft_atoll(const char *nptr);
 int		ft_isalpha(int c);

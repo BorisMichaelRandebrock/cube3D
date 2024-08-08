@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/08/07 13:46:03 by fmontser         ###   ########.fr        #
+#    Updated: 2024/08/08 18:51:29 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRCS			:=	main.c\
 					colors.c
 OBJS			:=	$(SRCS:.c=.o)
 
-_TST_DIR		:=	$(SRC_DIR)_test/
+TST_DIR		:=	$(SRC_DIR)test/
 TST_NAME		:=	testing
 TST_SRCS		:=	testing.c test_dm_load_colors.c test_dm_load_tex_path.c\
 					test_dm_load_tilemap.c test_dm_check_tex_files.c\
@@ -73,7 +73,7 @@ COLOR_BLUE		:=	\033[0;34m
 COLOR_END		:=	\033[0m
 
 vpath %.h $(INC_DIR) $(MLX_INC) $(LIBFT_INC)
-vpath %.c $(SRC_DIR) $(_TST_DIR) $(_DM_DIR) $(_MM_DIR) $(_BG_DIR) $(_UT_DIR) $(_PL_DIR) $(_RC_DIR) $(_WALL_DIR) $(_PIX_DIR)
+vpath %.c $(SRC_DIR) $(TST_DIR) $(_DM_DIR) $(_MM_DIR) $(_BG_DIR) $(_UT_DIR) $(_PL_DIR) $(_RC_DIR) $(_WALL_DIR) $(_PIX_DIR)
 vpath %.o $(OBJ_DIR)
 vpath % $(BIN_DIR)
 

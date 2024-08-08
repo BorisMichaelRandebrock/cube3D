@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:36:36 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:30:00 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_rect
 
 typedef struct s_coldet_rect
 {
-	t_point	top_left;
-	t_point	bottom_right;
+	t_point	top_l;
+	t_point	bottom_r;
 }	t_coldet_rect;
 
 typedef struct s_tilemap
@@ -60,7 +60,7 @@ typedef struct s_tilemap
 
 typedef struct s_texture
 {
-	mlx_texture_t	*mlx_texture;
+	mlx_texture_t	*mlx_tex;
 	uint32_t		**pixels;
 }	t_texture;
 
