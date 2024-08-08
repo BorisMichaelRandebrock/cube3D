@@ -3,6 +3,10 @@
 #include <stdio.h>
 
 #define RAY_LENGTH 0.01
+#define WALL_N			0
+#define WALL_E			1
+#define WALL_S			2
+#define WALL_W			3
 
 static t_point	_get_next_step(t_point endpoint, double yaw)
 {
@@ -93,9 +97,21 @@ void	rc_cast_fan(void *dm)
 		radians = ut_deg_to_rad(fov - 30); //TODO arreglar esto con los radianes bien!
 		rc_cast_offset(ray, radians);
 		if (fabs(ray->endpoint.x - round(ray->endpoint.x)) > fabs(ray->endpoint.y - round(ray->endpoint.y)))
+		{
 			ray->h_tex_pos = fabs(256 * (ray->endpoint.x - trunc(ray->endpoint.x)));
+			if (ray->endpoint.y - _dm->player->pos.y < 0)
+				ray->wall_side = WALL_S;
+			else
+				ray->wall_side = WALL_N;
+		}
 		else
+		{
 			ray->h_tex_pos = fabs(256 * (ray->endpoint.y - trunc(ray->endpoint.y)));
+			if (ray->endpoint.x - _dm->player->pos.x < 0)
+				ray->wall_side = WALL_W;
+			else
+				ray->wall_side = WALL_E;
+		}
 		ft_lstadd_back(&_dm->ray_list, ft_lstnew(ray));
 		fov -= fov / H_RES;
 	}

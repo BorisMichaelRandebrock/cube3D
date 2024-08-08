@@ -23,6 +23,7 @@ typedef struct s_ray
 	t_point		endpoint;
 	uint32_t	h_pos;
 	uint32_t	h_tex_pos;
+	uint8_t		wall_side;
 }	t_ray;
 
 typedef struct s_rect
@@ -74,6 +75,7 @@ typedef struct s_datamodel
 	t_ray		*front_ray;
 	t_list		*ray_list;
 	mlx_image_t	*columns[H_RES];
+	t_texture	**wall_tex;
 
 }	t_datamodel;
 

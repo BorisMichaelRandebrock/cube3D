@@ -6,7 +6,7 @@
 
 
 
-void	wall_draw(void *walltex)
+void	wall_draw(void *unused)
 {
 	t_datamodel	*dm;
 	mlx_image_t	*img;
@@ -14,14 +14,14 @@ void	wall_draw(void *walltex)
 	t_texture	*_walltex;
 	t_ray		*ray;
 
+	(void)unused;
 	dm = dm_get(NULL);
 	t_list	*_ray_list = dm->ray_list;
-	_walltex = (t_texture *)walltex;
-
 	int i = 0;
 	while (_ray_list)
 	{
 		ray = ((t_ray *)_ray_list->content);
+		_walltex = dm->wall_tex[ray->wall_side];
 		img = dm->columns[i++];
 		new_height = V_RES / ray->length;
 		mlx_resize_image(img, 1 , new_height);
