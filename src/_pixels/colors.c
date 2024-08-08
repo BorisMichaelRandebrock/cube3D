@@ -3,7 +3,7 @@
 
 #define SHADOW_DEPTH 0.15
 
-uint32_t	px_pixel_shader(uint32_t pixel, double distance)
+uint32_t	px_pixel_shader(uint32_t pixel_data, double distance)
 {
 	double		level = 0;
 	uint32_t	color = 0;
@@ -14,12 +14,11 @@ uint32_t	px_pixel_shader(uint32_t pixel, double distance)
 	shift = 24;
 	while (shift)
 	{
-		channel = pixel >> shift;
+		channel = pixel_data >> shift;
 		channel *= level;
 		color += channel << shift;
 		shift -= 8;
 	}
-	color |= 0x000000FF;
 	return (color);
 }
 
@@ -35,5 +34,6 @@ uint32_t	px_decode_pixel(uint8_t *pixel)
 		color |= *pixel++ << shift;
 		shift -= 8;
 	}
+	color |= 0x000000FF;
 	return (color);
 }

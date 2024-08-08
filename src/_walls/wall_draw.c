@@ -1,11 +1,6 @@
 #include "cube3d.h"
 #include <math.h>
 
-
-
-
-
-
 void	wall_draw(void *unused)
 {
 	t_datamodel	*dm;
@@ -37,7 +32,7 @@ void	wall_draw(void *unused)
 			sy = dy / ratio; 
 
 			uint32_t pixel = _walltex->pixels[sy][ray->h_tex_pos];
-			pixel = px_pixel_shader(pixel, ray->length);
+			//pixel = px_pixel_shader(pixel, ray->length);
 			mlx_put_pixel(img, 0, dy, pixel);
 			dy++;
 		}
@@ -45,8 +40,7 @@ void	wall_draw(void *unused)
 		// mover a la columna
 		img->instances[0].x = ray->h_pos;
 		img->instances[0].y = (V_RES /2) - (new_height / 2);
-	
-		
+
 		_ray_list = _ray_list->next;
 		mlx_set_instance_depth(&img->instances[0],1);
 	}

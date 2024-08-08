@@ -75,6 +75,10 @@ typedef struct s_datamodel
 	t_ray		*front_ray;
 	t_list		*ray_list;
 	mlx_image_t	*columns[H_RES];
+	t_texture	*wall_e;
+	t_texture	*wall_s;
+	t_texture	*wall_w;
+	t_texture	*wall_n;
 	t_texture	**wall_tex;
 
 }	t_datamodel;
@@ -121,6 +125,6 @@ void			rc_cast_fan(void *param);
 void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
 uint32_t		px_decode_pixel(uint8_t *pixel);
-uint32_t		px_pixel_shader(uint32_t pixel, double distance);
+uint32_t		px_pixel_shader(uint32_t pixel_data, double distance);
 
 #endif
