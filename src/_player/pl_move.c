@@ -62,12 +62,31 @@ void	pl_rotate(int mag)
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
 	t_datamodel	*dm;
+
+	dm = dm_get(NULL);
+	(void)param;
+	(void)xdelta;
+	if (ydelta > 0)
+	{
+		dm->player->yaw += (-1 * ROT_SPEED);
+		dm->player->yaw = ut_norm_angle(dm->player->yaw);
+	}
+	else if (ydelta < 0)
+	{
+		dm->player->yaw += (1 * ROT_SPEED);
+		dm->player->yaw = ut_norm_angle(dm->player->yaw);
+	}
+}
+
+/* void	my_scrollhook(double xdelta, double ydelta, void *param)
+{
+	t_datamodel	*dm;
 	t_point		delta;
 
+	dm = dm_get(NULL);
 	(void)param;
 	if (ydelta > 0)
 	{
-		dm = dm_get(NULL);
 		delta = dm->player->pos;
 		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + ydelta);
 		if (pl_sat_coldet(dm, delta))
@@ -76,11 +95,10 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	}
 	else if (ydelta < 0)
 	{
-		dm = dm_get(NULL);
 		delta = dm->player->pos;
 		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + xdelta);
 		if (pl_sat_coldet(dm, delta))
 			return ;
 		dm->player->pos = delta;
 	}
-}
+} */
