@@ -13,6 +13,7 @@
 #include <math.h>
 #include "cube3d.h"
 #include "rad.h"
+#include <stdio.h>
 
 #define MOVE_SPEED 0.2
 #define ROT_SPEED 0.05
@@ -56,4 +57,30 @@ void	pl_rotate(int mag)
 	dm = dm_get(NULL);
 	dm->player->yaw += (mag * ROT_SPEED);
 	dm->player->yaw = ut_norm_angle(dm->player->yaw);
+}
+
+void	my_scrollhook(double xdelta, double ydelta, void *param)
+{
+	t_datamodel	*dm;
+	t_point		delta;
+
+	(void)param;
+	if (ydelta > 0)
+	{
+		dm = dm_get(NULL);
+		delta = dm->player->pos;
+		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + ydelta);
+		if (pl_sat_coldet(dm, delta))
+			return ;
+		dm->player->pos = delta;
+	}
+	else if (ydelta < 0)
+	{
+		dm = dm_get(NULL);
+		delta = dm->player->pos;
+		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + xdelta);
+		if (pl_sat_coldet(dm, delta))
+			return ;
+		dm->player->pos = delta;
+	}
 }

@@ -136,5 +136,6 @@ void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
 uint32_t		px_decode_pixel(uint8_t *pixel);
 uint32_t		px_pixel_shader(uint32_t pixel_data, double distance);
+void			my_scrollhook(double xdelta, double ydelta, void *param);
 
 #endif

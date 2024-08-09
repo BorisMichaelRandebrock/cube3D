@@ -101,6 +101,7 @@ int	main(int argc, char **argv)
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);
 	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
+	mlx_scroll_hook(dm->mlx , &my_scrollhook, NULL);
 	bg_setup(dm);
 	mm_setup(dm);
 	wall_setup(dm);
