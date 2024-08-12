@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 18:30:00 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:10:46 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,26 @@ typedef struct s_player
 
 typedef struct s_datamodel
 {
-	char		*no_tex_path;
-	char		*so_tex_path;
-	char		*we_tex_path;
-	char		*ea_tex_path;
-	char		*ceiling_raw;
-	uint32_t	ceiling_hex;
-	char		*floor_raw;
-	uint32_t	floor_hex;
-	t_tilemap	*tilemap;
-	t_player	*player;
-	mlx_t		*mlx;
-	t_ray		*fray;
-	t_list		*ray_list;
-	mlx_image_t	*columns[H_RES];
-	t_texture	*wall_e;
-	t_texture	*wall_s;
-	t_texture	*wall_w;
-	t_texture	*wall_n;
-	t_texture	**wall_tex;
-
+	char			*no_tex_path;
+	char			*so_tex_path;
+	char			*we_tex_path;
+	char			*ea_tex_path;
+	char			*ceiling_raw;
+	uint32_t		ceiling_hex;
+	char			*floor_raw;
+	uint32_t		floor_hex;
+	t_tilemap		*tilemap;
+	t_player		*player;
+	mlx_t			*mlx;
+	t_ray			*fray;
+	t_list			*ray_list;
+	mlx_image_t		*columns[H_RES];
+	t_texture		**wall_tex;
+	mlx_texture_t	*player_tex;
+	mlx_texture_t	*marker_tex;
 }	t_datamodel;
 
+void			freexit(t_datamodel *dm);
 void			close_game(void *param);
 double			ut_deg_to_rad(double degrees);
 double			ut_rad_to_deg(double radians);
@@ -136,6 +134,6 @@ void			wall_setup(t_datamodel *dm);
 void			wall_draw(void *dm);
 uint32_t		px_decode_pixel(uint8_t *pixel);
 uint32_t		px_pixel_shader(uint32_t pixel_data, double distance);
-void			my_scrollhook(double xdelta, double ydelta, void *param);
+void			pl_mouse_rotate(double xdelta, double ydelta, void *param);
 
 #endif

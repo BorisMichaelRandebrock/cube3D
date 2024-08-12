@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/08/08 18:51:29 by fmontser         ###   ########.fr        #
+#    Updated: 2024/08/12 11:34:12 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h rad.h
-SRCS			:=	main.c\
+SRCS			:=	main.c free.c\
 					ut_math.c ut_memory.c ut_print.c ut_lists.c ut_degrees.c\
 					dm_setup.c dm_tilemap.c dm_load_colors.c dm_load_tex_path.c\
 					dm_load_tilemap.c dm_check_tex_files.c dm_check_colors.c\

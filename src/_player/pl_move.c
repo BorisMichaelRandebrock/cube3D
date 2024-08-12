@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:11:28 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 18:13:06 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:41:10 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #define MOVE_SPEED 0.2
 #define ROT_SPEED 0.05
+#define MOUSE_SENSITIVITY 0.04
 #define COLDET_SCALE 0.3
 
 static bool	pl_sat_coldet(t_datamodel *dm, t_point delta)
@@ -59,46 +60,19 @@ void	pl_rotate(int mag)
 	dm->player->yaw = ut_norm_angle(dm->player->yaw);
 }
 
-void	my_scrollhook(double xdelta, double ydelta, void *param)
+void	pl_mouse_rotate(double x, double y, void *param)
 {
-	t_datamodel	*dm;
+	static double	last = 0;
+	double			delta;
+	t_datamodel		*dm;
 
-	dm = dm_get(NULL);
 	(void)param;
-	(void)xdelta;
-	if (ydelta > 0)
-	{
-		dm->player->yaw += (-1 * ROT_SPEED);
-		dm->player->yaw = ut_norm_angle(dm->player->yaw);
-	}
-	else if (ydelta < 0)
-	{
-		dm->player->yaw += (1 * ROT_SPEED);
-		dm->player->yaw = ut_norm_angle(dm->player->yaw);
-	}
+	(void)y;
+	delta = fabs(last - x);
+	dm = dm_get(NULL);
+	if (x < last)
+		dm->player->yaw += ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+	else if (x > last)
+		dm->player->yaw -= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+	last = x;
 }
-
-/* void	my_scrollhook(double xdelta, double ydelta, void *param)
-{
-	t_datamodel	*dm;
-	t_point		delta;
-
-	dm = dm_get(NULL);
-	(void)param;
-	if (ydelta > 0)
-	{
-		delta = dm->player->pos;
-		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + ydelta);
-		if (pl_sat_coldet(dm, delta))
-			return ;
-		dm->player->pos = delta;
-	}
-	else if (ydelta < 0)
-	{
-		delta = dm->player->pos;
-		delta.y += ydelta * MOVE_SPEED * ut_sin(dm->player->yaw + xdelta);
-		if (pl_sat_coldet(dm, delta))
-			return ;
-		dm->player->pos = delta;
-	}
-} */

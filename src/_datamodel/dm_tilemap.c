@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:57 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:35:23 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:43:40 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	dm_free_tilemap(t_tilemap *tilemap)
 	y = 0;
 	while (y < tilemap->size.y)
 		free(tilemap->map[y++]);
+	free(tilemap->map);
 	free(tilemap);
 }
 

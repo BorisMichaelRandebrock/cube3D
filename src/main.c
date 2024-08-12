@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:36:36 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:39:28 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 
 void	close_game(void *param)
 {
+	t_datamodel *dm;
+
+	dm = dm_get(NULL);
+	freexit(dm);
 	mlx_terminate(param);
 	exit(EXIT_SUCCESS);
 }
@@ -98,14 +102,16 @@ int	main(int argc, char **argv)
 	_data_init(argv[CUB_FILENAME]);
 	dm = dm_get(NULL);
 	icon = mlx_load_png(ICON_TEX_PATH);
+	mlx_set_cursor_mode(dm->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);
 	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
-	mlx_scroll_hook(dm->mlx , &my_scrollhook, NULL);
+	mlx_cursor_hook(dm->mlx, pl_mouse_rotate, dm->mlx);
 	bg_setup(dm);
 	mm_setup(dm);
 	wall_setup(dm);
 	mlx_loop(dm->mlx);
+	mlx_delete_texture(icon);
 	close_game(dm->mlx);
 	return (0);
 }

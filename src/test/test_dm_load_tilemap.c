@@ -25,10 +25,10 @@ bool	test_dm_load_tilemap(void)
 		{' ','1','1','1','1','1'}
 	};
 	
-	tilemap.map = (char **)calloc(tilemap.size.y, sizeof(char *));
+	tilemap.map = (char **)ut_scalloc(tilemap.size.y, sizeof(char *));
 	while( i < tilemap.size.y)
 	{
-		tilemap.map[i] = (char *)calloc(tilemap.size.x, sizeof(char));
+		tilemap.map[i] = (char *)ut_scalloc(tilemap.size.x, sizeof(char));
 		memcpy(tilemap.map[i], map[i], tilemap.size.x);
 		i++;
 	}
