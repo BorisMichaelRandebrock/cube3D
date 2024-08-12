@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:39:28 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:43:33 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 void	close_game(void *param)
 {
-	t_datamodel *dm;
+	t_datamodel	*dm;
 
 	dm = dm_get(NULL);
 	freexit(dm);

@@ -6,13 +6,13 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:33:06 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 15:07:58 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:50:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-static void _free_columns(t_datamodel *dm)
+static void	_free_columns(t_datamodel *dm)
 {
 	int	i;
 
@@ -21,16 +21,16 @@ static void _free_columns(t_datamodel *dm)
 		mlx_delete_image(dm->mlx, dm->columns[i++]);
 }
 
-
-static void _free_textures(t_datamodel *dm)
+static void	_free_textures(t_datamodel *dm)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	while (i < 4)
 	{
+		mlx_delete_texture(dm->wall_tex[i]->mlx_tex);
 		while (j < 256)
 		{
 			free(dm->wall_tex[i]->pixels[j++]);

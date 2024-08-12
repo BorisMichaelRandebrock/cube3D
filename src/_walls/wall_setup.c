@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:28:29 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 13:34:00 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:51:34 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	wall_setup(t_datamodel *dm)
 			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/south_texture.png");
 		else if (i == WALL_W)
 			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/west_texture.png");
-		_load_texture_data(dm->wall_tex[i]);
-		mlx_delete_texture(dm->wall_tex[i++]->mlx_tex);
+		_load_texture_data(dm->wall_tex[i++]);
 	}
 	i = 0;
 	while (i < H_RES)

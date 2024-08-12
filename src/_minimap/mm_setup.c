@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:38:15 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 15:06:59 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:46:07 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	_mm_build_minimap(t_datamodel *dm, mlx_image_t *minimap)
 {
 	t_rect		grid;
 	t_rect		px_grid;
-	(void)minimap;
 
 	grid.y = 0;
 	grid.x = 0;
@@ -62,13 +61,13 @@ static void	_mm_build_minimap(t_datamodel *dm, mlx_image_t *minimap)
 		grid.y++;
 	}
 }
-//MLX tiene un leak!!
+
 void	mm_setup(t_datamodel *dm)
 {
 	mlx_image_t	*minimap;
 	mlx_image_t	*player;
 	mlx_image_t	*marker;
-	
+
 	minimap = mlx_new_image(dm->mlx, dm->tilemap->size.x * MM_RES,
 			dm->tilemap->size.y * MM_RES);
 	_mm_build_minimap(dm, minimap);
@@ -84,7 +83,7 @@ void	mm_setup(t_datamodel *dm)
 	marker = mlx_texture_to_image(dm->mlx, dm->marker_tex);
 	mlx_resize_image(marker, dm->player->mm_size / 2, dm->player->mm_size / 2);
 	mlx_image_to_window(dm->mlx, marker, 0, 0);
- 	mlx_image_to_window(dm->mlx, marker, 0, 0);
+	mlx_image_to_window(dm->mlx, marker, 0, 0);
 	mlx_loop_hook(dm->mlx, mm_draw_destination, &marker->instances[0]);
 	mlx_loop_hook(dm->mlx, mm_draw_heading, &marker->instances[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:11:28 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:41:10 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:47:42 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ void	pl_mouse_rotate(double x, double y, void *param)
 	delta = fabs(last - x);
 	dm = dm_get(NULL);
 	if (x < last)
-		dm->player->yaw += ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+		dm->player->yaw
+			+= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
 	else if (x > last)
-		dm->player->yaw -= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+		dm->player->yaw
+			-= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
 	last = x;
 }

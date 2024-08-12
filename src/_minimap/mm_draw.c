@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:36:11 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 14:57:17 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:44:44 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	mm_draw_player(void *player)
 {
-	(void)player;
 	t_datamodel		*dm;
 	mlx_instance_t	*_player;
 
