@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:57 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 12:43:40 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:09:35 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 void	dm_free_tilemap(t_tilemap *tilemap)
 {
 	int	y;
-
+	char *c;
 	y = 0;
 	while (y < tilemap->size.y)
+	{
+		c = tilemap->map[y];
 		free(tilemap->map[y++]);
+	}
 	free(tilemap->map);
 	free(tilemap);
+	(void)c;
 }
 
 t_tilemap	*dm_copy_tilemap_(t_tilemap *tilemap)

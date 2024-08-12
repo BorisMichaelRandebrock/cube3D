@@ -10,7 +10,7 @@
 			"request": "launch",
 			"preLaunchTask":"make",
 			"program": "${workspaceFolder}/bin/cube3d",
-			"args": ["${workspaceFolder}/res/level0.cub"],
+			"args": ["${workspaceFolder}/res/level_peninsula.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

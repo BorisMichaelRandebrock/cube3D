@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:43:33 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:36:36 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	_data_init(char *cub_filename)
 	ft_lstclear(&cub_lines, free);
 	_check_data(dm);
 	dm_load_player_data(dm);
+	dm_seal_map(dm);
 }
 
 int	main(int argc, char **argv)
@@ -106,7 +107,7 @@ int	main(int argc, char **argv)
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);
 	mlx_key_hook(dm->mlx, pl_input, dm->mlx);
-	mlx_cursor_hook(dm->mlx, pl_mouse_rotate, dm->mlx);
+//	mlx_cursor_hook(dm->mlx, pl_mouse_rotate, dm->mlx);
 	bg_setup(dm);
 	mm_setup(dm);
 	wall_setup(dm);

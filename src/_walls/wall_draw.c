@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:36:43 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 18:46:58 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:20:28 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	wall_draw(void *dm)
 	{
 		ray = ((t_ray *)_ray_list->content);
 		img = ((t_datamodel *)dm)->columns[i++];
-		new_height = V_RES / ray->length;
+		new_height = ut_clamp(1, V_RES, V_RES / ray->length);
 		mlx_resize_image(img, 1, new_height);
 		_scale(dm, ray, img, new_height);
 		img->instances[0].x = ray->h_pos;

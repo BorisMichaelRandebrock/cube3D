@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 15:10:46 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:47:50 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ bool			dm_check_tex_files(t_datamodel *dm);
 bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
+void			dm_seal_map(t_datamodel *dm);
 t_tilemap		*dm_copy_tilemap_(t_tilemap *tilemap);
 void			pl_input(mlx_key_data_t keydata, void *param);
 void			pl_walk(int vect, double rad_mod);
@@ -124,7 +125,6 @@ void			bg_setup(t_datamodel *dm);
 void			mm_setup(t_datamodel *dm);
 void			mm_draw_destination(void *marker);
 void			mm_draw_heading(void *marker);
-void			mm_draw_ray(void *minimap);
 void			mm_draw_player(void *param);
 void			rc_dda(void *ray);
 void			rc_cast(void *ray);

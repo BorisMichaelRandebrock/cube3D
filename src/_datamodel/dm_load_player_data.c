@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:35:28 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:35:50 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:22:41 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	dm_load_player_data(t_datamodel *dm)
 
 	dm->player = ut_scalloc(1, sizeof(t_player));
 	dm->player->pos = dm->tilemap->spawn_point;
+	dm->player->pos.x += 0.5;
+	dm->player->pos.y += 0.5;
 	c = dm->tilemap->spawn_char;
 	if (c == 'N')
 		dm->player->yaw = RAD_270;
