@@ -61,8 +61,8 @@ MLX_LIB			:=	src/MLX42/build/libmlx42.a
 MLX_BUILD_DIR	:=	src/MLX42/build/
 MLX_FLAGS		:=	-B
 
-CC_FLAGS		:=	-Wall -Werror -Wextra -g -c
-LIB_FLAGS		:=	-lm -ldl -lglfw -pthread
+CC_FLAGS		:=	-Wall -Werror -Wextra -g -c 
+LIB_FLAGS		:=	-lm -ldl -lglfw -pthread 
 
 CLEAN_TARGETS	=	$(wildcard $(addprefix $(OBJ_DIR), $(OBJS) $(TST_OBJS)))
 FCLEAN_TARGETS	=	$(wildcard $(addprefix $(BIN_DIR), $(NAME) $(TST_NAME)))
@@ -108,6 +108,12 @@ test: $(TST_NAME)
 
 run: all
 	@./$(BIN_DIR)$(NAME) $(RES_DIR)$(RUN_MAP_NAME)
+
+valgrind: $(NAME)
+	@valgrind --leak-check=full --track-origins=yes ./$(BIN_DIR)$(NAME) $(RES_DIR)$(RUN_MAP_NAME)
+
+viking: $(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(BIN_DIR)$(NAME) $(RES_DIR)$(RUN_MAP_NAME)
 
 clean:
 	@$(foreach item,$(CLEAN_TARGETS),echo "$(COLOR_RED)delete file: $(item)$(COLOR_END)"; rm $(item);)
