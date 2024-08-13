@@ -6,13 +6,13 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:40 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 10:50:56 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
-#include "cube3d.h"
+#include "cub3d.h"
 #include "libft.h"
 
 static void	_clean_endline(char *line)

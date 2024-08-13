@@ -6,11 +6,11 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:32 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 10:51:43 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:38:25 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 
 t_datamodel	*dm_get(t_datamodel *dm)
 {
@@ -42,4 +42,13 @@ void	dm_seal_map(t_datamodel *dm)
 		x = 0;
 		y++;
 	}
+}
+void	dm_graphics_init(t_datamodel *dm)
+{
+	dm->no_tex_path = ft_strdup("");
+	dm->so_tex_path = ft_strdup("");
+	dm->we_tex_path = ft_strdup("");
+	dm->ea_tex_path = ft_strdup("");
+	dm->floor_raw = ft_strdup("");
+	dm->ceiling_raw = ft_strdup("");
 }

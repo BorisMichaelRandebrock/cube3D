@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_degrees.c                                       :+:      :+:    :+:   */
+/*   ut_files.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 18:21:56 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
+/*   Created: 2024/08/13 15:48:37 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/13 16:01:24 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "cub3d.h"
-#include "rad.h"
 
-//TODO BORRRAR, no usar grados sexagesimales
-//TODO borrar conversiones
-double	ut_deg_to_rad(double degrees)
+mlx_texture_t	*ut_sload_texture(char *filepath)
 {
-	return (degrees * (M_PI / 180.0));
+	mlx_texture_t	*texture;
+
+	texture = mlx_load_png(filepath);
+	if (!texture)
+		ut_error_quit("Texture file error\n");
+	return(texture);
 }
 
-//TODO borrar conversiones
-double	ut_rad_to_deg(double radians)
-{
-	return (radians * (180.0 / M_PI));
-}

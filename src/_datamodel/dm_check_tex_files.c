@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:33:55 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:33:55 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "cube3d.h"
+#include "cub3d.h"
 
 #define NUM_TEXTURES 4
 #define STD_FDS	2 

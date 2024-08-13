@@ -6,11 +6,11 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:33:06 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:50:48 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 
 static void	_free_columns(t_datamodel *dm)
 {

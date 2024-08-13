@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "ansi.h"
-#include "cube3d.h"
+#include "cub3d.h"
 #include "tests.h"
 #include "respath.h"
 #include "string.h"

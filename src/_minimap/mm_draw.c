@@ -6,12 +6,12 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:36:11 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:44:44 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "cube3d.h"
+#include "cub3d.h"
 
 void	mm_draw_player(void *player)
 {

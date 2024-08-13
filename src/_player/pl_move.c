@@ -6,12 +6,12 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:11:28 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 10:49:29 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "cube3d.h"
+#include "cub3d.h"
 #include "rad.h"
 #include <stdio.h>
 

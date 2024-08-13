@@ -6,11 +6,11 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:36:43 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 18:20:28 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 #include <math.h>
 
 static void	_scale(t_datamodel *dm, t_ray *ray, mlx_image_t *img, double height)

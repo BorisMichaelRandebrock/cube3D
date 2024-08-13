@@ -6,13 +6,13 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:33:38 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/08 17:33:39 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
-#include "cube3d.h"
+#include "cub3d.h"
 #include "libft.h"
 
 static	t_rect	_get_player_position(t_tilemap *tilemap)

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ansi.h"
-#include "cube3d.h"
+#include "cub3d.h"
 #include "tests.h"
 
 int	main(void)

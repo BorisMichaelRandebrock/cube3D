@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 10:47:31 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:38:21 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "respath.h"
-#include "cube3d.h"
+#include "cub3d.h"
 
 #define CUB_FILE_ERROR -1
 #define CUB_FILENAME 1
@@ -84,6 +84,7 @@ static void	_data_init(char *cub_filename)
 	cub_lines = NULL;
 	_get_cub_lines(&cub_lines, fd);
 	close(fd);
+	dm_graphics_init(dm);
 	next_lines = dm_load_tex_path(dm, cub_lines);
 	next_lines = dm_load_colors(dm, next_lines);
 	dm_load_tilemap_(dm, next_lines);
@@ -97,12 +98,16 @@ int	main(int argc, char **argv)
 {
 	t_datamodel		*dm;
 	mlx_texture_t	*icon;
+	char			*file_extension;
 
 	if (argc != 2)
 		ut_error_quit("Wrong number of arguments.\n");
+	file_extension = argv[1] + ft_strlen(argv[1])- 4;
+	if (ft_strncmp(file_extension, ".cub", 4) != 0)
+		ut_error_quit("Wrong file extension.\n");
 	_data_init(argv[CUB_FILENAME]);
 	dm = dm_get(NULL);
-	icon = mlx_load_png(ICON_TEX_PATH);
+	icon = ut_sload_texture(ICON_TEX_PATH);
 	mlx_set_cursor_mode(dm->mlx, MLX_MOUSE_HIDDEN);
 	mlx_set_icon(dm->mlx, icon);
 	mlx_close_hook(dm->mlx, close_game, dm->mlx);

@@ -6,11 +6,11 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:28:29 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:51:34 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:57:23 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 #include <stdio.h>
 
 #define TEXTURE_COUNT	4
@@ -55,13 +55,13 @@ void	wall_setup(t_datamodel *dm)
 	{
 		dm->wall_tex[i] = ut_scalloc(1, sizeof(t_texture));
 		if (i == WALL_N)
-			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/north_texture.png");
+			dm->wall_tex[i]->mlx_tex = ut_sload_texture(dm->no_tex_path);
 		else if (i == WALL_E)
-			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/east_texture.png");
+			dm->wall_tex[i]->mlx_tex = ut_sload_texture(dm->ea_tex_path);
 		else if (i == WALL_S)
-			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/south_texture.png");
+			dm->wall_tex[i]->mlx_tex = ut_sload_texture(dm->so_tex_path);
 		else if (i == WALL_W)
-			dm->wall_tex[i]->mlx_tex = mlx_load_png("res/west_texture.png");
+			dm->wall_tex[i]->mlx_tex = ut_sload_texture(dm->we_tex_path);
 		_load_texture_data(dm->wall_tex[i++]);
 	}
 	i = 0;

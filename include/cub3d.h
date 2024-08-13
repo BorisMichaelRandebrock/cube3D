@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 18:47:50 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:38:21 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,12 @@ double			ut_sin(double angle);
 double			ut_clamped_tan(double angle);
 t_point			ut_get_direction(double radians);
 double			ut_norm_angle(double angle);
+mlx_texture_t	*ut_sload_texture(char *filepath);
 t_list			*ut_sort_rays(t_list *lst);
 t_datamodel		*dm_get(t_datamodel *dm);
 t_list			*dm_load_tex_path(t_datamodel *dm, t_list *cub_lines);
 t_list			*dm_load_colors(t_datamodel *dm, t_list *cub_lines);
+void			dm_graphics_init(t_datamodel *dm);
 void			dm_load_player_data(t_datamodel *dm);
 void			dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
 bool			dm_check_tex_files(t_datamodel *dm);
