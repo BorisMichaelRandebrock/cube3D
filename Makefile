@@ -6,7 +6,7 @@
 #    By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 17:13:41 by fmontser          #+#    #+#              #
-#    Updated: 2024/08/12 18:52:17 by fmontser         ###   ########.fr        #
+#    Updated: 2024/08/13 10:46:27 by fmontser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ _RC_DIR			:=	$(SRC_DIR)_raycast/
 _WALL_DIR		:=	$(SRC_DIR)_walls/
 _PIX_DIR		:=	$(SRC_DIR)_pixels/
 
-RUN_MAP_NAME	:=	level_peninsula.cub
+RUN_MAP_NAME	:=	level0.cub
 
 NAME			:=	cube3d
 HDRS			:=	cube3d.h ansi.h tests.h respath.h rad.h
