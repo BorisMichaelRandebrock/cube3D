@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:11:28 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/12 16:47:42 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:49:29 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #define MOVE_SPEED 0.2
 #define ROT_SPEED 0.05
-#define MOUSE_SENSITIVITY 0.04
+#define MOUSE_SENSITIVITY 0.032
 #define COLDET_SCALE 0.3
 
 static bool	pl_sat_coldet(t_datamodel *dm, t_point delta)
@@ -72,9 +72,9 @@ void	pl_mouse_rotate(double x, double y, void *param)
 	dm = dm_get(NULL);
 	if (x < last)
 		dm->player->yaw
-			+= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+			-= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
 	else if (x > last)
 		dm->player->yaw
-			-= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
+			+= ut_norm_angle(delta * MOUSE_SENSITIVITY * dm->mlx->delta_time);
 	last = x;
 }

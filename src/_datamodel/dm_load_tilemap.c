@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:40 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 10:45:37 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/13 10:50:56 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 	{
 		dm->tilemap->map[i] = ut_scalloc(dm->tilemap->size.x, sizeof(char));
 		_clean_endline(next_lines->content);
-		ft_memcpy(dm->tilemap->map[i]
-			, next_lines->content, ft_strlen(next_lines->content));
+		ft_memcpy(dm->tilemap->map[i],
+			next_lines->content, ft_strlen(next_lines->content));
 		next_lines = next_lines->next;
 		i++;
 	}
