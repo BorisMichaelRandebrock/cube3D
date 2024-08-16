@@ -37,6 +37,7 @@ static t_list	*_load_line(char **path, t_list *next_lines)
 		ut_error_quit("Texture already assigned\n");
 	ut_sfree(*path);
 	*path = ft_strdup(line);
+	free(line); //TODO if not: 90 bytes lost - 7 errors causado por la minilibx en strncmp
 	return (next_lines);
 }
 
