@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:20 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:42:00 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:43:50 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static void	_check_rgb_range(int rgb)
 		ut_error_quit("Wrong rbg range values.\n");
 }
 
-static void _validate_rgb(char **split_values)
+static void	_validate_rgb(char **split_values)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while(split_values[i])
+	while (split_values[i])
 	{
-		while(split_values[i][j])
+		while (split_values[i][j])
 		{
 			if (!ft_isdigit(split_values[i][j]))
 				ut_error_quit("Wrong rgb values\n");

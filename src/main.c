@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:38:21 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:42:11 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ut_error_quit("Wrong number of arguments.\n");
-	file_extension = argv[1] + ft_strlen(argv[1])- 4;
+	file_extension = argv[1] + ft_strlen(argv[1]) - 4;
 	if (ft_strncmp(file_extension, ".cub", 4) != 0)
 		ut_error_quit("Wrong file extension.\n");
 	_data_init(argv[CUB_FILENAME]);

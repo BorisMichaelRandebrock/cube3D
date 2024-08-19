@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:32 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:38:25 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:44:21 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	dm_seal_map(t_datamodel *dm)
 		y++;
 	}
 }
+
 void	dm_graphics_init(t_datamodel *dm)
 {
 	dm->no_tex_path = ft_strdup("");

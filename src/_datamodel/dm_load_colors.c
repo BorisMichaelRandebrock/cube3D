@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:10 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:47:43 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:44:05 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include "cub3d.h"
 
-static	void _check_dupe(char *raw_color)
+static	void	_check_dupe(char *raw_color)
 {
-	if(raw_color[0] != '\0')
+	if (raw_color[0] != '\0')
 		ut_error_quit("Color entry duplicated\n");
 }
 

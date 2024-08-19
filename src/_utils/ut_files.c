@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:48:37 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 16:01:24 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:44:54 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ mlx_texture_t	*ut_sload_texture(char *filepath)
 	texture = mlx_load_png(filepath);
 	if (!texture)
 		ut_error_quit("Texture file error\n");
-	return(texture);
+	return (texture);
 }
-

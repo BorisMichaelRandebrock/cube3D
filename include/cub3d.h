@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 17:22:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:38:21 by fmontser         ###   ########.fr       */
+/*   Created: 2024/08/19 11:40:12 by fmontser          #+#    #+#             */
+/*   Updated: 2024/08/19 11:41:30 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <stdlib.h>
 # include <inttypes.h>

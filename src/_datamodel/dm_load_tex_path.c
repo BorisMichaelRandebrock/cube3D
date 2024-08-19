@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:26 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 17:14:13 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:38:11 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_list	*_load_line(char **path, t_list *next_lines)
 		ut_error_quit("Texture already assigned\n");
 	ut_sfree(*path);
 	*path = ft_strdup(line);
-	free(line); //TODO if not: 90 bytes lost - 7 errors causado por la minilibx en strncmp
+	free(line);
 	return (next_lines);
 }
 
