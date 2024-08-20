@@ -58,8 +58,6 @@ static void	_get_cub_lines(t_list **cub_lines, int fd)
 
 static void	_check_data(t_datamodel *dm)
 {
-	if (!dm_check_tex_files(dm))
-		ut_error_quit("Wrong texture file.\n");
 	if (!dm_check_colors(dm))
 		ut_error_quit("Missing color values.\n");
 	if (!dm_check_tilemap(dm))

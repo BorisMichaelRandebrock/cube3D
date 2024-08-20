@@ -44,6 +44,8 @@ static bool	_check_flood_fill(t_tilemap *tilemap, int x, int y)
 {
 	int	line_size;
 
+	if (y == -1 || y >= tilemap->size.y)
+		ut_error_quit("Wrong tilemappppppp\n");
 	line_size = ft_strlen(tilemap->map[y]);
 	if (x < 0 || y < 0 || x >= line_size || y >= tilemap->size.y)
 		return (false);
