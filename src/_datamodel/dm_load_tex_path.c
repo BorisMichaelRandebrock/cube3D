@@ -15,7 +15,7 @@
 #include "cub3d.h"
 
 #define PATH_OFFSET 3
- 
+
 static void	_check_tex(t_datamodel *dm)
 {
 	if (!dm_check_tex_files(dm))
