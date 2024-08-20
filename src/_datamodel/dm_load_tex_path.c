@@ -15,6 +15,12 @@
 #include "cub3d.h"
 
 #define PATH_OFFSET 3
+ 
+static void	_check_tex(t_datamodel *dm)
+{
+	if (!dm_check_tex_files(dm))
+		ut_error_quit("Wrong texture file.\n");
+}
 
 static char	*_trim_path(char *buffer)
 {
@@ -61,5 +67,6 @@ t_list	*dm_load_tex_path(t_datamodel *dm, t_list *next_lines)
 	}
 	if (!end_line)
 		ut_error_quit("Wrong level file");
+	_check_tex(dm);
 	return (end_line->next);
 }
