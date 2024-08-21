@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:32 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:44:21 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:58:50 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,33 @@ void	dm_seal_map(t_datamodel *dm)
 		x = 0;
 		y++;
 	}
+}
+
+t_list	*dm_parse_lines(t_datamodel *dm, t_list *next_lines)
+{
+	char	*line;
+
+	while (next_lines)
+	{
+		line = next_lines->content;
+		if ((line[0] == 'N' && line[1] == 'O')
+			|| (line[0] == 'S' && line[1] == 'O')
+			|| (line[0] == 'W' && line[1] == 'E')
+			|| (line[0] == 'E' && line[1] == 'A'))
+		{
+			next_lines = dm_load_tex_path(dm, next_lines);
+			continue ;
+		}
+		else if (line[0] == 'C' || line[0] == 'F')
+		{
+			next_lines = dm_load_colors(dm, next_lines);
+			continue ;
+		}
+		else if (line[0] == '1' || line[0] == ' ')
+			break ;
+		next_lines = next_lines->next;
+	}
+	return (next_lines);
 }
 
 void	dm_graphics_init(t_datamodel *dm)

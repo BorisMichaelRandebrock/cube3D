@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:20 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:43:50 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:53:50 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	_rgbtohex(char *line)
 
 	tmp = 0;
 	lshift = 24;
-	split_values = ft_split(&line[2], ',');
+	split_values = ft_split(line, ',');
 	_validate_rgb(split_values);
 	hex_color = 0;
 	i = 0;
@@ -73,14 +73,34 @@ static int	_rgbtohex(char *line)
 	return (hex_color | MAX_ALPHA);
 }
 
+static int	_get_offset(int path_offset, char *line)
+{
+	int	i;
+	int	line_len;
+
+	i = path_offset;
+	line_len = ft_strlen(line);
+	while (i < line_len)
+	{
+		if (line[i] == ' ')
+			path_offset++;
+		i++;
+	}
+	return (path_offset);
+}
+
 bool	dm_check_colors(t_datamodel *dm)
 {
+	char	*line;
+
 	dm->ceiling_raw[ft_strlen(dm->ceiling_raw) - 1] = '\0';
 	dm->floor_raw[ft_strlen(dm->floor_raw) - 1] = '\0';
 	if (dm->floor_raw[0] == '\0' || dm->floor_raw[1] != ' '
 		|| dm->ceiling_raw[0] == '\0' || dm->ceiling_raw[1] != ' ')
 		return (false);
-	dm->ceiling_hex = _rgbtohex(dm->ceiling_raw);
-	dm->floor_hex = _rgbtohex(dm->floor_raw);
+	line = &dm->ceiling_raw[_get_offset(1, dm->ceiling_raw)];
+	dm->ceiling_hex = _rgbtohex(line);
+	line = &dm->floor_raw[_get_offset(1, dm->floor_raw)];
+	dm->floor_hex = _rgbtohex(line);
 	return (true);
 }

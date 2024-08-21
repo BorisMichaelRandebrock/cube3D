@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:33:06 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:53:29 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void	freexit(t_datamodel *dm)
 	mlx_delete_texture(dm->player_tex);
 	mlx_delete_texture(dm->marker_tex);
 	free(dm);
+}
+
+void	close_game(void *param)
+{
+	t_datamodel	*dm;
+
+	dm = dm_get(NULL);
+	freexit(dm);
+	mlx_terminate(param);
+	exit(EXIT_SUCCESS);
 }

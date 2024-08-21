@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:25:45 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:42:11 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:26:37 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@
 #define CUB_FILENAME 1
 #define CUB_BUFFER 2048
 
-void	close_game(void *param)
-{
-	t_datamodel	*dm;
-
-	dm = dm_get(NULL);
-	freexit(dm);
-	mlx_terminate(param);
-	exit(EXIT_SUCCESS);
-}
-
 static void	_get_cub_lines(t_list **cub_lines, int fd)
 {
 	int		i;
@@ -38,6 +28,7 @@ static void	_get_cub_lines(t_list **cub_lines, int fd)
 	char	*line;
 
 	i = 0;
+	ft_memset(buffer, '\0', BUFSIZ);
 	while (read(fd, &buffer[i], 1))
 	{
 		if (buffer[i] == '\n')
@@ -54,6 +45,12 @@ static void	_get_cub_lines(t_list **cub_lines, int fd)
 	ft_lstadd_back(cub_lines, ft_lstnew(line));
 	if (cub_lines == NULL)
 		ut_error_quit("Cub file is empty.\n");
+}
+
+static void	_check_tex(t_datamodel *dm)
+{
+	if (!dm_check_tex_files(dm))
+		ut_error_quit("Wrong texture file.\n");
 }
 
 static void	_check_data(t_datamodel *dm)
@@ -83,10 +80,11 @@ static void	_data_init(char *cub_filename)
 	_get_cub_lines(&cub_lines, fd);
 	close(fd);
 	dm_graphics_init(dm);
-	next_lines = dm_load_tex_path(dm, cub_lines);
-	next_lines = dm_load_colors(dm, next_lines);
+	next_lines = cub_lines;
+	next_lines = dm_parse_lines(dm, next_lines);
 	dm_load_tilemap_(dm, next_lines);
 	ft_lstclear(&cub_lines, free);
+	_check_tex(dm);
 	_check_data(dm);
 	dm_load_player_data(dm);
 	dm_seal_map(dm);

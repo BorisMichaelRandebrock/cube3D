@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:26:06 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:11:52 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	ut_error_quit(char *str)
 {
-	printf(RED"ERROR\n%s"RES, str);
+	printf(RED"Error\n%s"RES, str);
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:10 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:44:05 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:41:24 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,23 @@ static	void	_check_dupe(char *raw_color)
 t_list	*dm_load_colors(t_datamodel *dm, t_list *next_lines)
 {
 	char	*line;
-	t_list	*end_line;
 
 	dm->floor_hex = -1;
 	dm->ceiling_hex = -1;
-	while (next_lines)
+	line = next_lines->content;
+	if (line[0] == 'F')
 	{
-		line = next_lines->content;
-		if (line[0] == 'F')
-		{
-			_check_dupe(dm->floor_raw);
-			free(dm->floor_raw);
-			dm->floor_raw = ft_strdup(line);
-			end_line = next_lines;
-		}
-		else if (line[0] == 'C')
-		{
-			_check_dupe(dm->ceiling_raw);
-			free(dm->ceiling_raw);
-			dm->ceiling_raw = ft_strdup(line);
-			end_line = next_lines;
-		}
-		next_lines = next_lines->next;
+		_check_dupe(dm->floor_raw);
+		free(dm->floor_raw);
+		dm->floor_raw = ft_strdup(line);
 	}
-	return (end_line->next);
+	else if (line[0] == 'C')
+	{
+		_check_dupe(dm->ceiling_raw);
+		free(dm->ceiling_raw);
+		dm->ceiling_raw = ft_strdup(line);
+	}
+	if (!next_lines->next)
+		ut_error_quit("Wrong level file");
+	return (next_lines->next);
 }
