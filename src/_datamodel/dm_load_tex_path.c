@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:26 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:38:11 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:54:26 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 #include "cub3d.h"
 
 #define PATH_OFFSET 3
-
-static void	_check_tex(t_datamodel *dm)
-{
-	if (!dm_check_tex_files(dm))
-		ut_error_quit("Wrong texture file.\n");
-}
 
 static char	*_trim_path(char *buffer)
 {
@@ -31,14 +25,32 @@ static char	*_trim_path(char *buffer)
 	return (path);
 }
 
+static int	_get_offset(int path_offset, char *line)
+{
+	int	i;
+	int	line_len;
+
+	i = path_offset;
+	line_len = ft_strlen(line);
+	while (i < line_len)
+	{
+		if (line[i] == ' ')
+			path_offset++;
+		i++;
+	}
+	return (path_offset);
+}
+
 static t_list	*_load_line(char **path, t_list *next_lines)
 {
 	char	*line;
+	int		path_offset;
 
 	line = next_lines->content;
-	if (line[PATH_OFFSET - 1] != ' ')
+	path_offset = _get_offset(PATH_OFFSET, line);
+	if (line[path_offset - 1] != ' ')
 		ut_error_quit("Missing texture path\n");
-	line = _trim_path(&line[PATH_OFFSET]);
+	line = _trim_path(&line[path_offset]);
 	if (*path[0] != '\0')
 		ut_error_quit("Texture already assigned\n");
 	ut_sfree(*path);
@@ -50,23 +62,17 @@ static t_list	*_load_line(char **path, t_list *next_lines)
 t_list	*dm_load_tex_path(t_datamodel *dm, t_list *next_lines)
 {
 	char	*line;
-	t_list	*end_line;
 
-	while (next_lines)
-	{
-		line = next_lines->content;
-		if (line[0] == 'N' && line[1] == 'O')
-			end_line = _load_line(&dm->no_tex_path, next_lines);
-		if (line[0] == 'S' && line[1] == 'O')
-			end_line = _load_line(&dm->so_tex_path, next_lines);
-		if (line[0] == 'W' && line[1] == 'E')
-			end_line = _load_line(&dm->we_tex_path, next_lines);
-		if (line[0] == 'E' && line[1] == 'A')
-			end_line = _load_line(&dm->ea_tex_path, next_lines);
-		next_lines = next_lines->next;
-	}
-	if (!end_line)
+	line = next_lines->content;
+	if (line[0] == 'N' && line[1] == 'O')
+		_load_line(&dm->no_tex_path, next_lines);
+	if (line[0] == 'S' && line[1] == 'O')
+		_load_line(&dm->so_tex_path, next_lines);
+	if (line[0] == 'W' && line[1] == 'E')
+		_load_line(&dm->we_tex_path, next_lines);
+	if (line[0] == 'E' && line[1] == 'A')
+		_load_line(&dm->ea_tex_path, next_lines);
+	if (!next_lines->next)
 		ut_error_quit("Wrong level file");
-	_check_tex(dm);
-	return (end_line->next);
+	return (next_lines->next);
 }

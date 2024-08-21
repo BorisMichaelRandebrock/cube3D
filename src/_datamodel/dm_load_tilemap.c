@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 17:34:40 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/13 15:51:48 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:54:44 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,28 @@ static void	_load_map_data_(t_datamodel *dm, t_list *next_lines)
 void	dm_load_tilemap_(t_datamodel *dm, t_list *next_lines)
 {
 	t_list	*lines_list;
+	int		i;
+	int		line_len;
 
+	i = 0;
 	while (next_lines && ((char *)next_lines->content)[0] == '\n')
 		next_lines = next_lines->next;
 	lines_list = next_lines;
 	dm->tilemap = ut_scalloc(1, sizeof(t_tilemap));
 	while (lines_list)
 	{
+		line_len = ft_strlen(lines_list->content);
+		while (i < line_len)
+		{
+			if (!ft_strchr("NSWE10 \t\n", ((char *)lines_list->content)[i++]))
+				ut_error_quit("Invalid map\n");
+		}
 		if (((char *)lines_list->content)[0] == '\0'
-			|| !ft_strchr("NSWE10 \t", ((char *)lines_list->content)[0]))
+			|| !ft_strchr("NSWE10 \t\n", ((char *)lines_list->content)[0]))
 			break ;
 		lines_list = lines_list->next;
 		++dm->tilemap->size.y;
+		i = 0;
 	}
 	_load_map_data_(dm, next_lines);
 }

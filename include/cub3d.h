@@ -6,7 +6,7 @@
 /*   By: fmontser <fmontser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:40:12 by fmontser          #+#    #+#             */
-/*   Updated: 2024/08/19 11:41:30 by fmontser         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:25:44 by fmontser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void			dm_graphics_init(t_datamodel *dm);
 void			dm_load_player_data(t_datamodel *dm);
 void			dm_load_tilemap_(t_datamodel *dm, t_list *cub_lines);
 bool			dm_check_tex_files(t_datamodel *dm);
+t_list			*dm_parse_lines(t_datamodel *dm, t_list *next_lines);
 bool			dm_check_colors(t_datamodel *dm);
 bool			dm_check_tilemap(t_datamodel *dm);
 void			dm_free_tilemap(t_tilemap *tilemap);
