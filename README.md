@@ -4,7 +4,7 @@
 Cube3D is a captivating 3D cube simulation built entirely in C, utilizing the Codam 42MinilibX for graphics rendering. This project showcases advanced graphics programming concepts, including camera orientation, collision detection, and real-time minimap functionality. Developed for Linux, Cube3D demonstrates the power of C programming and the flexibility of the MinilibX library in creating interactive 3D environments.
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=u0BOMz-P6uA" target="_blank">
+  <a href="https://www.youtube.com/watch?v=u0BOMz-P6uA" target="_blank" rel="noopener noreferrer">
     <img src="https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg" alt="Watch the video" style="width: 40%; height: auto; border: none;">
   </a>
 </p>
