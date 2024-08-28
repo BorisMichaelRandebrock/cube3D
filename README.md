@@ -107,8 +107,8 @@ The minimap is a standout feature that not only shows your current orientation w
 
 This project is a testament to the power and simplicity of the C programming language and the Codam 42MinilibX. Special thanks to the 42 Network for providing an innovative and inspiring learning environment that encourages creative and technical growth.
 
-<a href="https://www.youtube.com/watch?v=u0BOMz-P6uA">
-    <img src="https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg" alt="cube3D in action" style="width: 100%; height: auto; display: block;" target="_blank">
+<a href="https://www.youtube.com/watch?v=u0BOMz-P6uA" target="_blank">
+    <img src="https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg" alt="cube3D in action" style="width: 100%; height: auto; display: block;" >
 </a>
 
 
