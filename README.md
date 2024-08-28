@@ -1,13 +1,11 @@
 # 42 Schools Cube3D
 ## Overview
+<img src="https://github.com/user-attachments/assets/29e9b2fd-b08a-4914-a642-22a772e5edf0"
+     alt="black cat with laptop developing" align="right" width="450" height="220">
+Cube3D is a captivating 3D cube simulation built entirely in C, utilizing the Codam 42MinilibX for graphics rendering.  
+This project showcases advanced graphics programming concepts, including camera orientation, collision detection, and real-time minimap functionality. 
+Developed for Linux, Cube3D demonstrates the power of C programming and the flexibility of the MinilibX library in creating interactive 3D environments.
 
-Cube3D is a captivating 3D cube simulation built entirely in C, utilizing the Codam 42MinilibX for graphics rendering. This project showcases advanced graphics programming concepts, including camera orientation, collision detection, and real-time minimap functionality. Developed for Linux, Cube3D demonstrates the power of C programming and the flexibility of the MinilibX library in creating interactive 3D environments.
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=u0BOMz-P6uA" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg" alt="Watch the video" style="width: 40%; height: auto; border: none;">
-  </a>
-</p>
 
 
 
@@ -116,6 +114,12 @@ This project is a testament to the power and simplicity of the C programming lan
 
 
 <!---
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=u0BOMz-P6uA" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg" alt="Watch the video" style="width: 40%; height: auto; border: none;">
+  </a>
+</p>
+![zelda_Cube3D](https://github.com/user-attachments/assets/29e9b2fd-b08a-4914-a642-22a772e5edf0)
     <img src="https://img.icons8.com/ios-filled/50/000000/play--v1.png" alt="Play Button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px;">
 [![Watch the video](https://img.youtube.com/vi/u0BOMz-P6uA/hqdefault.jpg)](https://www.youtube.com/watch?v=u0BOMz-P6uA)
 https://www.youtube.com/watch?v=u0BOMz-P6uA
